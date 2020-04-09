@@ -1,41 +1,24 @@
-// 24/7 hour script
 const http = require('http');
 const express = require('express');
 const app = express();
-app.use(express.static('public'));
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200); // Sends the 200 status (OK, no problem with the vps server)
+app.get("/", (req, res) => {
+  res.sendStatus(200);
 });
 app.listen(process.env.PORT);
 
-// Load up the discord.js library
+
 const Discord = require("discord.js");
-
-// This is your client. Some people call it `bot`, some people call it `self`, 
-// some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
-// this is what we're refering to. Your client.
 const client = new Discord.Client();
-
-// Here we load the config.json file that contains our token and our prefix values. 
 const config = require("./config.json");
-// config.token contains the bot's token
-// config.prefix contains the message prefix.
 const ms = require("ms")
 
 const db = require("quick.db");
 const modmail = new db.table("modmail");
 const cd = new db.table("cd");
 
-
 client.on("ready", () => {
-  // This event will run if the bot starts, and logs in, successfully.
   console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`); 
-  // Example of changing the bot's playing game to something useful. `client.user` is what the
-  // docs refer to as the "ClientUser".
-client.user.setActivity('my DMS', { type: 'WATCHING' }  )
-
-
+  client.user.setActivity('my DMS', { type: 'WATCHING' })
 });
 
 
@@ -44,12 +27,9 @@ client.user.setActivity('my DMS', { type: 'WATCHING' }  )
 client.on("message", async message => {
   let guild = client.guilds.cache.get(config.server);
   let everyone = guild.roles.cache.find(role => role.id === config.server);
-  // This event will run on every single message received, from any channel or DM.
-  
-  // It's good practice to ignore other bots. This also makes your bot ignore itself
-  // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
   
+  //Begin Modmail Module
   if (message.guild === null) {
     let channel = modmail.get(message.author.id + ".channel");
     if (!channel) {
@@ -85,11 +65,6 @@ client.on("message", async message => {
   }
   if(!message.guild) return
   
-  
-  // Here we separate our "command" name, and our "arguments" for the command. 
-  // e.g. if we have the message ",say Is this the real life?" , we'll get the following:
-  // command = say
-  // args = ["Is", "this", "the", "real", "life?"]
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
@@ -128,25 +103,19 @@ client.on("message", async message => {
     docmd = false
   }
   
+  //End Modmail Module
   
   
-  // Also good practice to ignore any message that does not start with our prefix, 
-  // which is set in the configuration file.
   if(message.content.indexOf(config.prefix) !== 0) return;
   if(!docmd) return
-  if([].includes(message.author.id)) return await message.react("🙉")
+  if([].includes(message.author.id)) return await message.react("🙉") //blacklist
   
-  // Let's go with a few common example commands! Feel free to delete or change those.
   
   if(command === "ping") {
-    // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
-    // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
     message.delete().catch(O_o=>{});
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! :ping_pong: Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
   }
-  
-  
   
   if(command === "revive") {
     let lastping = cd.get("revive")
@@ -203,32 +172,12 @@ client.on("message", async message => {
     message.channel.send({embed});
   }
   
-  
   if(command === "say") {
     message.delete().catch(O_o=>{}); 
     if(!message.author.id === config.ownerID) return
     message.channel.startTyping();
-    // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
-    // To get the "message" itself we join the `args` back into a string with spaces: 
-    const sayMessage = args.join(" ");
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
-    message.delete().catch(O_o=>{}); 
-    // And we get the bot to say the thing: 
-    message.channel.send(sayMessage);
+    message.channel.send(args.join(" "));
     message.channel.stopTyping();
-  }
-  
-  
-  
-  if(command === "inrole") {
-    let roleName = message.content.split(" ").slice(1).join(" ");
-    let membersWithRole = message.guild.members.cache.filter(member => { 
-        return member.roles.cache.find("name", roleName);
-    }).map(member => {
-        return member.user.username;
-    })
-
-    message.channel.send("**Users with the " + roleName + " role:**\n```" + membersWithRole.join("\n") + "```")
   }
   
   if (command === "eval") {
@@ -247,11 +196,9 @@ client.on("message", async message => {
     }
   }
 
-  
-  
 });
 
-
+//Welcome new users
 client.on("guildMemberAdd", async member => {
   console.log(member)
   let chan = client.channels.cache.get("642214583721000972")
@@ -263,15 +210,6 @@ client.on("guildMemberAdd", async member => {
   await welcome.setMentionable(false)
   console.log("done")
 })
-
-
-function resetBot(channel) {
-    // send channel a message that you're resetting bot [optional]
-    channel.send('Restarting...')
-    .then(msg => client.destroy())
-    .then(() => client.login(config.token));
-    channel.send('Bot has been restarted');
-}
 
 function clean(text) {
   if (typeof(text) === "string")
