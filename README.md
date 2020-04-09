@@ -1,2 +1,4 @@
-# galaxy
-Custom bot for 'The Cool Kids Club' server on Discord
+Welcome to the repo for Galaxy
+======
+
+Feel free to contribute with a PR whenever you want, and DM `TheShadow#8124` for assistance :)

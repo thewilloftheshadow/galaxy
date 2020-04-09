@@ -1,0 +1,27 @@
+{
+  "name": "galaxybot",
+  "version": "1.0.1",
+  "description": "Custom bot for 'The Cool Kids Club' server on Discord",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "discord.js": "^12.1.1",
+    "express": "^4.17.1",
+    "sqlite3": "^4.1.1",
+    "quick.db": "^7.0.0b22"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://github.org/thewilloftheshadow/galaxy"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "discord.js",
+    "discord"
+  ]
+}
