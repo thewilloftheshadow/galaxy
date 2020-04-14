@@ -168,7 +168,7 @@ client.on("message", async message => {
     .addField(config.prefix + "ping", "See the bot's latency", true)
     .addField(config.prefix + "revive", "Ping <@&667442636252250112> and revive everything", true)
     .addField(config.prefix + "emergency", "Ping <@&694962620914204672> and lock down everything", true)
-    .addField("Modmail", "You can DM me to start a modmail thread with the staff members of the server if you need assistance!")
+    //.addField("Modmail", "You can DM me to start a modmail thread with the staff members of the server if you need assistance!")
     message.channel.send({embed});
   }
   
