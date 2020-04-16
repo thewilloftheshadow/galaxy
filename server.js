@@ -11,6 +11,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const ms = require("ms")
+const unbapi = require('unb-api');
+const unb = new unbapi.Client(process.env.unb_token);
 
 const db = require("quick.db");
 const modmail = new db.table("modmail");
