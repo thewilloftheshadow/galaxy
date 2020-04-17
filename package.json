@@ -11,7 +11,8 @@
     "express": "^4.17.1",
     "sqlite3": "^4.1.1",
     "quick.db": "^7.0.0b22",
-    "unb-api": "^1.1.1"
+    "unb-api": "^1.1.1",
+    "discord.js-minesweeper": "^1.0.5"
   },
   "engines": {
     "node": "12.x"
