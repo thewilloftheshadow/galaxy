@@ -13,6 +13,7 @@ const config = require("./config.json");
 const ms = require("ms")
 const unbapi = require('unb-api');
 const unb = new unbapi.Client(process.env.unb_token);
+const Minesweeper = require('discord.js-minesweeper');
 
 const db = require("quick.db");
 const modmail = new db.table("modmail");
@@ -117,6 +118,11 @@ client.on("message", async message => {
     message.delete().catch(O_o=>{});
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! :ping_pong: Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
+  }
+  
+  if(command === "minesweeper"){
+    const minesweeper = new Minesweeper();
+    message.channel.send(new Discord.MessageEmbed().setDescription(minesweeper.start())
   }
   
   if(command === "revive") {
