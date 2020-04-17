@@ -122,7 +122,7 @@ client.on("message", async message => {
   
   if(command === "minesweeper"){
     const minesweeper = new Minesweeper();
-    message.channel.send(new Discord.MessageEmbed().setDescription(minesweeper.start())
+    message.channel.send(new Discord.MessageEmbed().setDescription(minesweeper.start()))
   }
   
   if(command === "revive") {
