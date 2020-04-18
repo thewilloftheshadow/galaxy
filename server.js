@@ -209,7 +209,7 @@ client.on("message", async message => {
 
 //Welcome new users
 client.on("guildMemberAdd", async member => {
-  console.log(member)
+  if(member.bot) return
   let chan = client.channels.cache.get("642214583721000972")
   let welcome = client.guilds.cache.get(config.server).roles.get("667442500029644810")
   await welcome.setMentionable(true, "Welcoming " + member.user.tag)
