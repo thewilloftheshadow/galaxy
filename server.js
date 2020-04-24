@@ -150,7 +150,7 @@ client.on("message", async message => {
       SEND_MESSAGES: false
     }, 'Emergency trigger by ' + message.author.tag);
     await sleep(5000)
-    await message.channel.send(`<a:TCKC_DETECTED:685262432758792234> **EMERGENCY ALERT** <a:TCKC_DETECTED:685262432758792234>\n**------------------------**\n${msr} Please hurry as there is a emergency that was reported by ${message.author}.\n**------------------------**\n**Note:**\n*If this command was used for no reason, you will be warned*\n*Please do not test the command, as it pings all staff, and locks chat*`)
+    await message.channel.send(`<a:TCKC_DETECTED:685262432758792234> **EMERGENCY ALERT** <a:TCKC_DETECTED:685262432758792234>\n**------------------------**\n${msr} Please hurry as there is a emergency that was reported by ${message.author}.\n**------------------------**\n**Note:**\n*If this command was used for no reason, you will be warned*\n*Please do not test the command, as it pings all staff, and locks chat*\n\nStaff: use the command \`%endemergency\` to end the lockdown.`)
     await msr.setMentionable(false)
     cd.set("emergency", Date.now())
   }
@@ -177,7 +177,7 @@ client.on("message", async message => {
     .addField(config.prefix + "revive", "Ping <@&667442636252250112> and revive everything", true)
     .addField(config.prefix + "emergency", "Ping <@&694962620914204672> and lock down everything", true)
     .addField(config.prefix + "minesweeper", "Play Minesweeper on Discord!", true)
-    //.addField("Modmail", "You can DM me to start a modmail thread with the staff members of the server if you need assistance!")
+    .addField("Modmail", "You can DM me to start a modmail thread with the staff members of the server if you need assistance!")
     message.channel.send({embed});
   }
   
