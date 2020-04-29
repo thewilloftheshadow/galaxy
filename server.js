@@ -40,14 +40,7 @@ client.on("message", async message => {
         `${message.author.username}-${message.author.discriminator}`,
         { type: "text" }
       );
-      channel.overwritePermissions("439223656200273932", {
-        VIEW_CHANNEL: true,
-        SEND_MESSAGES: true,
-        MANAGE_MESSAGES: true
-      });
-      channel.overwritePermissions(everyone, {
-        VIEW_CHANNEL: false
-      });
+      await channel.lockPermissions()
       client.channels.cache
         .get(channel.id)
         .setTopic(
