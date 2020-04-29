@@ -104,7 +104,7 @@ client.on("message", async message => {
   
   if(message.content.indexOf(config.prefix) !== 0) return;
   if(!docmd) return
-  if([].includes(message.author.id)) return await message.react("🙉") //blacklist
+  if(config.blacklist.includes(message.author.id)) return await message.react("🙉") //blacklist
   
   
   if(command === "ping") {
