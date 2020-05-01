@@ -77,7 +77,7 @@ client.on("message", async message => {
     .addField("Message", message.content)
     .setFooter("Galaxy")
     .setTimestamp();
-    client.users.cache.get(modmailauthor).send(embed);
+    client.users.cache.get(modmailauthor).send(embed).catch(()=>{})
     message.react("✅");
     docmd = false
   }
@@ -93,7 +93,7 @@ client.on("message", async message => {
     .addField("Discord ID:", message.author.id)
     .setFooter("Galaxy")
     .setTimestamp();
-    client.users.cache.get(modmailauthor).send(embed);
+    client.users.cache.get(modmailauthor).send(embed).catch(()=>{})
     modmail.delete(modmailauthor.id);
     modmail.delete(message.channel.id);
     docmd = false
