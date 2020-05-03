@@ -40,6 +40,7 @@ client.on("message", async message => {
         `${message.author.username}-${message.author.discriminator}`,
         { type: "text" }
       );
+      await channel.setParent(config.modmailcat);
       await channel.lockPermissions()
       client.channels.cache
         .get(channel.id)
@@ -48,7 +49,6 @@ client.on("message", async message => {
         );
       modmail.set(message.author.id + ".channel", channel.id);
       modmail.set(channel.id + ".author", message.author.id);
-      await channel.setParent(config.modmailcat);
       channel.send(`New ModMail thread from ${message.author}`);
       channel.send(message.content);
       message.author.send("New modmail thread opened successfully!");
