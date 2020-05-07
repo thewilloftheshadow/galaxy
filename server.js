@@ -120,7 +120,7 @@ client.on("message", async message => {
   
   if(command === "revive") {
     let lastping = cd.get("revive")
-    if((lastping + 3600000) > Date.now()) return message.channel.send("⏲ This command is on cooldown for another " + ms((lastping + 3600000) - Date.now()))
+    if((lastping + 7200000) > Date.now()) return message.channel.send("⏲ This command is on cooldown for another " + ms((lastping + 3600000) - Date.now()))
     let dc = message.guild.roles.cache.get("667442636252250112")
     if(!dc) return message.channel.send("Error: no role found")
     await dc.setMentionable(true)
