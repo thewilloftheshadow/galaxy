@@ -24,9 +24,6 @@ client.on("ready", () => {
   client.user.setActivity('my DMS', { type: 'WATCHING' })
 });
 
-
-
-
 client.on("message", async message => {
   let guild = client.guilds.cache.get(config.server);
   let everyone = guild.roles.cache.find(role => role.id === config.server);
