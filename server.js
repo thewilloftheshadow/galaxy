@@ -14,6 +14,7 @@ const ms = require("ms")
 const unbapi = require('unb-api');
 const unb = new unbapi.Client(process.env.unb_token);
 const Minesweeper = require('discord.js-minesweeper');
+const cmd = require("node-cmd")
 
 const db = require("quick.db");
 const modmail = new db.table("modmail");
@@ -193,6 +194,14 @@ client.on("message", async message => {
     } catch (err) {
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
+  }
+  
+  if (command === "gitupdate") {
+    if(message.author.id !== config.ownerID) 
+      return message.reply(":warning: You don't have permission to use that command! :warning:")
+    cmd.run("git fetch origin master")
+    cmd.run("git reset --hard origin/master")
+    cmd.run("git pull origin master --force")
   }
 
 });
