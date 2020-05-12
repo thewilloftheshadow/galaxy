@@ -30,6 +30,7 @@ client.on("message", async message => {
   let everyone = guild.roles.cache.find(role => role.id === config.server);
   if(message.author.bot) return;
   
+  /*
   //Begin Modmail Module
   if (message.guild === null) {
     let channel = modmail.get(message.author.id + ".channel");
@@ -57,11 +58,13 @@ client.on("message", async message => {
     }
     message.react("✅");
   }
+  */
   if(!message.guild) return
   
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
+  /*
   let modmailauthor = modmail.get(message.channel.id + ".author");
   let docmd = true
   if (modmailauthor && message.content.indexOf(config.prefix) !== 0) {
@@ -98,10 +101,11 @@ client.on("message", async message => {
   }
   
   //End Modmail Module
+  */
   
   
   if(message.content.indexOf(config.prefix) !== 0) return;
-  if(!docmd) return
+  //if(!docmd) return
   if(config.blacklist.includes(message.author.id)) return await message.react("🙉") //blacklist
   
   
