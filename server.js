@@ -22,7 +22,7 @@ const cd = new db.table("cd");
 
 client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`); 
-  client.user.setActivity('with the minds of' + client.users.cache.filter(p => !p.bot).size + 'members', { type: 'PLAYING' })
+  client.user.setActivity('with the minds of ' + client.users.cache.filter(p => !p.bot).size + ' members', { type: 'PLAYING' })
 });
 
 client.on("message", async message => {
