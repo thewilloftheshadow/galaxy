@@ -208,9 +208,9 @@ client.on("message", async message => {
       avatar: message.author.avatarURL()
     });
     let m = await h.send(new Discord.MessageEmbed().setTitle("New Suggestion").setDescription(s).setAuthor(message.author.tag, message.author.avatarURL()).setFooter("Suggested at").setTimestamp())
-    await m.react("✅")
-    await m.react("❌")
-    await message.react("✅")
+    await m.react("678023486618468363")
+    await m.react("678023486618468363")
+    await message.react("678023486618468363")
   }
   
   if (command === "eval") {
