@@ -204,7 +204,7 @@ client.on("message", async message => {
     let s = args.join(" ")
     suggestions.push("all", {"author": message.author.id, "suggestion": s})
     let c = client.channels.cache.get("709519760940859483")
-    let h = await c.createWebhook(message.member.nickname ? message.member.nickname : message.member.username, {
+    let h = await c.createWebhook(message.author.username, {
       avatar: message.author.avatarURL()
     });
     let m = await h.send(new Discord.MessageEmbed().setTitle("New Suggestion").setDescription(s).setAuthor(message.author.tag, message.author.avatarURL()).setFooter("Suggested at").setTimestamp())
