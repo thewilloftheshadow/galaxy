@@ -178,10 +178,26 @@ client.on("message", async message => {
   
   if(command === "say") {
     message.delete().catch(O_o=>{}); 
-    if(!message.author.id === config.ownerID) return
+    if(message.author.id != config.ownerID) return;
     message.channel.startTyping();
     message.channel.send(args.join(" "));
     message.channel.stopTyping();
+  }
+  
+  if(command === "qotd") {
+    if(!message.member.permissions.has("ADMINISTRATOR")) return;
+    let chan = client.channels.cache.get("674976320018448435")
+    let q = `<a:TCKC_Question:684604290484273156> **Question Of The Day**\n━━━━━━━━━━━━━━━━\n${args.join(" ")}\n━━━━━━━━━━━━━━━━\n<a:RIGHT:582138212395384860> Answer in <#674976444618768394>\n<a:TCKC_PandaHammerPing:678028391869317120> <@&667442362313605131>\n\`\`\` \`\`\``
+    let m2 = await chan.send("Generating QOTD... <a:TCKC_RainbowLoad:688544088072650821>")
+    let qotd = client.guilds.cache.get(config.server).roles.cache.get("667442362313605131")
+    while(!qotd.mentionable){
+      await qotd.setMentionable(true, "Posting QOTD")
+      await sleep(10000)
+    }
+    chan.send(q)
+    await m2.delete()
+    await sleep(5000)  
+    await qotd.setMentionable(false)
   }
   
   if (command === "eval") {
