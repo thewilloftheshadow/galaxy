@@ -199,6 +199,19 @@ client.on("message", async message => {
     await sleep(5000)  
     await qotd.setMentionable(false)
   }
+
+  if(command === "suggest"){
+    let s = args.join(" ")
+    suggestions.push("all", {"author": message.author.id, "suggestion": s})
+    let c = client.channels.cache.get("709519760940859483")
+    let h = await c.createWebhook(message.member.nickname ? message.member.nickname : message.member.username, {
+      avatar: message.author.avatarURL()
+    });
+    let m = await h.send(new Discord.MessageEmbed().setTitle("New Suggestion").setDescription(s).setAuthor(message.author.tag, message.author.avatarURL()).setFooter("Suggested at").setTimestamp())
+    await m.react("✅")
+    await m.react("❌")
+    await message.react("✅")
+  }
   
   if (command === "eval") {
     if(message.author.id !== config.ownerID) 
