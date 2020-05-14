@@ -19,6 +19,7 @@ const cmd = require("node-cmd")
 const db = require("quick.db");
 const modmail = new db.table("modmail");
 const cd = new db.table("cd");
+const suggestions = new db.table("suggestions")
 
 client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`); 
@@ -172,6 +173,7 @@ client.on("message", async message => {
     .addField(config.prefix + "revive", "Ping <@&667442636252250112> and revive everything", true)
     .addField(config.prefix + "emergency", "Ping <@&694962620914204672> and lock down everything", true)
     .addField(config.prefix + "minesweeper", "Play Minesweeper on Discord!", true)
+    .addField(config.prefix + "suggest", "Make a new suggestion", true)
     .addField("Modmail", "You can DM me to start a modmail thread with the staff members of the server if you need assistance!")
     message.channel.send({embed});
   }
@@ -209,8 +211,8 @@ client.on("message", async message => {
     });
     let m = await h.send(new Discord.MessageEmbed().setTitle("New Suggestion").setDescription(s).setAuthor(message.author.tag, message.author.avatarURL()).setFooter("Suggested at").setTimestamp())
     await m.react("678023486618468363")
-    await m.react("678023486618468363")
-    await message.react("678023486618468363")
+    await m.react("684155550728192019")
+    message.delete()
   }
   
   if (command === "eval") {
