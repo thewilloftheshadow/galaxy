@@ -122,6 +122,8 @@ client.on("message", async message => {
   }
   
   if(command === "revive") {
+    unb.editUserBalance(message.guild.id, message.author.id, { cash: -1000000000}, "Revive command")
+
     let lastping = cd.get("revive")
     if((lastping + 7200000) > Date.now()) return message.channel.send("⏲ This command is on cooldown for another " + ms((lastping + 3600000) - Date.now()))
     let dc = message.guild.roles.cache.get("667442636252250112")
