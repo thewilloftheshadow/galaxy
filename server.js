@@ -208,9 +208,12 @@ client.on("message", async message => {
     let s = args.join(" ")
     suggestions.push("all", {"author": message.author.id, "suggestion": s})
     let c = client.channels.cache.get("709519760940859483")
-    let h = await c.createWebhook(message.author.username, {
+    let ah = await c.fetchWebhooks()
+    let h = ah.find(item => item)
+    await h.edit({
+      name: message.author.username,
       avatar: message.author.avatarURL()
-    });
+    }, "New Suggestion");
     let m = await h.send(new Discord.MessageEmbed().setTitle("New Suggestion").setDescription(s).setAuthor(message.author.tag, message.author.avatarURL()).setFooter("Suggested at").setTimestamp())
     await m.react("678023486618468363")
     await m.react("684155550728192019")
