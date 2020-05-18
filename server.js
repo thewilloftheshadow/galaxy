@@ -220,6 +220,13 @@ client.on("message", async message => {
     message.delete()
   }
   
+  if(command === "members"){
+    let role = message.guild.roles.cache.find(r => r.name === args.join(" "))
+    if(!role) role = message.mentions.roles.first()
+    let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
+    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user)))
+  }
+  
   if (command === "eval") {
     if(message.author.id !== config.ownerID) 
       return message.reply(":warning: You don't have permission to use that command! :warning:")
