@@ -160,7 +160,12 @@ client.on("message", async message => {
     let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user)))
   }
   
-  if(message.members.roles.cache.find())
+  if(command === "whotorob"){
+    let lb = await unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
+    let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
+    let user = lb[Object.keys(lb)[0]]
+    m.edit(new Discord.MessageEmbed().setDescription(`I suggest you rob <@${user.user_id}>. They have ${user.cash} cash`))
+  }
   
   if (command === "eval") {
     if(message.author.id !== config.ownerID) 
