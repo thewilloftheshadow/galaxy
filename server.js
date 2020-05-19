@@ -158,7 +158,7 @@ client.on("message", async message => {
     if(!role) role = message.mentions.roles.first()
     if(!role) role = message.guild.roles.cache.get(args[0])
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
-    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user), new Discord.MessageEmbed().setDescription("Found a total of " + members.size " members with the ")))
+    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user), new Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role + "role")))
   }
   
   if(command === "whotorob"){
