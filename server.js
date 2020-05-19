@@ -156,15 +156,25 @@ client.on("message", async message => {
   if(command === "members"){
     let role = message.guild.roles.cache.find(r => r.name === args.join(" "))
     if(!role) role = message.mentions.roles.first()
+    if(!role) role = message.guild.roles.cache.get(args[0])
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
-    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user)))
+    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user), new Discord.MessageEmbed().setDescription("Found a total of " + members.size " members with the ")))
   }
   
   if(command === "whotorob"){
     let lb = await unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
-    let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
+    let m = await message.channel.send("Let's see who has the fattest wallet... <a:TCKC_ThonkTriangle:678050031017918475>")
+    await sleep(5000)
     let user = lb[Object.keys(lb)[0]]
-    m.edit(new Discord.MessageEmbed().setDescription(`I suggest you rob <@${user.user_id}>. They have ${user.cash} cash`))
+    m.edit(new Discord.MessageEmbed().setDescription(`I suggest you rob <@${user.user_id}>. They have <a:TCKC_MoneyBag:710609208286117898> ${user.cash} cash.`))
+  }
+  
+  if(command === "richest"){
+    let lb = await unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
+    let m = await message.channel.send("Mirror mirror on the wall, who's the richest of them all? <a:TCKC_ThonkTriangle:678050031017918475>")
+    await sleep(5000)
+    let user = lb[Object.keys(lb)[0]]
+    m.edit(new Discord.MessageEmbed().setDescription(`<@${user.user_id}> is the richest user in the server. They have <a:TCKC_MoneyBag:710609208286117898> ${user.total} value.`))
   }
   
   if (command === "eval") {
