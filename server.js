@@ -31,78 +31,11 @@ client.on("message", async message => {
   let everyone = guild.roles.cache.find(role => role.id === config.server);
   if(message.author.bot) return;
   
-  /*
-  //Begin Modmail Module
-  if (message.guild === null) {
-    let channel = modmail.get(message.author.id + ".channel");
-    if (!channel) {
-      channel = await guild.channels.create(
-        `${message.author.username}-${message.author.discriminator}`,
-        { type: "text" }
-      );
-      await channel.setParent(config.modmailcat);
-      await channel.lockPermissions()
-      client.channels.cache
-        .get(channel.id)
-        .setTopic(
-          `${config.prefix}close to close the Ticket | ModMail for ${message.author.tag} - ID: ${message.author.id}`
-        );
-      modmail.set(message.author.id + ".channel", channel.id);
-      modmail.set(channel.id + ".author", message.author.id);
-      channel.send(`New ModMail thread from ${message.author}`);
-      channel.send(message.content);
-      message.author.send("New modmail thread opened successfully!");
-    } else {
-      client.channels.cache
-        .get(channel)
-        .send(`From ${message.author}\n\`\`\`fix\n${message.content}\n\`\`\``);
-    }
-    message.react("✅");
-  }
-  */
   if(!message.guild) return
   
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  /*
-  let modmailauthor = modmail.get(message.channel.id + ".author");
-  let docmd = true
-  if (modmailauthor && message.content.indexOf(config.prefix) !== 0) {
-    let embed = new Discord.MessageEmbed()
-    .setTitle(`New ModMail Message!`)
-    .setColor("#D96928")
-    .setAuthor(message.author.tag)
-    .setThumbnail(message.author.avatarURL)
-    .addField("From:", message.author)
-    .addField("Discord ID:", message.author.id)
-    .addField("Message", message.content)
-    .setFooter("Galaxy")
-    .setTimestamp();
-    client.users.cache.get(modmailauthor).send(embed).catch(()=>{})
-    message.react("✅");
-    docmd = false
-  }
-  
-  if (command === "close" && modmailauthor) {
-    message.channel.delete();
-    let embed = new Discord.MessageEmbed()
-    .setTitle(`ModMail Thread Closed`)
-    .setColor("#D96928")
-    .setAuthor(message.author.tag)
-    .setThumbnail(message.author.avatarURL)
-    .addField("From:", message.author)
-    .addField("Discord ID:", message.author.id)
-    .setFooter("Galaxy")
-    .setTimestamp();
-    client.users.cache.get(modmailauthor).send(embed).catch(()=>{})
-    modmail.delete(modmailauthor.id);
-    modmail.delete(message.channel.id);
-    docmd = false
-  }
-  
-  //End Modmail Module
-  */
   
   
   if(message.content.indexOf(config.prefix) !== 0) return;
@@ -226,6 +159,8 @@ client.on("message", async message => {
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
     let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user)))
   }
+  
+  if(message.members.roles.cache.find())
   
   if (command === "eval") {
     if(message.author.id !== config.ownerID) 
