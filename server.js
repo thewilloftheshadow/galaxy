@@ -243,13 +243,13 @@ client.on("message", async message => {
     }
   }
   
-  if (command === "gitupdate") {
-    if(message.author.id !== config.ownerID) 
-      return message.reply(":warning: You don't have permission to use that command! :warning:")
-    cmd.run("git fetch origin master")
-    cmd.run("git reset --hard origin/master")
-    cmd.run("git pull origin master --force")
-  }
+  // if (command === "gitupdate") {
+  //   if(message.author.id !== config.ownerID) 
+  //     return message.reply(":warning: You don't have permission to use that command! :warning:")
+  //   cmd.run("git fetch origin master")
+  //   cmd.run("git reset --hard origin/master")
+  //   cmd.run("git pull origin master --force")
+  // }
 
 });
 
