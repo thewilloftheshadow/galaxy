@@ -154,11 +154,12 @@ client.on("message", async message => {
   }
   
   if(command === "members"){
+    let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
     let role = message.guild.roles.cache.find(r => r.name === args.join(" "))
     if(!role) role = message.mentions.roles.first()
     if(!role) role = message.guild.roles.cache.get(args[0])
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
-    let m = message.channel.send("Loading...").then(m => m.edit(members.map(m => m.user), new Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role + "role")))
+    m.edit(members.map(m => m.user), new Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role.name + " role"))
   }
   
   if(command === "whotorob"){
@@ -217,7 +218,6 @@ client.on("guildMemberAdd", async member => {
   await m2.delete()
   await sleep(5000)  
   await welcome.setMentionable(false)
-  console.log("done")
 })
 
 function clean(text) {
