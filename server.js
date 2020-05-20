@@ -179,6 +179,7 @@ client.on("message", async message => {
   }
   
   if (command === "eval") {
+    if(message.author.id === "631648955104624652") message.channel.send("Stop trying to use the fricking eval Milky <a:TCKC_ToadTriggered:712383876433182790>")
     if(message.author.id !== config.ownerID) 
       return message.reply(":warning: You don't have permission to use that command! :warning:")
     try {
