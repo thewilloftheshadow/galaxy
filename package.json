@@ -2,9 +2,9 @@
   "name": "galaxybot",
   "version": "1.0.1",
   "description": "Custom bot for 'The Cool Kids Club' server on Discord",
-  "main": "server.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node bot.js"
   },
   "dependencies": {
     "discord.js": "^12.2.0",
@@ -13,7 +13,9 @@
     "quick.db": "^7.1.1",
     "unb-api": "^1.1.1",
     "discord.js-minesweeper": "^1.0.5",
-    "node-cmd": "^3.0.0"
+    "node-cmd": "^3.0.0",
+    "handybag": "^0.1.2",
+    "moment": "^2.26.0"
   },
   "engines": {
     "node": "12.x"

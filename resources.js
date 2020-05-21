@@ -88,6 +88,7 @@ const vars = {
   cmd: require(`node-cmd`),
   fs: require(`fs`),
   ms: require(`ms`),
+  minesweeper: require('discord.js-minesweeper'),
   permlist: {
     "0x00000001": "CREATE_INSTANT_INVITE",
     "0x00000002": "KICK_MEMBERS",

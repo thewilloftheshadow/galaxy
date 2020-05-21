@@ -1,9 +1,9 @@
 const re = require(`../resources.js`).data;
 re.client.on("message", async message => {
-  console.log(`${re.moment().format('MMMM Do YYYY, h:mm:ss a')} | ${message.author.tag} - ${message.content}`)
   if(re.config.blacklist.includes(message.author.id)) return await message.react("🙉")
   let prefix = re.config.prefix;
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase()) && message.guild) return;
+  console.log(`${re.moment().format('MMMM Do YYYY, h:mm:ss a')} | ${message.author.tag} - ${message.content}`)
   let args = message.content
       .slice(prefix.length)
       .trim()

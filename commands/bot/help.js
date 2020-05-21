@@ -32,6 +32,7 @@ module.exports.run = async (client, message, args) => {
       let serverprefix = re.config.prefix
       if(module == "bot") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "utility") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "fun") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "mod" && message.member.roles.cache.get("694962620914204672")) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economy") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economymanager" && message.member.roles.cache.get("")) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
