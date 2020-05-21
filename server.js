@@ -20,6 +20,7 @@ const db = require("quick.db");
 const modmail = new db.table("modmail");
 const cd = new db.table("cd");
 const suggestions = new db.table("suggestions")
+const factions = new db.table("factions")
 
 client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`); 
@@ -33,7 +34,7 @@ client.on("message", async message => {
   
   if(!message.guild) return
   
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(config.prefix.length).trim().split(/ /g);
   const command = args.shift().toLowerCase();
   
   
@@ -176,6 +177,25 @@ client.on("message", async message => {
     await sleep(5000)
     let user = lb[Object.keys(lb)[0]]
     m.edit(new Discord.MessageEmbed().setDescription(`<@${user.user_id}> is the richest user in the server. They have <a:TCKC_MoneyBag:710609208286117898> ${user.total} value.`))
+  }
+  
+  if (command === "faction") {
+    let subcmd = args[0];
+    let args = args.shift();
+    if (cmd === "add") {
+      let name = args[0];
+      let member = message.guild.members.cache.find(
+        r => r.nickname && r.nickname === args.join(" ")
+      );
+      if (!member)
+        member = message.guild.members.cache.find(
+          r => r.name === args.join(" ")
+        );
+      if (!member) member = message.mentions.members.first();
+      if (!member) member = message.guild.members.cache.get(args[0]);
+      factions.push(name+".members", member.id
+)
+    }
   }
   
   if (command === "eval") {
