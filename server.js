@@ -233,4 +233,4 @@ function sleep(ms)  {
 }
 
 
-client.login(process.env.TOKEN);
+//client.login(process.env.TOKEN);
