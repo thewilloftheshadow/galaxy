@@ -1,19 +1,7 @@
 const re = require(`../resources.js`).data;
 re.client.on("message", async message => {
   console.log(`${re.moment().format('MMMM Do YYYY, h:mm:ss a')} | ${message.author.tag} - ${message.content}`)
-  // message.mentions.members.forEach(member => {
-  //     let afk = re.dbs.afk.get(message.guild.id + "." + member.user.id);
-  //     if (afk)
-  //       message.channel.send(
-  //         `${member.user.tag} is currently afk. Reason:\`${afk}\``
-  //       );
-  //   });
-  // let afk = re.dbs.afk.get(message.guild.id + "." + message.author.id);
-  // if(afk && !message.content.includes("stayafk")) {
-  //   re.dbs.afk.delete(message.guild.id + "." + message.author.id);
-  //   let m = await message.channel.send(`Welcome back ${message.author}! I've removed your afk 🙂`)
-  //   setTimeout(function(){ m.delete().catch(1+1) }, 5000);
-  // }
+  if(re.config.blacklist.includes(message.author.id)) return await message.react("🙉")
   let prefix = re.config.prefix;
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase()) && message.guild) return;
   let args = message.content

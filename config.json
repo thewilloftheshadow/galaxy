@@ -8,5 +8,5 @@
   "modmailcat" : "681685338883620867",
   "developers": [],
   "blacklist": [],
-  "modules": ["bot", "utility", "mod", "economy", "dev"]
+  "modules": ["bot", "utility", "mod", "economy", "economymanager", "dev"]
 }

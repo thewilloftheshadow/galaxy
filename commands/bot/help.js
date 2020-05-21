@@ -31,8 +31,10 @@ module.exports.run = async (client, message, args) => {
       })
       let serverprefix = re.config.prefix
       if(module == "bot") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "player" && message.member.roles.cache.find(r => r.name === "Player")) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "gm" && message.member.roles.cache.find(r => r.name === "GM" || r.name === "Co-GM")) await embed.addField(`**${module.toUpperCase()}:**`, modulecommands)
+      if(module == "utility") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "mod" && message.member.roles.cache.get("694962620914204672")) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "economy") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "economymanager" && message.member.roles.cache.get("")) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "dev" && message.author.id === re.config.ownerID) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
     })
     message.channel.send(embed)
