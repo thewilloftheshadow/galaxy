@@ -10,7 +10,7 @@
     "discord.js": "^12.2.0",
     "express": "^4.17.1",
     "sqlite3": "^4.2.0",
-    "quick.db": "^7.0.0b22",
+    "quick.db": "^7.1.1",
     "unb-api": "^1.1.1",
     "discord.js-minesweeper": "^1.0.5",
     "node-cmd": "^3.0.0"

@@ -179,28 +179,28 @@ client.on("message", async message => {
     m.edit(new Discord.MessageEmbed().setDescription(`<@${user.user_id}> is the richest user in the server. They have <a:TCKC_MoneyBag:710609208286117898> ${user.total} value.`))
   }
   
-  if (command === "faction") {
-    let subcmd = args[0];
-    let args = args.shift();
-    if (cmd === "add") {
-      let name = args[0];
-      let member = message.guild.members.cache.find(
-        r => r.nickname && r.nickname === args.join(" ")
-      );
-      if (!member)
-        member = message.guild.members.cache.find(
-          r => r.name === args.join(" ")
-        );
-      if (!member) member = message.mentions.members.first();
-      if (!member) member = message.guild.members.cache.get(args[0]);
-      factions.push(name+".members", member.id
-)
-    }
-  }
+//   if (command === "faction") {
+//     let subcmd = args[0];
+//     let args = args.shift();
+//     if (cmd === "add") {
+//       let name = args[0];
+//       let member = message.guild.members.cache.find(
+//         r => r.nickname && r.nickname === args.join(" ")
+//       );
+//       if (!member)
+//         member = message.guild.members.cache.find(
+//           r => r.name === args.join(" ")
+//         );
+//       if (!member) member = message.mentions.members.first();
+//       if (!member) member = message.guild.members.cache.get(args[0]);
+//       factions.push(name+".members", member.id
+// )
+//     }
+//   }
   
   if (command === "eval") {
     if(message.author.id === "631648955104624652") message.channel.send("Stop trying to use the fricking eval Milky <a:TCKC_ToadTriggered:712383876433182790>")
-    if(message.author.id !== config.ownerID) 
+    if(message.author.id !== config.ownerID && !config.developers.includes(message.author.id)) 
       return message.reply(":warning: You don't have permission to use that command! :warning:")
     try {
       const code = args.join(" ");
@@ -253,4 +253,4 @@ function sleep(ms)  {
 }
 
 
-//client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
