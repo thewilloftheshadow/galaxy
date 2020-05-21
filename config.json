@@ -1,8 +1,12 @@
 {
   "prefix" : "%",
   "ownerID" : "439223656200273932",
+  "color": "",
+  "logs": "",
+  "debug": true,
   "server": "641036901511594003",
   "modmailcat" : "681685338883620867",
   "developers": [],
-  "blacklist": []
+  "blacklist": [],
+  "modules": ["bot", "utility", "mod", "economy", "dev"]
 }

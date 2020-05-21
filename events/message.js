@@ -19,23 +19,23 @@ re.client.on("message", async message => {
   let args = message.content
       .slice(prefix.length)
       .trim()
-      .split(/ +/g);
+      .split(/ /g);
   let command = args.shift().toLowerCase();
     if(command == "secretphrasetousefordmmessages" && message.guild) command = "WOOOOOOOT"
     if(command === "args"){
       return message.channel.send(`["${args.join(`", "`)}"]`, {code:"xl"})
     }
     let commandfile = re.client.commands.get(command);
-    if (!commandfile) return message.react(re.config.emojis.waitwhat.id)
+    if (!commandfile) return message.react("684556205582057518")
     if (message.author.bot && !commandfile.help.botcmd) return;
     if (message.author.id === re.config.ownerID){
       message.author.isDev = true;
     }
     let tckc = re.client.guilds.cache.find(guild => guild.id === re.config.server)
-    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.find(role => ["GM", "Co-GM"].includes(role.name)))){
-      message.author.isStaff = true;
+    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("694962620914204672"))){
+      message.author.isMod = true;
     }
-    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.find(role => ["GM", "Co-GM"].includes(role.name)))){
+    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("712070389815312385"))){
       message.author.isStaff = true;
     }
     
