@@ -62,8 +62,9 @@ module.exports.run = async (client, message, args) => {
         }
       ]
     if (props.help.access.dev) embed.setDescription("This is a dev command!");
-    if (props.help.access.gm) embed.setDescription("This is a GM command!");
-    if (props.help.access.player) embed.setDescription("This is a player-only command!");
+    if (props.help.access.ecomanage) embed.setDescription("This is an economy management command!");
+    if (props.help.access.mod) embed.setDescription("This is a mod-only command!");
+    if (props.help.access.staff) embed.setDescription("This is a staff-only command!");
     if (props.help.alias && props.help.alias.length > 0)
       embed.fields.push({
         name: `Aliases:`,
@@ -79,5 +80,5 @@ module.exports.help = {
   syntax: re.prefix + "help <command>",
   alias: ["command"],
   module: "bot",
-  access: {player: false, gm: false, dev: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };

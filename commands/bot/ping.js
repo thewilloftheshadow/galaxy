@@ -34,5 +34,5 @@ module.exports.help = {
   syntax: re.config.prefix + "ping",
   alias: ["pong", "test"],
   module: "bot",
-  access: {player: false, staff: false, mod: false, dev: false, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };

@@ -32,5 +32,5 @@ module.exports.help = {
   syntax: re.prefix + "reload <command>",
   alias: ["relink", "relpad"],
   module: "dev",
-  access: {player: false, staff: false, mod: false, dev: true, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
 };

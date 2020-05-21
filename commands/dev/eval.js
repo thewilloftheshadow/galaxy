@@ -20,5 +20,5 @@ module.exports.help = {
   syntax: re.config.prefix + "eval <code>",
   alias: ["execute"],
   module: "dev",
-  access: {player: false, staff: false, mod: false, dev: true, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
 };
