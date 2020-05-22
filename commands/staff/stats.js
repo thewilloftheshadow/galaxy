@@ -1,14 +1,14 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  message.delete()
-  message.channel.send(args.join(" "))
+  re.func.stats()
+  message.react("✅")
 };
 
 module.exports.help = {
-  name: "say",
+  name: "stats",
   description: "Says a message as the bot",
-  syntax: re.config.prefix + "say <message>",
-  alias: ["copy"],
+  syntax: re.config.prefix + "stats",
+  alias: ["updatestats"],
   module: "staff",
   access: {staff: true, mod: false, ecomanage: false, dev: false, owner: false}
 };

@@ -42,6 +42,11 @@ const func = {
       .split(" ")[1];
     return (process.memoryUsage().heapUsed / (1024 * 1024)).toFixed(2)
   },
+  stats: function() {
+    let membercount = client.guilds.cache.get(config.server).members.cache.size
+    client.user.setActivity('with the minds of ' + membercount + ' members', { type: 'PLAYING' })
+    client.channels.cache.get("712719001196822538").setName(`╔〚👥〛《Members: ${membercount}》`)
+  },
   getuser: function(input, message) {
     if(!input) return message.member;
     let target = message.mentions.members.first();
