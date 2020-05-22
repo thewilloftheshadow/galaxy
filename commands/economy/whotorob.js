@@ -1,6 +1,6 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let lb = await re.vars.unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
+  let lb = await re.unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
     let m = await message.channel.send("Let's see who has the fattest wallet... <a:TCKC_ThonkTriangle:678050031017918475>")
     await re.func.sleep(5000)
     let user = lb[Object.keys(lb)[0]]
