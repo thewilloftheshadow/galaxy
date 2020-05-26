@@ -9,8 +9,6 @@ module.exports.run = async (client, message, args) => {
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
-  let value = await getvalue(ids, message.guild.id, 0)
-  console.log("Value: " + value)
   
   
   let embed = new re.Discord.MessageEmbed()
@@ -19,7 +17,7 @@ module.exports.run = async (client, message, args) => {
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
-  .addField("Faction Value:", `${value}`)
+  .addField("Faction Value:", await getvalue(ids, message.guild.id, 0))
   
   await m.edit("Here is the information for " + f.name + ":", embed)
 };
@@ -40,5 +38,4 @@ const getvalue = async function(ids, guildid, value){
       console.log(value)
     })
   })
-  return value;
 }
