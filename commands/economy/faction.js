@@ -8,14 +8,14 @@ module.exports.run = async (client, message, args) => {
   if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  let ids = fmem.map(x => x.user.id)
   let value = 0
-  await fmem.forEach(async x => {
-    let unbuser = await re.unb.getUserBalance(message.guild.id, x.user.id)
-    console.log(x, unbuser)
+  const ids = await ids.forEach(x => {
+    re.unb.getUserBalance(message.guild.id, x).then(unbuser => {
     value += unbuser.total
+      console.log(value)
+    })
   })
-  
-  await re.func.sleep(10)
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
@@ -23,9 +23,10 @@ module.exports.run = async (client, message, args) => {
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
-  .addField("Faction Value:", value)
+  .addField("Faction Value:", `${value}`)
   
   await m.edit("Here is the information for " + f.name + ":", embed)
+  })
 };
 
 module.exports.help = {
