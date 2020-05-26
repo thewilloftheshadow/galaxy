@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: "say",
-  description: "Says a message as the bot",
+  description: "Says a message as the bot and logs in <#700444125589405811>",
   syntax: re.config.prefix + "say <message>",
   alias: ["copy"],
   module: "staff",
