@@ -5,7 +5,7 @@ re.client.on("guildMemberRemove", async member => {
     .channels.cache.get("652530741590097930");
   channel
     .messages.fetch({
-      limit: 1000
+      limit: 100
     })
     .then(messages => {
       messages = messages

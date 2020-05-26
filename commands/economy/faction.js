@@ -9,13 +9,9 @@ module.exports.run = async (client, message, args) => {
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
-  let value = 0
-  const ids = await ids.forEach(x => {
-    re.unb.getUserBalance(message.guild.id, x).then(unbuser => {
-    value += unbuser.total
-      console.log(value)
-    })
-  })
+  let value = await getvalue(ids, message.guild.id, 0)
+  console.log("Value: " + value)
+  
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
@@ -26,7 +22,6 @@ module.exports.run = async (client, message, args) => {
   .addField("Faction Value:", `${value}`)
   
   await m.edit("Here is the information for " + f.name + ":", embed)
-  })
 };
 
 module.exports.help = {
@@ -37,3 +32,13 @@ module.exports.help = {
   module: "economy",
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
+
+const getvalue = async function(ids, guildid, value){
+  await ids.forEach(x => {
+    re.unb.getUserBalance(guildid, x).then(unbuser => {
+    value += unbuser.total
+      console.log(value)
+    })
+  })
+  return value;
+}
