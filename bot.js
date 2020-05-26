@@ -3,7 +3,7 @@ re.client.on('ready', () => console.log('\nStarting bot...'));
 //re.client.on('debug', m => console.debug(m));
 re.client.on('warn', m => console.log(m));
 re.client.on('error', m => console.error(m));
-re.client.on('botlog', m => re.client.channels.cache.get(re.config.logs).send(m))
+re.client.on('botlog', m => re.logs.send(m))
 const server = require(`./server.js`)
 process.on('uncaughtException', error => console.error(error));
 

@@ -1,6 +1,7 @@
 const config = require(`./config.json`);
 const Discord = require(`discord.js`);
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "USER"] });
+const logs = new Discord.WebhookClient("700444153347178586", process.env.LOGS)
 const unbapi = require(`unb-api`)
 const unb = new unbapi.Client(process.env.UNB)
 const func = {
@@ -148,5 +149,6 @@ exports.data = {
   config: vars.config,
   handybag: require("handybag"),
   unb: unb,
+  logs: logs,
   moment: require("moment")
 }
