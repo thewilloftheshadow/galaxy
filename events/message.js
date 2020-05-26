@@ -16,7 +16,7 @@ re.client.on("message", async message => {
     let commandfile = re.client.commands.get(command);
     if (!commandfile) return message.react("684556205582057518")
     if (message.author.bot && !commandfile.help.botcmd) return;
-    if (message.author.id === re.config.ownerID){
+    if (message.author.id === re.config.ownerID || re.config.developers.includes(message.author.id)){
       message.author.isDev = true;
     }
     let tckc = re.client.guilds.cache.find(guild => guild.id === re.config.server)
@@ -26,15 +26,24 @@ re.client.on("message", async message => {
     if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("712070389815312385"))){
       message.author.isStaff = true;
     }
+    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("710614561668989018"))){
+      message.author.isEcoManage = true;
+    }
     
     let cmdaccess = commandfile.help.access
-    if(cmdaccess.player && !message.author.isStaff){
+    if(cmdaccess.staff && !message.author.isStaff){
       message.delete()
       return message.author.send(
         "Sorry! This command is for staff only."
       );
     }
-    if(cmdaccess.player && !message.author.isMod){
+    if(cmdaccess.ecomanage && !message.author.isEcoManage){
+      message.delete()
+      return message.author.send(
+        "Sorry! This command is for Economy Managers only."
+      );
+    }
+    if(cmdaccess.mod && !message.author.isMod){
       message.delete()
       return message.author.send(
         "Sorry! This command is for mods only."
