@@ -39,6 +39,7 @@ const getvalue = async function(ids, guildid, value){
     value += unbuser.total
       console.log(value)
     })
+    
   })
   return value
 }
