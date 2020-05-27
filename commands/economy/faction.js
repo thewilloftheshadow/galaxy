@@ -1,16 +1,15 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  //let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
+  let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
   let allfactionsdb = re.dbs.factions.all()
   let allf = []
   allfactionsdb.forEach(x => allf.push(x.ID))
   let f = re.dbs.factions.get((args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
-  //if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
+  if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
   let value = await getvalue(ids, message.guild.id, 0)
-  console.log(value)
   
   
   let embed = new re.Discord.MessageEmbed()
@@ -19,9 +18,9 @@ module.exports.run = async (client, message, args) => {
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
-  .addField("Faction Value:", value)
+  .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
-  //await m.edit("Here is the information for " + f.name + ":", embed)
+  await m.edit("Here is the information for " + f.name + ":", embed)
 };
 
 module.exports.help = {
@@ -33,16 +32,15 @@ module.exports.help = {
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
 
-async function getvalue(ids, guildid, v){
+function getvalue(ids, guildid, v){
   ids.forEach(async (id, index) => {
-    await re.unb.getUserBalance(guildid, id).then(unbuser => {
-      v += unbuser.total;
-      if(index === ids.length - 1) {
-        console.log("done")
-        return v;
-      }
-    });
-  })
+    let userBalance = await re.unb.getUserBalance(guildid, id);
+    v += userBalance.total;
+    console.log(userBalance.total)
+    if(index === ids.length - 1) {
+      console.log("done")
+      console.log(v)
+      return v;
+    }
+  });
 }
-//do a foreach loop but add smth like
-//instead of returning it right away
