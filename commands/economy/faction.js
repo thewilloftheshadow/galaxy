@@ -9,6 +9,8 @@ module.exports.run = async (client, message, args) => {
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
+  const value = await getvalue(ids, message.guild.id, 0)
+  console.log(value)
   
   
   let embed = new re.Discord.MessageEmbed()
@@ -38,4 +40,5 @@ const getvalue = async function(ids, guildid, value){
       console.log(value)
     })
   })
+  return value
 }
