@@ -33,7 +33,7 @@ module.exports.help = {
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
 
-const getvalue = async function(ids, guildid, value){
+async function getvalue(ids, guildid, value){
   for await (let x of ids) {
     re.unb.getUserBalance(guildid, x).then(unbuser => {
       value += unbuser.total;
