@@ -37,8 +37,10 @@ const getvalue = async function(ids, guildid, value){
   for await (let x of ids) {
     re.unb.getUserBalance(guildid, x).then(unbuser => {
       value += unbuser.total;
-      console.log(value);
     });
+    
   }
-  return value
 }
+//do a foreach loop but add smth like
+if(i === ids.length) return value
+//instead of returning it right away now i gtg to bed bye
