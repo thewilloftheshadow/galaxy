@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
-  let value = await getvalue(ids, message.guild.id, 0)
+  let value = await getvalue(ids, m, 0)
   
   
   let embed = new re.Discord.MessageEmbed()
@@ -21,6 +21,22 @@ module.exports.run = async (client, message, args) => {
   .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
   await m.edit("Here is the information for " + f.name + ":", embed)
+  
+  async function getvalue(ids, m, v){
+    ids.forEach(async (id, index) => {
+      
+      let user = await re.unb.getUserBalance(m.guild.id, id);
+      v += user.total;
+      
+      if(index === ids.length - 1) {
+        embed.fields[embed.fields.length - 1] = {
+          name:"Faction Value:",
+          value:v
+        }
+        return m.edit(embed);
+      }
+    });
+  }
 };
 
 module.exports.help = {
@@ -31,16 +47,3 @@ module.exports.help = {
   module: "economy",
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
-
-function getvalue(ids, guildid, v){
-  ids.forEach(async (id, index) => {
-    let userBalance = await re.unb.getUserBalance(guildid, id);
-    v += userBalance.total;
-    console.log(userBalance.total)
-    if(index === ids.length - 1) {
-      console.log("done")
-      console.log(v)
-      return v;
-    }
-  });
-}
