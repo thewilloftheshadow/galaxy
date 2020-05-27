@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
-  .addField("Faction Value:", await getvalue(ids, message.guild.id, 0))
+  .addField("Faction Value:", value)
   
   await m.edit("Here is the information for " + f.name + ":", embed)
 };
@@ -34,12 +34,11 @@ module.exports.help = {
 };
 
 const getvalue = async function(ids, guildid, value){
-  await ids.forEach(x => {
+  for await (let x of ids) {
     re.unb.getUserBalance(guildid, x).then(unbuser => {
-    value += unbuser.total
-      console.log(value)
-    })
-    
-  })
+      value += unbuser.total;
+      console.log(value);
+    });
+  }
   return value
 }
