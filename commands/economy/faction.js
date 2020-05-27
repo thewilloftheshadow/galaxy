@@ -1,15 +1,15 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
+  //let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
   let allfactionsdb = re.dbs.factions.all()
   let allf = []
   allfactionsdb.forEach(x => allf.push(x.ID))
   let f = re.dbs.factions.get((args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
-  if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
+  //if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
-  const value = await getvalue(ids, message.guild.id, 0)
+  let value = await getvalue(ids, message.guild.id, 0)
   console.log(value)
   
   
@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
   .addField("Faction Value:", value)
   
-  await m.edit("Here is the information for " + f.name + ":", embed)
+  //await m.edit("Here is the information for " + f.name + ":", embed)
 };
 
 module.exports.help = {
@@ -33,14 +33,16 @@ module.exports.help = {
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
 
-const getvalue = async function(ids, guildid, value){
-  for await (let x of ids) {
-    re.unb.getUserBalance(guildid, x).then(unbuser => {
-      value += unbuser.total;
+async function getvalue(ids, guildid, v){
+  ids.forEach(async (id, index) => {
+    await re.unb.getUserBalance(guildid, id).then(unbuser => {
+      v += unbuser.total;
+      if(index === ids.length - 1) {
+        console.log("done")
+        return v;
+      }
     });
-    
-  }
+  })
 }
 //do a foreach loop but add smth like
-if(i === ids.length) return value
-//instead of returning it right away now i gtg to bed bye
+//instead of returning it right away
