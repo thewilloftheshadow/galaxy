@@ -9,8 +9,20 @@ module.exports.run = async (client, message, args) => {
   
   let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let ids = fmem.map(x => x.user.id)
-  let value = await getvalue(ids, m, 0)
-  
+  let v =  0;
+  ids.forEach(async (id, index) => {
+      
+      let user = await re.unb.getUserBalance(m.guild.id, id);
+      v += user.total;
+      
+      if(index === ids.length - 1) {
+        embed.fields[embed.fields.length - 1] = {
+          name:"Faction Value:",
+          value:v
+        }
+        return m.edit(embed);
+      }
+  })
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
