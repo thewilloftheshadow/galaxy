@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
  
-      message.channel.send(re.func.clean(evaled), {code:"xl"});
+      message.channel.send(re.func.clean(evaled), {code:"xl", "split": " "});
     } catch (err) {
       message.channel.send(`\`ERROR\` \`\`\`xl\n${re.func.clean(err)}\n\`\`\``);
     }
