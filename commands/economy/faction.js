@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
       if(index === ids.length - 1) {
         embed.fields[embed.fields.length - 1] = {
           name:"Faction Value:",
-          value:v
+          value:`<a:TCKC_MoneyBag:710609208286117898> ${v}`
         }
         return m.edit(embed);
       }
