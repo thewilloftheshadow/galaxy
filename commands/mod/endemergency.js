@@ -15,7 +15,7 @@ module.exports.help = {
   name: "endemergency",
   description: "End the emergency lockdown",
   syntax: re.config.prefix + "endemergency",
-  alias: [""],
+  alias: [],
   module: "staff",
   access: {staff: false, mod: true, ecomanage: false, dev: false, owner: false}
 };
