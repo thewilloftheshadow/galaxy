@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     if(!role) m.edit("That role doesn't exist idiot")
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
     let memmsg = `${members.map(m => m.user)}`
-    
+    if(memmsg.length > 2000) memmsg = "Member list exceeded max message length"
     m.edit(memmsg, new re.Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role.name + " role"))
 };
 
