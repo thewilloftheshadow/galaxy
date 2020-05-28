@@ -7,7 +7,9 @@ module.exports.run = async (client, message, args) => {
     if(!role) role = message.guild.roles.cache.get(args[0])
     if(!role) m.edit("That role doesn't exist idiot")
     let members = message.guild.members.cache.filter(m => m.roles.cache.find(r => r.name === role.name))
-    m.edit(members.map(m => m.user), new re.Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role.name + " role"))
+    let memmsg = `${members.map(m => m.user)}`
+    
+    m.edit(memmsg, new re.Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role.name + " role"))
 };
 
 module.exports.help = {
