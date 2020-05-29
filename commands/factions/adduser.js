@@ -14,6 +14,7 @@ module.exports.run = async (client, message, args) => {
   let user = re.func.getuser(args.join(" "), message)
   if(!user) return await m.edit("That user was not found!")
   if(f.members.includes(user.id)) return await m.edit("That user is already in your faction!")
+  if(!re.dbs.users.get(user.id+".faction") || re.dbs.users.get(user.id+".faction") == "") return await m.edit("That user is already in another faction!")
   
   await m.edit(`Are you sure you want to add <@${user.id}> to your faction?`)
   await m.react("678023486618468363")
@@ -33,6 +34,7 @@ module.exports.run = async (client, message, args) => {
       if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
   
   re.dbs.factions.push(f.id+".members", user.id)
+  re.dbs.users.set(user.id+".faction", f.id)
   user.roles.add(f.ids.role, `Added to faction by ${message.author.tag}`)
   await m.edit(`Done! <@${user.id}> has been added to your faction!`)
 };
