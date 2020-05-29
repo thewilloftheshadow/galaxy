@@ -1,16 +1,18 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
-  let allf = re.dbs.factions.all()
-  let f = ""
-  console.log(allf)
-  //if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
+  let f
+  if(message.member.roles.cache.has("712297438014078986")) f = re.dbs.factions.get("mf")
+  if(message.member.roles.cache.has("712297438014078986")) f = re.dbs.factions.get("mf")
+  if(message.member.roles.cache.has("712297438014078986")) f = re.dbs.factions.get("mf")
+  
+  if(!f) return await m.edit(`You aren't in a faction!`)
   
   
 };
 
 module.exports.help = {
-  name: "faction",
+  name: "adduser",
   description: "Add a user to your faction",
   syntax: re.config.prefix + "add <user>",
   alias: ["addmember"],
