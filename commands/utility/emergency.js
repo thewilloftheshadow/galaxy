@@ -22,5 +22,5 @@ module.exports.help = {
   syntax: re.config.prefix + "emergency",
   alias: [],
   module: "utility",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, fleader: false, dev: false, owner: false}
 };

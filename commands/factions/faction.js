@@ -14,6 +14,7 @@ module.exports.run = async (client, message, args) => {
   .setTitle(f.name)
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
+  .addField("Leader:", `<@${f.leader}>`, true)
   .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
   .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
@@ -40,7 +41,7 @@ module.exports.help = {
   name: "faction",
   description: "Get information about a faction",
   syntax: re.config.prefix + "faction <name>",
-  alias: [],
-  module: "economy",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
+  alias: ["factions"],
+  module: "factions",
+  access: {staff: false, mod: false, ecomanage: false, fleader: false, dev: false, owner: false}
 };
