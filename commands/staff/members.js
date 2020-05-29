@@ -18,5 +18,5 @@ module.exports.help = {
   syntax: re.config.prefix + "members <role>",
   alias: ["inrole"],
   module: "staff",
-  access: {staff: true, mod: false, ecomanage: false, fleader: false, dev: false, owner: false}
+  access: {staff: true, mod: false, ecomanage: false, dev: false, owner: false}
 };

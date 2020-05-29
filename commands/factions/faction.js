@@ -43,5 +43,5 @@ module.exports.help = {
   syntax: re.config.prefix + "faction <name>",
   alias: ["factions"],
   module: "factions",
-  access: {staff: false, mod: false, ecomanage: false, fleader: false, dev: false, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
