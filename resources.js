@@ -135,7 +135,8 @@ const dbs = {
   cd: new vars.db.table("cd"),
   suggestions: new vars.db.table("suggestions"),
   factions: new vars.db.table("factions"),
-  users: new vars.db.table("users")
+  users: new vars.db.table("users"),
+  items: new vars.db.table("items")
 };
 
 const app = vars.express();
