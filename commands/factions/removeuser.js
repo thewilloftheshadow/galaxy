@@ -32,9 +32,9 @@ module.exports.run = async (client, message, args) => {
       await m.reactions.removeAll()
       if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
   
-  let newmem = await re.vars.ap(f.members, user.id)
+  let newmem = re.vars.ap(f.members, user.id)
   re.dbs.factions.set(f.id+".members", newmem)
-  user.roles.add(f.ids.role, `Removed from faction by ${message.author.tag}`)
+  user.roles.remove(f.ids.role, `Removed from faction by ${message.author.tag}`)
   await m.edit(`Done! <@${user.id}> has been removed from your faction!`)
 };
 

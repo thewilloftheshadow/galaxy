@@ -7,20 +7,22 @@ module.exports.run = async (client, message, args) => {
   let f = re.dbs.factions.get((args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
   if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
-  let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  //let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  let fmem = `<@${f.members.join(">\n<@")}>`
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
   .setTitle(f.name)
   .addField("Channel:", `<#${f.ids.channel}>`, true)
   .addField("Role:", `<@&${f.ids.role}>`, true)
-  .addField("Leader:", `<@${f.leader}>`, true)
-  .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
+  .addField("Leader:", `<@${f.leader}>`, true) // .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
+  .addField("Members:", fmem)
   .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
   await m.edit("Here is the information for " + f.name + ":", embed)
   
-  let ids = fmem.map(x => x.user.id)
+  // let ids = fmem.map(x => x.user.id)
+  let ids = fmem
   let v = 0;
   ids.forEach(async (id, index) => {
       
