@@ -134,7 +134,8 @@ const dbs = {
   modmail: new vars.db.table("modmail"),
   cd: new vars.db.table("cd"),
   suggestions: new vars.db.table("suggestions"),
-  factions: new vars.db.table("factions")
+  factions: new vars.db.table("factions"),
+  users: new vars.db.table("users")
 };
 
 const app = vars.express();
