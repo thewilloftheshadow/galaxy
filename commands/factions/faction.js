@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
   let f = re.dbs.factions.get((args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
   if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
-  //let fmem = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  let fmem2 = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let fmem = `<@${f.members.join(">\n<@")}>`
   
   let embed = new re.Discord.MessageEmbed()
@@ -21,8 +21,7 @@ module.exports.run = async (client, message, args) => {
   
   await m.edit("Here is the information for " + f.name + ":", embed)
   
-  // let ids = fmem.map(x => x.user.id)
-  let ids = fmem
+  let ids = fmem2.map(x => x.user.id)
   let v = 0;
   ids.forEach(async (id, index) => {
       
