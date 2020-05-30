@@ -51,6 +51,7 @@ re.client.on("message", async message => {
     }
     if (cmdaccess.dev && !message.author.isDev){
       message.delete()
+      if(message.author.id === "631648955104624652") return message.channel.send("Bruh you're freaking banned from using eval cause you nuked a whole freaking server idiot")
       return message.channel.send(
         "Sorry! This command is for developers only."
       );
