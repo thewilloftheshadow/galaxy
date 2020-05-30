@@ -139,6 +139,8 @@ const dbs = {
   items: new vars.db.table("items")
 };
 
+dbs.list = Object.getOwnPropertyNames(dbs)
+
 const app = vars.express();
 const prefix = config.prefix;
 exports.data = {

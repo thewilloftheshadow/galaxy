@@ -11,3 +11,10 @@ module.exports.help = {
   module: "factions",
   access: {staff: false, mod: false, ecomanage: true, dev: false, owner: false}
 };
+
+const item = {
+  name: "",
+  id: "",
+  price: "",
+  
+}
