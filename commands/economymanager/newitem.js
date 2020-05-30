@@ -10,12 +10,11 @@ module.exports.run = async (client, message, args) => {
     effects: []
   };
   
-  while(!item.name){
+  while (!item.name) {
+    let m = message.channel.send(
+      "Yay its time to make a new item! What do you want to call this item?"
+    );
     
-  let m = message.channel.send(
-    "Yay its time to make a new item! What do you want to call this item?"
-  )
-  
   }
 };
 
