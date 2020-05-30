@@ -1,5 +1,18 @@
-const re = require(`../../resources.js`).data
+const re = require(`../../resources.js`).data;
 module.exports.run = async (client, message, args) => {
+  let item = {
+    name: "",
+    id: "",
+    price: "",
+    damage: 0,
+    heal: 0,
+    addhealth: 0,
+    effects: []
+  };
+  
+  let m = message.channel.send(
+    "Yay its time to make a new item! What do you want to call this item?"
+  );
   
 };
 
@@ -12,12 +25,3 @@ module.exports.help = {
   access: {staff: false, mod: false, ecomanage: true, dev: false, owner: false}
 };
 
-const item = {
-  name: "",
-  id: "",
-  price: "",
-  damage: 0,
-  heal: 0,
-  addhealth: 0,
-  effects: []
-}
