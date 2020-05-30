@@ -1,7 +1,7 @@
 const re = require(`../resources.js`).data;
 re.client.on("guildMemberAdd", async member => {
   if(member.bot) return
-  if(member.guild.id === "641036901511594003") return;
+  if(!member.guild.id === "641036901511594003") return;
   let chan = re.client.channels.cache.get("642214583721000972")
   let m2 = await chan.send("New user has joined, generating welcome message... <a:TCKC_RainbowLoad:688544088072650821>")
   let welcome = re.client.guilds.cache.get(re.config.server).roles.cache.get("667442500029644810")
