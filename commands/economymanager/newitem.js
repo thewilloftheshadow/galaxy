@@ -16,5 +16,8 @@ const item = {
   name: "",
   id: "",
   price: "",
-  
+  damage: 0,
+  heal: 0,
+  addhealth: 0,
+  effects: []
 }
