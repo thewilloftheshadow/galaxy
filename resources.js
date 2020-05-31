@@ -3,7 +3,6 @@ const Discord = require(`discord.js`);
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "USER"] });
 const logs = new Discord.WebhookClient("716482964602749000", process.env.LOGS)
 const unbapi = require(`unb-api`)
-const unb = new unbapi.Client(process.env.UNB)
 const func = {
   sleep: function(ms){
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -136,12 +135,21 @@ const dbs = {
   suggestions: new vars.db.table("suggestions"),
   factions: new vars.db.table("factions"),
   users: new vars.db.table("users"),
-  items: new vars.db.table("items")
+  items: new vars.db.table("items"),
+  unbtokens: new vars.db.table("unbtokens")
 };
+
+//Unb for each guild
+const allunb = {}
+
+dbs.unbtokens.all().forEach(x => {
+  allunb[x.ID] = new unbapi.Client(x.data)
+})
 
 dbs.list = Object.getOwnPropertyNames(dbs)
 vars.list = Object.getOwnPropertyNames(vars)
 func.list = Object.getOwnPropertyNames(func)
+allunb.list = Object.getOwnPropertyNames(allunb)
 
 const app = vars.express();
 const prefix = config.prefix;
@@ -156,7 +164,8 @@ exports.data = {
   Discord: Discord,
   config: vars.config,
   handybag: require("handybag"),
-  unb: unb,
+  allunb: allunb,
+  unb: new unbapi.Client(process.env.UNB),
   logs: logs,
   moment: require("moment")
 }
