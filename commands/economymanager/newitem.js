@@ -10,93 +10,71 @@ module.exports.run = async (client, message, args) => {
     effects: []
   }
 
-  while (!item.name) {
-    let m = await message.channel.send(
-      "Yay its time to make a new item! What do you want to call this item?"
-    )
-    let input = await m.channel
-      .awaitMessages(msg => msg.author.id == message.author.id, {
-        time: 30 * 1000,
-        max: 1,
-        errors: ["time"]
-      })
-      .catch(() => {})
-    if (!input)
-      return await message.author.send(new m.edit("Prompt timed out."))
-    input = input.first().content
-    item.name = input
-    
-  }
+  let m = await message.channel.send(
+    "Yay its time to make a new item! What do you want to call this item?"
+  )
+  let input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await message.author.send(m.edit("Prompt timed out."))
+  input = input.first().content
+  item.name = input
+
   item.id = item.name.toLowerCase().replace(" ", "-")
-  while (!item.price) {
-    let m = await message.channel.send(
-      "How much should this item cost?"
-    )
-    let input = await m.channel
-      .awaitMessages(msg => msg.author.id == message.author.id, {
-        time: 30 * 1000,
-        max: 1,
-        errors: ["time"]
-      })
-      .catch(() => {})
-    if (!input)
-      return await message.author.send(new m.edit("Prompt timed out."))
-    input = input.first().content
-    item.price = parseInt(input, 10)
-    
-  }
-  while (!item.damage) {
-    let m = await message.channel.send(
-      "How much should this item damage?"
-    )
-    let input = await m.channel
-      .awaitMessages(msg => msg.author.id == message.author.id, {
-        time: 30 * 1000,
-        max: 1,
-        errors: ["time"]
-      })
-      .catch(() => {})
-    if (!input)
-      return await message.author.send(new m.edit("Prompt timed out."))
-    input = input.first().content
-    item.damage = parseInt(input, 10)
-    
-  }
-  while (!item.heal) {
-    let m = await message.channel.send(
-      "How much should this item heal?"
-    )
-    let input = await m.channel
-      .awaitMessages(msg => msg.author.id == message.author.id, {
-        time: 30 * 1000,
-        max: 1,
-        errors: ["time"]
-      })
-      .catch(() => {})
-    if (!input)
-      return await message.author.send(new m.edit("Prompt timed out."))
-    input = input.first().content
-    item.heal = parseInt(input, 10)
-    
-  }
-  while (!item.addhealth) {
-    let m = await message.channel.send(
-      "How much health should this item add?"
-    )
-    let input = await m.channel
-      .awaitMessages(msg => msg.author.id == message.author.id, {
-        time: 30 * 1000,
-        max: 1,
-        errors: ["time"]
-      })
-      .catch(() => {})
-    if (!input)
-      return await message.author.send(new m.edit("Prompt timed out."))
-    input = input.first().content
-    item.addhealth = parseInt(input, 10)
-    
-  }
-  message.channel.send(JSON.stringify(item, null, 4), {code: "fix"})
+
+  m = await message.channel.send("How much should this item cost?")
+  input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await message.author.send(m.edit("Prompt timed out."))
+  input = input.first().content
+  item.price = parseInt(input, 10)
+
+  m = await message.channel.send("How much should this item damage?")
+  input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await message.author.send(m.edit("Prompt timed out."))
+  input = input.first().content
+  item.damage = parseInt(input, 10)
+
+  m = await message.channel.send("How much should this item heal?")
+  input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await message.author.send(m.edit("Prompt timed out."))
+  input = input.first().content
+  item.heal = parseInt(input, 10)
+
+  m = await message.channel.send("How much health should this item add?")
+  input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await message.author.send(m.edit("Prompt timed out."))
+  input = input.first().content
+  item.addhealth = parseInt(input, 10)
+
+  message.channel.send(JSON.stringify(item, null, 4), { code: "fix" })
   re.dbs.items.set(item.id, item)
 }
 
