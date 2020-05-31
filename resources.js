@@ -1,7 +1,7 @@
 const config = require(`./config.json`);
 const Discord = require(`discord.js`);
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "USER"] });
-const logs = new Discord.WebhookClient("700444153347178586", process.env.LOGS)
+const logs = new Discord.WebhookClient("716482964602749000", process.env.LOGS)
 const unbapi = require(`unb-api`)
 const unb = new unbapi.Client(process.env.UNB)
 const func = {
@@ -140,9 +140,12 @@ const dbs = {
 };
 
 dbs.list = Object.getOwnPropertyNames(dbs)
+vars.list = Object.getOwnPropertyNames(vars)
+func.list = Object.getOwnPropertyNames(func)
 
 const app = vars.express();
 const prefix = config.prefix;
+
 exports.data = {
   func: func,
   vars: vars,
@@ -157,3 +160,5 @@ exports.data = {
   logs: logs,
   moment: require("moment")
 }
+
+exports.data.list = Object.getOwnPropertyNames(exports.data)
