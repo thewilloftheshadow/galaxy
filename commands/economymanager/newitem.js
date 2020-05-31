@@ -24,9 +24,10 @@ module.exports.run = async (client, message, args) => {
   input = input.first().content
   item.name = input
 
-  item.id = item.name.toLowerCase().replace(" ", "")
+  item.id = item.name.toLowerCase().replace(/ /g, "")
 
-  m = await message.channel.send("How much should this item cost?")
+  // m = await message.channel.send("How much should this item cost?")
+  await m.edit("How much should this item cost?")
   input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
@@ -38,7 +39,8 @@ module.exports.run = async (client, message, args) => {
   input = input.first().content
   item.price = parseInt(input, 10)
 
-  m = await message.channel.send("How much should this item damage?")
+  // m = await message.channel.send("How much should this item damage?")
+  await m.edit("How much should this item damage?")
   input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
@@ -50,7 +52,8 @@ module.exports.run = async (client, message, args) => {
   input = input.first().content
   item.damage = parseInt(input, 10)
 
-  m = await message.channel.send("How much should this item heal?")
+  // m = await message.channel.send("How much should this item heal?")
+  await m.edit("How much should this item heal?")
   input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
@@ -62,7 +65,8 @@ module.exports.run = async (client, message, args) => {
   input = input.first().content
   item.heal = parseInt(input, 10)
 
-  m = await message.channel.send("How much health should this item add?")
+  // m = await message.channel.send("How much health should this item add?")
+  await m.edit("How much health should this item add?")
   input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
