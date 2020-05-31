@@ -85,7 +85,8 @@ re.client.on("message", async message => {
     await message.channel.send(
       `An error occurred when trying to execute this command. The developers have been notified.`
     )
-    re.client.channels.cache.get("716494477530759179").send("<@439223656200273932>", embed)
+    re.client.channels.cache.get(re.config.errors).send("<@439223656200273932>", embed)
+    console.error(err)
   }
   
 });

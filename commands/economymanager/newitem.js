@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
   }
 
   while (!item.name) {
-    let m = message.channel.send(
+    let m = await message.channel.send(
       "Yay its time to make a new item! What do you want to call this item?"
     )
     let input = await m.channel
@@ -24,7 +24,10 @@ module.exports.run = async (client, message, args) => {
     if (!input)
       return await message.author.send(new m.edit("Prompt timed out."))
     input = input.first().content
+    item.name = input
+    
   }
+  message.channel.send(item, {code: "fix"})
 }
 
 module.exports.help = {
