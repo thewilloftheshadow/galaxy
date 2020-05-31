@@ -63,6 +63,10 @@ re.client.on("message", async message => {
       );
     }      
     
-  commandfile.run(re.client, message, args) 
+  try{
+    commandfile.run(re.client, message, args)
+  } catch(err){
+    
+  }
   
 });
