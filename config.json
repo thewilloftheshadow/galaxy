@@ -9,6 +9,6 @@
   "modmailcat" : "681685338883620867",
   "developers": ["380455396281810955", "706357388072189983"],
   "blacklist": [],
-  "modules": ["bot", "fun", "utility", "mod", "economy", "dev", "custom", "levels"],
-  "tckcmodules": ["economymanager", "factions", "war"]
+  "modules": ["bot", "fun", "economy", "dev", "custom", "levels"],
+  "tckcmodules": ["economymanager", "factions", "war", "mod", "staff", "utility"]
 }
