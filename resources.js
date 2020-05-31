@@ -217,7 +217,8 @@ const dbs = {
 let allunb = {}
 
 dbs.unbtokens.all().forEach(x => {
-  allunb[x.ID] = new unbapi.Client(x.data)
+  console.log(x.data)
+  allunb[x.ID] = new unbapi.Client(x.data.replace(/"/g))
 })
 
 dbs.list = Object.getOwnPropertyNames(dbs)
