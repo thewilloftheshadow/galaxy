@@ -44,7 +44,6 @@ const func = {
   },
   stats: function() {
     let membercount = client.guilds.cache.get(config.server).members.cache.size
-    client.user.setActivity('with the minds of ' + membercount + ' members', { type: 'PLAYING' })
     client.channels.cache.get("712719001196822538").setName(`╔〚👥〛《Members: ${membercount}》`)
   },
   itemembed: function(itemid){
