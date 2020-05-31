@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
       if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
     })
-    if(message.author.id === re.config.ownerID || message.guild.id === re.config.server){
+    
     await re.config.tckcmodules.forEach(async module => {
       let modulecommandarray = []
       let modulecommands = ""
@@ -53,6 +53,7 @@ module.exports.run = async (client, message, args) => {
           }
         }
       })
+      if(message.guild.id != re.config.server) return
       let serverprefix = re.config.prefix
       if(module == "bot" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "utility && modulecommands.length > 0") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
@@ -65,7 +66,7 @@ module.exports.run = async (client, message, args) => {
       if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
     })
-    }
+    
     message.channel.send(embed)
   }
   else{

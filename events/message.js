@@ -29,6 +29,8 @@ re.client.on("message", async message => {
     if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("710614561668989018"))){
       message.author.isEcoManage = true;
     }
+  
+    if(!re.allunb[message.guild.id] && ["economy", "economymanage"].includes(commandfile.help.module)) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
     
     let cmdaccess = commandfile.help.access
     if(cmdaccess.staff && !message.author.isStaff){
