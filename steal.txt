@@ -1,0 +1,8 @@
+module.exports.help = {
+    name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+    description:``,
+    syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+    alias:[],
+    module:`${__dirname.split(`/`).pop()}`,
+}
+module.exports.help.access[`${__dirname.split(`/`).pop()}`] = true;
