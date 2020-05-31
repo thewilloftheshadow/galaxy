@@ -47,6 +47,18 @@ const func = {
     client.user.setActivity('with the minds of ' + membercount + ' members', { type: 'PLAYING' })
     client.channels.cache.get("712719001196822538").setName(`╔〚👥〛《Members: ${membercount}》`)
   },
+  itemembed: function(itemid){
+    if(!itemid) throw new Error("Please specify an item ID!")
+    const item = dbs.items.get(itemid)
+    const embed = new Discord.MessageEmbed()
+    if(!item) embed.setTitle("Item not found").setDescription("Unable to find information for an item with the ID of " + item.id)
+    embed.setTitle(`Item info for ${item.name}`)
+    .addField("Price", `<a:TCKC_MoneyBag:710609208286117898> ${item.price}`)
+    if(item.damage > 0) embed.addField("Damage", `${item.damage}`)
+    if(item.heal > 0) embed.addField("Heal", `${item.heal}`)
+    if(item.addhealth > 0) embed.addField("Health Boost", `${item.addhealth}`)
+    return embed;
+  },
   getuser: function(input, message) {
     if(!input) return message.member;
     let target = message.mentions.members.first();
