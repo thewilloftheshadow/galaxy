@@ -202,7 +202,7 @@ const dbs = {
 };
 
 //Unb for each guild
-const allunb = {}
+let allunb = {}
 
 dbs.unbtokens.all().forEach(x => {
   allunb[x.ID] = new unbapi.Client(x.data)

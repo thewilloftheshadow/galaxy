@@ -6,12 +6,13 @@ module.exports.run = async (client, message, args) => {
   
   items.forEach(shopitem => {
     let item = shopitem.data
+    console.log()
     if(!item.hidden){
       if (embeds[embeds.length-1].fields.length == 10)
         embeds.push(new re.Discord.MessageEmbed().setTitle("War Shop"))
       // console.log(fn.getEmoji(client, (item.emoji ? item.emoji : item.name)))
       embeds[embeds.length - 1].addField(
-        `\`${item.id}\` - ${item.name}`, `${item.damage} ? \`Damage: ${item.damage}\` : ${item.heal} ? \`Heal: ${item.heal}\` : ${item.addhealth} ? \`Health Boost: ${item.addhealth}\``
+        `${item.id} - ${item.name}`, `> ${item.damage ? `Damage: ${item.damage}` : item.heal ? `Heal: ${item.heal}` : item.addhealth ? `Health Boost: ${item.addhealth}` : "No data"}`
       )
       }
     })
