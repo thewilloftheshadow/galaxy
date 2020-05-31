@@ -5,14 +5,15 @@ module.exports.run = async (client, message, args) => {
   let embeds = [new re.Discord.MessageEmbed().setTitle("War Shop")]
   
   items.forEach(shopitem => {
-    let item = shopitem.data
-    console.log()
+    let item = JSON.parse(shopitem.data)
     if(!item.hidden){
+      if (embeds[embeds.length-1].fields.length == 10)
+        embeds.push(new re.Discord.MessageEmbed().setTitle("War Shop"))
       if (embeds[embeds.length-1].fields.length == 10)
         embeds.push(new re.Discord.MessageEmbed().setTitle("War Shop"))
       // console.log(fn.getEmoji(client, (item.emoji ? item.emoji : item.name)))
       embeds[embeds.length - 1].addField(
-        `${item.id} - ${item.name}`, `> ${item.damage ? `Damage: ${item.damage}` : item.heal ? `Heal: ${item.heal}` : item.addhealth ? `Health Boost: ${item.addhealth}` : "No data"}`
+        `\`${item.id}\` - ${item.name}`, `> ${item.damage ? `Damage: ${item.damage}` : item.heal ? `Heal: ${item.heal}` : item.addhealth ? `Health Boost: ${item.addhealth}` : "No data"}`
       )
       }
     })
