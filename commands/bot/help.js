@@ -35,11 +35,13 @@ module.exports.run = async (client, message, args) => {
       if(module == "fun" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "mod" && message.member.roles.cache.get("694962620914204672")  && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economy" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "war" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economymanager" && message.member.roles.cache.get("710614561668989018") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "factions" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
     })
+    if(message.author.id === re.config.ownerID || message.guild.id === re.config.server){
     await re.config.tckcmodules.forEach(async module => {
       let modulecommandarray = []
       let modulecommands = ""
@@ -57,11 +59,13 @@ module.exports.run = async (client, message, args) => {
       if(module == "fun" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "mod" && message.member.roles.cache.get("694962620914204672")  && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economy" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
+      if(module == "war" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "economymanager" && message.member.roles.cache.get("710614561668989018") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "factions" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
       if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
     })
+    }
     message.channel.send(embed)
   }
   else{
