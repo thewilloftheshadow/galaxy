@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
         embeds.push(new re.Discord.MessageEmbed().setTitle("War Shop"))
       // console.log(fn.getEmoji(client, (item.emoji ? item.emoji : item.name)))
       embeds[embeds.length - 1].addField(
-        `\`${item.id}\` - ${item.name}`, `> ${item.damage ? `Damage: ${item.damage}` : item.heal ? `Heal: ${item.heal}` : item.addhealth ? `Health Boost: ${item.addhealth}` : "No data"}`
+        `\`${item.id}\` - ${item.name}`, `Price: <a:TCKC_MoneyBag:710609208286117898> ${item.price} | ${item.damage ? `Damage: ${item.damage}` : item.heal ? `Heal: ${item.heal}` : item.addhealth ? `Health Boost: ${item.addhealth}` : "No data"}`
       )
       }
     })
