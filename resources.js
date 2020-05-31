@@ -239,7 +239,6 @@ exports.data = {
   config: vars.config,
   handybag: require("handybag"),
   allunb: allunb,
-  unb: new unbapi.Client(process.env.UNB),
   logs: logs,
   moment: require("moment")
 }
