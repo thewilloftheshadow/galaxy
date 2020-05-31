@@ -31,6 +31,7 @@ re.client.on("message", async message => {
     }
   
     if(!re.allunb[message.guild.id] && ["economy", "economymanage"].includes(commandfile.help.module)) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
+    if(message.guild.id === re.config.server && ["war", "factions"].includes(commandfile.help.module)) return message.channel.send("Sorry! This command is only for the TCKC server!")
     
     let cmdaccess = commandfile.help.access
     if(cmdaccess.staff && !message.author.isStaff){
