@@ -27,15 +27,16 @@ module.exports.run = async (client, message, args) => {
     item.name = input
     
   }
-  message.channel.send(item, {code: "fix"})
+  item.id = item.name.replace(" ", "-")
+  message.channel.send(JSON.stringify(item, null, 4), {code: "fix"})
 }
 
 module.exports.help = {
   name: "newitem",
   description: "Add an item to the shop",
   syntax: re.config.prefix + "additem",
-  alias: ["newitem"],
-  module: "factions",
+  alias: ["createitem"],
+  module: "economymanager",
   access: {
     staff: false,
     mod: false,
