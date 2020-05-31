@@ -144,7 +144,10 @@ const func = {
       func.paginator(author, m, embeds, embeds.length-1, false)
     }
   }
-}
+},
+  hpemoji: function(hp){
+    const empty1 = client.emojis.cache.get("716429755569930291")
+  }
 };
 const vars = {
   http: require(`http`),
