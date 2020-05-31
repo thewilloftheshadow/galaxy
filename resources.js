@@ -147,6 +147,15 @@ const func = {
 },
   hpemoji: function(hp){
     const empty1 = client.emojis.cache.get("716429755569930291")
+    const full1 = client.emojis.cache.get("716429785156550696")
+    const empty2 = client.emojis.cache.get("716429906006900743")
+    const half2 = client.emojis.cache.get("716429869785022536")
+    const full2 = client.emojis.cache.get("716429836918325308")
+    const empty3 = client.emojis.cache.get("716429939582173274")
+    const half3 = client.emojis.cache.get("716429975363780678")
+    const full3 = client.emojis.cache.get("716430103068016783")
+    let string = `${hp < 10 ? empty1 : full1}${hp < 20 ? hp < 15 ? empty2 : half2 : full2}${hp < 30 ? hp < 25 ? empty2 : half2 : full2}${hp < 40 ? hp < 35 ? empty2 : half2 : full2}${hp < 50 ? hp < 45 ? empty3 : half3 : full3}`
+    return string;
   }
 };
 const vars = {

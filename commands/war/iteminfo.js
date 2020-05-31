@@ -10,6 +10,5 @@ module.exports.help = {
   syntax: re.config.prefix + "iteminfo",
   alias: ["ii"],
   module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false},
-  nohelp: true
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };

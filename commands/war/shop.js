@@ -32,6 +32,5 @@ module.exports.help = {
   syntax: re.config.prefix + "shop",
   alias: ["warshop"],
   module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false},
-  nohelp: true
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
