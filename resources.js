@@ -7,6 +7,10 @@ const func = {
   sleep: function(ms){
     return new Promise(resolve => setTimeout(resolve, ms))
   },
+  prettyNumber: function(number){
+    if(!typeof number === "string") number = number.toString()
+    number.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  },
   capitalizeFirstLetter: function(string) {
     if (typeof string == undefined) return;
     var firstLetter = string[0] || string.charAt(0);
