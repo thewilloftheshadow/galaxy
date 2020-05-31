@@ -63,10 +63,29 @@ re.client.on("message", async message => {
       );
     }      
     
-  try{
-    commandfile.run(re.client, message, args)
-  } catch(err){
-    
+  try {
+    await commandfile.run(re.client, message, args)
+  } catch (err) {
+    let embed = new re.Discord.MessageEmbed()
+      .setDescription(
+        `An error occured when ${
+          message.author
+        } (${message.author.id}) attempted the following command: \`${message.content.replace(
+          /(`)/g,
+          "$1"
+        )}\``
+      )
+      .addField(
+        "Error Description",
+        `\`\`\`${err.stack.replace(
+          /(?:(?!\n.*?\(\/app.*?)\n.*?\(\/.*?\))+/g,
+          "\n\t..."
+        )}\`\`\``
+      ).setColor("RED")
+    await message.channel.send(
+      `An error occurred when trying to execute this command. The developers have been notified.`
+    )
+    re.client.channels.cache.get("716494477530759179").send("<@439223656200273932>", embed)
   }
   
 });
