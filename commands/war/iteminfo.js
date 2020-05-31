@@ -1,6 +1,6 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let embed = re.func.iteminfo(args.join(" "))
+  let embed = re.func.itemembed(args.join(" "))
   if(embed) message.channel.send(embed)
 };
 

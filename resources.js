@@ -93,8 +93,58 @@ const func = {
         );
     }
     return target;
+  },
+  paginator: async (author, msg, embeds, pageNow, addReactions = true) => {
+  if(embeds.length === 1) return
+  if (addReactions) {
+    await msg.react("⏪")
+    await msg.react("◀")
+    await msg.react("▶")
+    await msg.react("⏩")
   }
-  
+  let reaction = await msg.awaitReactions((reaction, user) => user.id == author && ["◀","▶","⏪","⏩"].includes(reaction.emoji.name), {time: 30*1000, max:1, errors: ['time']}).catch(() => {})
+  if (!reaction) return msg.reactions.removeAll().catch(() => {})
+  reaction = reaction.first()
+  //console.log(msg.member.users.tag)
+  if (msg.channel.type == 'dm' || !msg.guild.me.hasPermission("MANAGE_MESSAGES")) {
+    if (reaction.emoji.name == "◀") {
+      let m = await msg.channel.send(embeds[Math.max(pageNow-1, 0)])
+      msg.delete()
+      func.paginator(author, m, embeds, Math.max(pageNow-1, 0))
+    } else if (reaction.emoji.name == "▶") {
+      let m = await msg.channel.send(embeds[Math.min(pageNow+1, embeds.length-1)])
+      msg.delete()
+      func.paginator(author, m, embeds, Math.min(pageNow+1, embeds.length-1))
+    } else if (reaction.emoji.name == "⏪") {
+      let m = await msg.channel.send(embeds[0])
+      msg.delete()
+      func.paginator(author, m, embeds, 0)
+    } else if (reaction.emoji.name == "⏩") {
+      let m = await msg.channel.send(embeds[embeds.length-1])
+      msg.delete()
+      func.paginator(author, m, embeds, embeds.length-1)
+    }
+  }
+  else {
+    if (reaction.emoji.name == "◀") {
+      await reaction.users.remove(author)
+      let m = await msg.edit(embeds[Math.max(pageNow-1, 0)])
+      func.paginator(author, m, embeds, Math.max(pageNow-1, 0), false)
+    } else if (reaction.emoji.name == "▶") {
+      await reaction.users.remove(author)
+      let m = await msg.edit(embeds[Math.min(pageNow+1, embeds.length-1)])
+      func.paginator(author, m, embeds, Math.min(pageNow+1, embeds.length-1), false)
+    } else if (reaction.emoji.name == "⏪") {
+      await reaction.users.remove(author)
+      let m = await msg.edit(embeds[0])
+      func.paginator(author, m, embeds, 0, false)
+    } else if (reaction.emoji.name == "⏩") {
+      await reaction.users.remove(author)
+      let m = await msg.edit(embeds[embeds.length-1])
+      func.paginator(author, m, embeds, embeds.length-1, false)
+    }
+  }
+}
 };
 const vars = {
   http: require(`http`),
