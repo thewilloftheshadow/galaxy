@@ -25,8 +25,9 @@ module.exports.run = async (client, message, args) => {
       await m.reactions.removeAll()
       if (reaction.id != "678023486618468363") return await m.edit("Purchase canceled")
   
-  
-  message.channel.send("Smh shadow didn't finish this stop trying to use it")
+  re.dbs.users.push(message.author.id+".inventory", item.id)
+  await m.reactions.clearAll()
+  await m.edit("Success! You have purchased 1 " + item.name + "!")
 };
 
 module.exports.help = {
