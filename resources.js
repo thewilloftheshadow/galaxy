@@ -212,6 +212,7 @@ const dbs = {
   suggestions: new vars.db.table("suggestions"),
   factions: new vars.db.table("factions"),
   users: new vars.db.table("users"),
+  snipe: new vars.db.table(`snipe`),
   items: new vars.db.table("items"),
 };
 
