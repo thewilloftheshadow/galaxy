@@ -1,6 +1,6 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let lb = await re.allunb[message.guild.id].getGuildLeaderboard(message.guild.id, { sort: 'cash' })
+  let lb = await re.unb.getGuildLeaderboard(message.guild.id, { sort: 'cash' })
   let m = await message.channel.send("Mirror mirror on the wall, who's the richest of them all? <a:TCKC_ThonkTriangle:678050031017918475>")
   
   setTimeout(function(){

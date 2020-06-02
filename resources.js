@@ -213,20 +213,12 @@ const dbs = {
   factions: new vars.db.table("factions"),
   users: new vars.db.table("users"),
   items: new vars.db.table("items"),
-  unbtokens: new vars.db.table("unbtokens")
 };
 
-//Unb for each guild
-let allunb = {}
-
-dbs.unbtokens.all().forEach(x => {
-  allunb[x.ID] = new unbapi.Client(x.data.replace(/"/g, ""))
-})
 
 dbs.list = Object.getOwnPropertyNames(dbs)
 vars.list = Object.getOwnPropertyNames(vars)
 func.list = Object.getOwnPropertyNames(func)
-allunb.list = Object.getOwnPropertyNames(allunb)
 
 const app = vars.express();
 const prefix = config.prefix;
@@ -237,11 +229,11 @@ exports.data = {
   prefix: prefix,
   dbs: dbs,
   app: app,
+  unb: new unbapi.Client(process.env.UNB),
   client: client,
   Discord: Discord,
   config: vars.config,
   handybag: require("handybag"),
-  allunb: allunb,
   logs: logs,
   moment: require("moment")
 }

@@ -30,7 +30,7 @@ re.client.on("message", async message => {
       message.author.isEcoManage = true;
     }
   
-    if(!re.allunb[message.guild.id] && ["economy", "economymanage"].includes(commandfile.help.module)) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
+    // if(!re.allunb[message.guild.id] && ["economy", "economymanage"].includes(commandfile.help.module)) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
     if(!message.guild.id === re.config.server && re.config.tckcmodules.includes(commandfile.help.module)) return message.channel.send("Sorry! This command is only for the TCKC server!")
     
     let cmdaccess = commandfile.help.access

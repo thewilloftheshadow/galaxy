@@ -3,8 +3,8 @@ module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
   await re.func.sleep(3000)
   
-  let item = re.dbs.users.get(message.author.id+".inventory")
-  let user = await re.allunb[message.guild.id].getUserBalance(message.guild.id, message.author.id)
+  let item = re.dbs.items.get(args[0])
+  let user = await re.unb.getUserBalance(message.guild.id, message.author.id)
   
   if(user.cash < item.price) return await message.channel.send(`You don't have enough cash on hand to buy this! You have ${re.func.prettyNumber(user.cash)}, but you need ${re.func.prettyNumber(item.price)}`)
   

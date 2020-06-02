@@ -16,7 +16,7 @@ module.exports.help = {
   name: "sethp",
   description: "Set someone's hp",
   syntax: re.config.prefix + "sethp <user> <amount>",
-  alias: ["health"],
-  module: "war",
+  alias: ["sethealth"],
+  module: "economymanager",
   access: {staff: false, mod: false, ecomanage: true, dev: false, owner: false}
 };
