@@ -5,8 +5,9 @@ module.exports.run = async (client, message, args) => {
   
   let item = re.dbs.items.get(args[0])
   let user = await re.unb.getUserBalance(message.guild.id, message.author.id)
+  if(!item) return m.edit("That item doesn't exist!")
   
-  if(user.cash < item.price) return await message.channel.send(`You don't have enough cash on hand to buy this! You have ${re.func.prettyNumber(user.cash)}, but you need ${re.func.prettyNumber(item.price)}`)
+  if(user.cash < item.price) return await m.edit(`You don't have enough cash on hand to buy this! You have ${re.func.prettyNumber(user.cash)}, but you need ${re.func.prettyNumber(item.price)}`)
   
   await m.edit(`Are you sure you want to buy 1 ${item.name}?`)
   await m.react("678023486618468363")
