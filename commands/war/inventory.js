@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   
   for(let itemid in items){
     let item = re.dbs.items.get(itemid)
-    if(!item.hidden){
+    if(!item.hidden && items[itemid] > 0){
       if (embeds[embeds.length-1].fields.length == 6)
         embeds.push(new re.Discord.MessageEmbed().setTitle("Your Inventory").setAuthor(message.author.tag, message.author.avatarURL()))
       // console.log(fn.getEmoji(client, (item.emoji ? item.emoji : item.name)))

@@ -1,5 +1,6 @@
 const re = require(`../resources.js`).data
 re.client.on("guildMemberAdd", async member => {
+  re.client.user.setActivity(re.client.users.cache.size + ' members in ' + re.client.guilds.cache.size + ' servers use %help.', { type: 'WATCHING' })
   if (!member.bot && member.guild.id === "641036901511594003") {
     let chan = re.client.channels.cache.get("642214583721000972")
     let m2 = await chan.send(
