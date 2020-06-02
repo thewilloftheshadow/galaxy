@@ -20,7 +20,7 @@ re.client.on("message", async message => {
       message.author.isDev = true;
     }
     let tckc = re.client.guilds.cache.find(guild => guild.id === re.config.server)
-    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("694962620914204672"))){
+    if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && (tckc.members.cache.get(message.author.id).roles.cache.get("710567729245192233") || tckc.members.cache.get(message.author.id).roles.cache.get("716434323057672223")))){
       message.author.isMod = true;
     }
     if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("712070389815312385"))){
