@@ -1,7 +1,7 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
-  await re.func.sleep(3000)
+  await re.func.sleep(1500)
   
   let item = re.dbs.items.get(args[0])
   let user = await re.unb.getUserBalance(message.guild.id, message.author.id)
@@ -26,7 +26,8 @@ module.exports.run = async (client, message, args) => {
       await m.reactions.removeAll()
       if (reaction.id != "678023486618468363") return await m.edit("Purchase canceled")
   
-  re.dbs.users.push(message.author.id+".inventory."+item.id, 1)
+  re.dbs.users.add(message.author.id+".inventory."+item.id, 1)
+  re.unb.editUserBalance(message.guild.id, message.author.id, {cash: 0 - item.price}, "Purchased " + item.name)
   await m.reactions.removeAll()
   await m.edit("Success! You have purchased 1 " + item.name + "!")
 };

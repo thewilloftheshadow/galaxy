@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
     }
     
     for (var [i, embed] of embeds.entries()) {
-      embed.setFooter(`Page ${i + 1}/${embeds.length} | Check out the shop to get more items!\`!`)
+      embed.setFooter(`Page ${i + 1}/${embeds.length} | Check out the shop to get more items!`)
     }
     
     if(embeds[0].fields.length < 1) embeds[0].description = "There's nothing here! Go buy some items in the `%shop`."
