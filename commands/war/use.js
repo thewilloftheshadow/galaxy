@@ -41,5 +41,6 @@ module.exports.help = {
   syntax: re.config.prefix + "buy <itemid>",
   alias: ["heal", "equip", "attack"],
   module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
+  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false},
+  nohelp: true
 };

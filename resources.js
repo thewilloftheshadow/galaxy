@@ -170,6 +170,7 @@ const vars = {
   cmd: require(`node-cmd`),
   fs: require(`fs`),
   ms: require(`ms`),
+  shortid: require('shortid'),
   ap: require("array-pull"),
   minesweeper: require('discord.js-minesweeper'),
   permlist: {

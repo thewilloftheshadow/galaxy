@@ -1,17 +1,13 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let hp = re.dbs.users.get(message.author.id+".hp")
-  if(!hp) {
-    hp = 50
-    re.dbs.users.set(message.author.id+".hp", 50)
-  }
-  let hpemoji = re.func.hpemoji(hp)
-  message.channel.send(`You have ${hp} HP\n${hpemoji}`)
+  let user1 = message.member
+  let user2 = re.func.getuser(args.join(" "), message)
+  
 };
 
 module.exports.help = {
-  name: "hp",
-  description: "Check your HP",
+  name: "battle",
+  description: "Battle another user",
   syntax: re.config.prefix + "hp",
   alias: ["health"],
   module: "war",
