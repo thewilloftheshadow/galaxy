@@ -6,7 +6,8 @@ module.exports.run = async (client, message, args) => {
     hp = 50
     re.dbs.users.set(user+".hp", 50)
   }
-  let newhp = parseInt(args[1], 10)
+  let newhp = 0
+  if(args[1] == "default"){ newhp = 50 } else { newhp = parseInt(args[1], 10) }
   let hpemoji = re.func.hpemoji(newhp)
   re.dbs.users.set(user+".hp", newhp)
   message.channel.send(`You have set ${user.user.tag}'s HP from ${hp} HP to ${newhp} HP\n${hpemoji}`)
