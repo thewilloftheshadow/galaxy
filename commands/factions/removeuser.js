@@ -2,10 +2,8 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
   await re.func.sleep(3000)
-  let f
-  if(message.member.roles.cache.has("712297438014078986")) f = re.dbs.factions.get("mf")
-  if(message.member.roles.cache.has("712709938161647748")) f = re.dbs.factions.get("pakistan")
-  if(message.member.roles.cache.has("712783175306444910")) f = re.dbs.factions.get("at")
+  let uf = re.dbs.users.get(message.author.id+".faction")
+  let f = re.dbs.factions.get(uf)
   if(!f) return await m.edit(`You aren't in a faction!`)
   
   if(f.leader != message.author.id) return await m.edit("You aren't the leader of your faction!")
