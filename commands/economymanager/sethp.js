@@ -1,13 +1,13 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let user = re.func.getUser(args.join(" "), message)
+  let user = re.func.getuser(args.join(" "), message)
   let hp = re.dbs.users.get(user.id+".hp")
   if(!hp) {
     hp = 50
     re.dbs.users.set(user+".hp", 50)
   }
-  let hpemoji = re.func.hpemoji(hp)
   let newhp = parseInt(args[1], 10)
+  let hpemoji = re.func.hpemoji(newhp)
   re.dbs.users.set(user+".hp", newhp)
   message.channel.send(`You have set ${user.user.tag}'s HP from ${hp} HP to ${newhp} HP\n${hpemoji}`)
 };
