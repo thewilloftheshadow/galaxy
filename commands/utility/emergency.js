@@ -2,7 +2,7 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let lastping = re.dbs.cd.get("emergency")
     if((/* lastping + 900000 */ 0) > Date.now()) return message.channel.send("⏲ This command is on cooldown for another " + require('ms')((lastping + 900000) - Date.now()))
-    let msr = message.guild.roles.cache.get("694962620914204672")
+    let msr = message.guild.roles.cache.get("716434323057672223")
     if(!msr) return message.channel.send("Error: no role found")
     await msr.setMentionable(true)
     await message.react("688544088072650821")
