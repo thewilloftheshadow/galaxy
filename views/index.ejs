@@ -1,0 +1,29 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Home</title>
+    <%- include("partials/header", {title: null, desc: null}) %>
+    <script>
+    function nouser(){$('#nouser').modal('show')};
+    </script>
+  </head>
+  <body>
+    <%- include("partials/navbar", {"user": user}) %>
+    
+    <div class="container">
+      <div class="row logo vertcenter center">
+        <div class="imglogo col-sm-12 col-md-5" style="">
+        <img
+          class="roundimg animated fadeIn rotateIn slow"
+          src="<%- client.user.avatarURL() %>"
+        />
+        </div>
+        <h1 class="txtlogo opensans animated fadeIn slow col-sm-12 col-md-7" style="font-weight:900;">
+          <% client.user.username %>
+        </h1>
+      </div>
+    </div>
+    
+    <%- include("partials/footer") %>
+  </body>
+</html>

@@ -173,6 +173,12 @@ const vars = {
   shortid: require('shortid'),
   ap: require("array-pull"),
   minesweeper: require('discord.js-minesweeper'),
+  ejs: require("ejs"),
+  Strategy: require("passport-discord").Strategy,
+  session: require("express-session"),
+  passport: require("passport"),
+  fs: require("fs"),
+  moment: require("moment"),
   permlist: {
     "0x00000001": "CREATE_INSTANT_INVITE",
     "0x00000002": "KICK_MEMBERS",
@@ -216,6 +222,7 @@ const dbs = {
   snipe: new vars.db.table("snipe"),
   items: new vars.db.table("items"),
   settings: new vars.db.table("settings"),
+  authdb: new vars.db.table("authdb")
 };
 
 
