@@ -1,0 +1,15 @@
+{
+  "prefix": "",
+  "unb": {
+    "emoji": ""
+  },
+  "roles": {
+    "staff": [],
+    "mod": [],
+    "admin": []
+  },
+  "channels": {
+    "announcements": ""
+  },
+  "setup": false
+}

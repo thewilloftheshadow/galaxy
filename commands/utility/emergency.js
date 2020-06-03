@@ -1,6 +1,6 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let lastping = re.dbs.cd.get("emergency")
+  let lastping = re.dbs.cd.get(message.guild.id+".emergency")
     if((/* lastping + 900000 */ 0) > Date.now()) return message.channel.send("⏲ This command is on cooldown for another " + require('ms')((lastping + 900000) - Date.now()))
     let msr = message.guild.roles.cache.get("710567729245192233")
     let msr2 = message.guild.roles.cache.get("716434323057672223")
@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
     await re.func.sleep(5000)
     await message.channel.send(`<a:TCKC_DETECTED:685262432758792234> **EMERGENCY ALERT** <a:TCKC_DETECTED:685262432758792234>\n**------------------------**\n${msr} ${msr2} Please hurry as there is a emergency that was reported by ${message.author}.\n**------------------------**\n**Note:**\n*If this command was used for no reason, you will be warned*\n*Please do not test the command, as it pings all staff, and locks chat*\n\nStaff: use the command \`%endemergency\` to end the lockdown.`)
     await msr.setMentionable(false)
-    re.dbs.cd.set("emergency", Date.now())
+    re.dbs.cd.set(message.guild.id+".emergency", Date.now())
 };
 
 module.exports.help = {
