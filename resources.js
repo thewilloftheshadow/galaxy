@@ -50,13 +50,13 @@ const func = {
     let membercount = client.guilds.cache.get(config.server).members.cache.size
     client.channels.cache.get("712719001196822538").setName(`╔〚👥〛《Members: ${membercount}》`)
   },
-  itemembed: function(itemid){
+  itemembed: function(itemid, guildid){
     if(!itemid) throw new Error("Please specify an item ID!")
-    const item = dbs.items.get(itemid)
+    const item = dbs.items.get(guildid+"."+itemid)
     const embed = new Discord.MessageEmbed()
     if(!item) embed.setTitle("Item not found").setDescription("Unable to find information for an item with the ID of " + item.id)
     embed.setTitle(`Item info for ${item.name}`)
-    .addField("Price", `<a:TCKC_MoneyBag:710609208286117898> ${item.price}`)
+    .addField("Price", `${dbs.settings.get(guildid+".unb.emoji") ? dbs.settings.get(guildid+".unb.emoji") : "<a:TCKC_MoneyBag:710609208286117898>"} ${item.price}`)
     if(item.damage > 0) embed.addField("Damage", `${item.damage}`)
     if(item.heal > 0) embed.addField("Heal", `${item.heal}`)
     if(item.addhealth > 0) embed.addField("Health Boost", `${item.addhealth}`)

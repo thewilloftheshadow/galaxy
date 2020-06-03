@@ -1,9 +1,9 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
-  let hp = re.dbs.users.get(message.author.id+".hp")
+  let hp = re.dbs.users.get(message.guild.id+"."+message.author.id+".hp")
   if(!hp) {
     hp = 50
-    re.dbs.users.set(message.author.id+".hp", 50)
+    re.dbs.users.set(message.guild.id+"."+message.author.id+".hp", 50)
   }
   let hpemoji = re.func.hpemoji(hp)
   message.channel.send(`You have ${hp} HP\n${hpemoji}`)

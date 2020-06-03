@@ -1,7 +1,7 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let user = re.func.getuser(args.join(" "), message)
-  let hp = re.dbs.users.get(user.id+".hp")
+  let hp = re.dbs.users.get(message.guild.id+"."+user.id+".hp")
   if(!hp) {
     hp = 50
     re.dbs.users.set(user+".hp", 50)
@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
   let newhp = 0
   if(args[1] == "default"){ newhp = 50 } else { newhp = parseInt(args[1], 10) }
   let hpemoji = re.func.hpemoji(newhp)
-  re.dbs.users.set(user+".hp", newhp)
+  re.dbs.users.set(message.guild.id+"."+user+".hp", newhp)
   message.channel.send(`You have set ${user.user.tag}'s HP from ${hp} HP to ${newhp} HP\n${hpemoji}`)
 };
 

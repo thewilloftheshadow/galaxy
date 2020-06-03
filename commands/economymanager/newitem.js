@@ -79,7 +79,7 @@ module.exports.run = async (client, message, args) => {
   item.addhealth = parseInt(input, 10)
 
   message.channel.send(JSON.stringify(item, null, 4), { code: "fix" })
-  re.dbs.items.set(item.id, item)
+  re.dbs.items.set(message.guild.id+"."+item.id, item)
 }
 
 module.exports.help = {

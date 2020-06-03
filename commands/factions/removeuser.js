@@ -2,8 +2,8 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
   await re.func.sleep(3000)
-  let uf = re.dbs.users.get(message.author.id+".faction")
-  let f = re.dbs.factions.get(uf)
+  let uf = re.dbs.users.get(message.guild.id+"."+message.author.id+".faction")
+  let f = re.dbs.factions.get(message.guild.id+"."+uf)
   if(!f) return await m.edit(`You aren't in a faction!`)
   
   if(f.leader != message.author.id) return await m.edit("You aren't the leader of your faction!")
@@ -31,8 +31,8 @@ module.exports.run = async (client, message, args) => {
       if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
   
   let newmem = re.vars.ap(f.members, user.id)
-  re.dbs.factions.set(f.id+".members", newmem)
-  re.dbs.users.set(user.id+".faction", f.id)
+  re.dbs.factions.set(message.guild.id+"."+f.id+".members", newmem)
+  re.dbs.users.set(message.guild.id+"."+user.id+".faction", f.id)
   user.roles.remove(f.ids.role, `Removed from faction by ${message.author.tag}`)
   await m.edit(`Done! <@${user.id}> has been removed from your faction!`)
 };

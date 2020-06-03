@@ -2,8 +2,8 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
   await re.func.sleep(3000)
-  let uf = re.dbs.users.get(message.author.id+".faction")
-  let f = re.dbs.factions.get(uf)
+  let uf = re.dbs.users.get(message.guild.id+"."+message.author.id+".faction")
+  let f = re.dbs.factions.get(message.guild.id+"."+uf)
   if(!f) return await m.edit(`You aren't in a faction!`)
   
   if(f.leader != message.author.id) return await m.edit("You aren't the leader of your faction!")
@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
   let user = re.func.getuser(args.join(" "), message)
   if(!user) return await m.edit("That user was not found!")
   if(f.members.includes(user.id)) return await m.edit("That user is already in your faction!")
-  if(!re.dbs.users.get(user.id+".faction") || re.dbs.users.get(user.id+".faction") == "") return await m.edit("That user is already in another faction!")
+  if(!re.dbs.users.get(message.guild.id+"."+user.id+".faction") || re.dbs.users.get(message.guild.id+"."+user.id+".faction") == "") return await m.edit("That user is already in another faction!")
   
   await m.edit(`Are you sure you want to add <@${user.id}> to your faction?`)
   await m.react("678023486618468363")
@@ -31,8 +31,8 @@ module.exports.run = async (client, message, args) => {
       await m.reactions.removeAll()
       if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
   
-  re.dbs.factions.push(f.id+".members", user.id)
-  re.dbs.users.set(user.id+".faction", f.id)
+  re.dbs.factions.push(message.guild.id+"."+f.id+".members", user.id)
+  re.dbs.users.set(message.guild.id+"."+user.id+".faction", f.id)
   user.roles.add(f.ids.role, `Added to faction by ${message.author.tag}`)
   await m.edit(`Done! <@${user.id}> has been added to your faction!`)
 };
