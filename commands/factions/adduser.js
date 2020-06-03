@@ -11,6 +11,8 @@ module.exports.run = async (client, message, args) => {
   
   let user = re.func.getuser(args.join(" "), message)
   if(!user) return await m.edit("That user was not found!")
+  if(user.user.presence.status === "offline") return m.edit("That person is currently offline, you cannot add them right now!")
+
   if(f.members.includes(user.id)) return await m.edit("That user is already in your faction!")
   if(re.dbs.users.get(message.guild.id+"."+user.id+".faction") && re.dbs.users.get(message.guild.id+"."+user.id+".faction") != "") return await m.edit("That user is already in another faction!")
   
