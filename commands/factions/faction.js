@@ -2,8 +2,13 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
   let allfactionsdb = re.dbs.factions.get(message.guild.id)
+  if(!allfactionsdb){
+    re.dbs.factions.set(message.guild.id, {})
+    allfactionsdb = {}
+  }
   let allf = Object.getOwnPropertyNames(allfactionsdb)
   let f = re.dbs.factions.get(message.guild.id+"."+(args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
+  if(!allf) return await m.edit(`There are no factions in this server!`)
   if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
   let fmem2 = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))

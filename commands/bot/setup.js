@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
       if (reaction.id != "678023486618468363") return await m.edit("Ok, we won't do the setup again")
   }
   
-  m.edit = await message.channel.send(
+  m.edit(
     "Nice! Welcome to the Galaxy setup. First, what is the emoji for this server's currency? If you don't have one, say `skip`"
   )
   let input = await m.channel
@@ -37,7 +37,7 @@ module.exports.run = async (client, message, args) => {
   re.dbs.settings.set(message.guild.id+".unb.emoji", input)
   input = ""
   
-  m.edit = await message.channel.send(
+  m.edit(
     'Cool! Next, please ping all the roles you want considered as "staff" roles for this server, able to use command in the staff module!'
   )
   let roles = []
@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args) => {
     }
   }
   
-  m.edit = await message.channel.send(
+  m.edit(
     'Epic! Next, please ping all the roles you want considered as "mod" roles for this server, able to use command in the mod module!'
   )
   roles = []
@@ -81,7 +81,7 @@ module.exports.run = async (client, message, args) => {
     }
   }
   
-   m.edit = await message.channel.send(
+   m.edit(
     'Awesome! Next, please ping all the roles you want considered as "admin" roles for this server, able to manage the bot\'s settings!'
   )
   roles = []
@@ -103,7 +103,7 @@ module.exports.run = async (client, message, args) => {
     }
   }
   
-   m.edit = await message.channel.send(
+   m.edit(
     'Woohoo! You\'re all set to use the bot now!'
   )
 }

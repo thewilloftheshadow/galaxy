@@ -1,8 +1,10 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let s = args.join(" ")
-    re.dbs.suggestions.push("all", {"author": message.author.id, "suggestion": s})
-    let c = client.channels.cache.get("709519760940859483")
+  let schan = re.dbs.settings.get(message.guild.id+".channels.suggestions")
+  if(!schan) return await message.channel.send("There is no suggestion channel setup in this server!")
+    re.dbs.suggestions.push("all", {"author": message.author.id, "suggestion": s, "guild": message.guild.id})
+    let c = client.channels.cache.get(re.dbs.settings.get(message.guild.id+".channels.suggestions"))
     let ah = await c.fetchWebhooks()
     let h = ah.find(item => item)
     await h.edit({
