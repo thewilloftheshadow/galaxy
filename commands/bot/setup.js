@@ -2,7 +2,7 @@ const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_RainbowLoad:688544088072650821>")
   await re.func.sleep(3000)
-  if(!message.member.hasPermission("MANAGE_SERVER")/* && (re.dbs.settings.get(message.guild.id+".roles.admin") && !message.member.roles.cache.has(re.dbs.settings.get(message.guild.id+".roles.admin")))*/) return await m.edit(`Only someone with the \`Manage Server\` permission /*or the <@&${re.dbs.settings.get(message.guild.id+".roles.admin")}> can setup the bot!`)
+  if(!message.member.hasPermission("MANAGE_SERVER")/* && (re.dbs.settings.get(message.guild.id+".roles.admin") && !message.member.roles.cache.has(re.dbs.settings.get(message.guild.id+".roles.admin")))*/) return await m.edit(`Only someone with the \`Manage Server\` permission can setup the bot!`)
   if(re.dbs.settings.get(message.guild.id+".setup")){
     await m.edit(`Are you sure you want to rerun the setup?`)
   await m.react("678023486618468363")
@@ -109,15 +109,15 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: "newitem",
-  description: "Add an item to the shop",
-  syntax: re.config.prefix + "additem",
-  alias: ["createitem"],
-  module: "economymanager",
+  name: "setup",
+  description: "Setup the bot",
+  syntax: re.config.prefix + "setup",
+  alias: ["wizard"],
+  module: "bot",
   access: {
     staff: false,
     mod: false,
-    ecomanage: true,
+    ecomanage: false,
     dev: false,
     owner: false
   }
