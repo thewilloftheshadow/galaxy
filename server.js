@@ -4,13 +4,7 @@ const app = re.app
 const passport = re.vars.passport
 const express = re.vars.express
 const client = re.client
-
-//Require our config file
 const config = re.config
-//Require our functions
-const fn = require("./fn.js")
-
-//Create a database table for the auth
 const authdb = re.dbs.authdb
 
 
@@ -37,7 +31,7 @@ passport.deserializeUser((obj, done) => {
 
 //Issue token for cookies. We will use this later
 function issueToken(user) {
-  let token = fn.randomString(64)
+  let token = re.func.randomString(64)
   authdb.set("tokens." + token, user.id)
   return token
 }
@@ -116,7 +110,7 @@ client.on("ready", async () => {
   app.get("*", (req, res) => {
     try {
       //redirect to custom domain
-      if(!config.customdomain){
+      if(config.customdomain){
       if (req.hostname.includes(process.env.PROJECT_DOMAIN + ".glitch.me")) {
         res.redirect(config.customdomain + req.url)
       }
@@ -127,7 +121,7 @@ client.on("ready", async () => {
 
   
   app.get("/", (req, res) => {
-    let pass = { user: req.user || null, client: client }
+    let pass = { user: req.user || null, dclient: client }
     res.render(__dirname + "/views/index.ejs", pass)
   })
 
