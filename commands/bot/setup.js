@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
   let settings = require("/app/defaults.json")
 
   let m.edit = await message.channel.send(
-    "Yay its time to make a new item! What do you want to call this item?"
+    "Nice! Welcome to the Galaxy setup. First?"
   )
   let input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
