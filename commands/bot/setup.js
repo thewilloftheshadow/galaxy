@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
   await re.func.sleep(3000)
   if(!message.member.hasPermission("MANAGE_SERVER")) return await message.channel.send("Only someone with the `Manage Server` permission can setup the bot!")
   if(re.dbs.settings.get(message.guild.id+".setup")){
-    await m.edit(`Are you sure you want to add <@${user.id}> to your faction?`)
+    await m.edit(`Are you sure you want to rerun the setup?`)
   await m.react("678023486618468363")
   await m.react("684155550728192019")
   let reactions = await m
@@ -19,12 +19,12 @@ module.exports.run = async (client, message, args) => {
         return await m.edit("Prompt timed out")
       let reaction = reactions.first().emoji
       await m.reactions.removeAll()
-      if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
+      if (reaction.id != "678023486618468363") return await m.edit("Ok, we won't do the setup again")
   }
   let settings = require("/app/defaults.json")
 
-  let m.edit = await message.channel.send(
-    "Nice! Welcome to the Galaxy setup. First?"
+  m.edit = await message.channel.send(
+    "Nice! Welcome to the Galaxy setup. First, what is the emoji for this server's currency? If you don't have one, say `skip`"
   )
   let input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
