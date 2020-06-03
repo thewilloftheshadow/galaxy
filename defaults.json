@@ -9,7 +9,8 @@
     "admin": []
   },
   "channels": {
-    "announcements": ""
+    "announcements": "",
+    "suggestions": ""
   },
   "setup": false
 }
