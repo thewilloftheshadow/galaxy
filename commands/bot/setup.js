@@ -21,8 +21,7 @@ module.exports.run = async (client, message, args) => {
       await m.reactions.removeAll()
       if (reaction.id != "678023486618468363") return await m.edit("Ok, we won't do the setup again")
   }
-  let settings = require("/app/defaults.json")
-
+  
   m.edit = await message.channel.send(
     "Nice! Welcome to the Galaxy setup. First, what is the emoji for this server's currency? If you don't have one, say `skip`"
   )
@@ -35,12 +34,12 @@ module.exports.run = async (client, message, args) => {
     .catch(() => {})
   if (!input) return await message.author.send(m.edit("Prompt timed out."))
   input = input.first().content
-  item.name = input
-
-  item.id = item.name.toLowerCase().replace(/ /g, "")
-
-  // m = await message.channel.send("How much should this item cost?")
-  await m.edit("How much should this item cost?")
+  re.dbs.settings.set(message.guild.id+".unb.emoji", input)
+  input = ""
+  
+  m.edit = await message.channel.send(
+    "Cool! Next, please ping all the roles you want considered as \"staff\" roles for this server!"
+  )
   input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
@@ -50,49 +49,7 @@ module.exports.run = async (client, message, args) => {
     .catch(() => {})
   if (!input) return await message.author.send(m.edit("Prompt timed out."))
   input = input.first().content
-  item.price = parseInt(input, 10)
-
-  // m = await message.channel.send("How much should this item damage?")
-  await m.edit("How much should this item damage?")
-  input = await m.channel
-    .awaitMessages(msg => msg.author.id == message.author.id, {
-      time: 30 * 1000,
-      max: 1,
-      errors: ["time"]
-    })
-    .catch(() => {})
-  if (!input) return await message.author.send(m.edit("Prompt timed out."))
-  input = input.first().content
-  item.damage = parseInt(input, 10)
-
-  // m = await message.channel.send("How much should this item heal?")
-  await m.edit("How much should this item heal?")
-  input = await m.channel
-    .awaitMessages(msg => msg.author.id == message.author.id, {
-      time: 30 * 1000,
-      max: 1,
-      errors: ["time"]
-    })
-    .catch(() => {})
-  if (!input) return await message.author.send(m.edit("Prompt timed out."))
-  input = input.first().content
-  item.heal = parseInt(input, 10)
-
-  // m = await message.channel.send("How much health should this item add?")
-  await m.edit("How much health should this item add?")
-  input = await m.channel
-    .awaitMessages(msg => msg.author.id == message.author.id, {
-      time: 30 * 1000,
-      max: 1,
-      errors: ["time"]
-    })
-    .catch(() => {})
-  if (!input) return await message.author.send(m.edit("Prompt timed out."))
-  input = input.first().content
-  item.addhealth = parseInt(input, 10)
-
-  message.channel.send(JSON.stringify(item, null, 4), { code: "fix" })
-  re.dbs.items.set(message.guild.id+"."+item.id, item)
+  re.dbs.settings.set(message.guild.id+".unb.emoji", input)
 }
 
 module.exports.help = {
