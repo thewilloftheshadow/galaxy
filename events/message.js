@@ -30,7 +30,7 @@ re.client.on("message", async message => {
     if (message.author.id === re.config.ownerID || (tckc.members.cache.get(message.author.id) && tckc.members.cache.get(message.author.id).roles.cache.get("710614561668989018"))){
       message.author.isEcoManage = true;
     }
-  
+  if(["economy", "economymanage"].includes(commandfile.help.module) && !message.guild.members.cache.get("292953664492929025")) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
     // if(!re.allunb[message.guild.id] && ["economy", "economymanage"].includes(commandfile.help.module)) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
     
   if((message.guild.id != re.config.server) && re.config.tckcmodules.includes(commandfile.help.module)) return message.channel.send("Sorry! This command is only for the TCKC server!")
