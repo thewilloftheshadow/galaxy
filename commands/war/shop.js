@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
   let embeds = [new re.Discord.MessageEmbed().setTitle("War Shop")]
   
   for(let shopitem in items){
-    let item = JSON.parse(items[shopitem])
+    let item = items[shopitem]
     if(!item.hidden){
       if (embeds[embeds.length-1].fields.length == 6)
         embeds.push(new re.Discord.MessageEmbed().setTitle("War Shop"))
