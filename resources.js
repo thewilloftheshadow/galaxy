@@ -50,7 +50,8 @@ const func = {
     let membercount = client.guilds.cache.get(config.server).members.cache.size
     client.channels.cache
       .get("712719001196822538")
-      .setName(`╔〚👥〛《Members: ${membercount}》`)
+      .setName(`╔👥║ Members: ${membercount}`)
+
   },
   itemembed: function(itemid, guildid) {
     if (!itemid) throw new Error("Please specify an item ID!")
