@@ -36,7 +36,8 @@ module.exports.run = async (client, message, args) => {
   let reaction = reactions.first().emoji
   if (reaction.id != "678023486618468363")
     return await m.edit("Battle declined!")
-  await m.edit("Battle accepted! Generating battlefield <a:TCKC_RainbowLoad:688544088072650821>")
+  await m.delete()
+  m = await message.channel.send(`Battle accepted! Generating battlefield <a:TCKC_RainbowLoad:688544088072650821>\n${user1} {user2}`)
   await re.func.sleep(1500)
   let bf = new re.Discord.MessageEmbed().setTitle("The Battlefield")
   let user1hp = re.func.hp(message.guild.id, user1.id)
