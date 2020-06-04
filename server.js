@@ -1,4 +1,3 @@
-
 const re = require(`./resources.js`).data
 const app = re.app
 const passport = re.vars.passport
@@ -118,60 +117,62 @@ client.on("ready", async () => {
       req.next()
     } catch (e) {}
   })
-
-  
-  app.get("/", (req, res) => {
-    let pass = { user: req.user || null, dclient: client }
-    res.render(__dirname + "/views/index.ejs", pass)
-  })
-
-  app.get("/register", (request, response) => {
-    response.redirect("https://discordapp.com/register")
-  })
-
-  app.get("/login", (request, response) => {
-    response.redirect("/auth/discord")
-  })
-
-  app.get("/invite", (req, res) => {
-    res.redirect("https://discord.gg/Hr62m5X")
-  })
-
-  app.get("/auth/discord", (request, response) => {
-    response.redirect(
-      `https://discordapp.com/oauth2/authorize?response_type=code&redirect_uri=${
-        config.callback
-      }&scope=${config.scope.replace(" ", "%20")}&client_id=${
-        client.user.id
-      }&prompt=none`
-    )
-  })
-
-  app.get(
-    "/auth/callback",
-    passport.authenticate("discord", {
-      failureRedirect: "/"
-    }),
-    (req, res) => {
-      res.redirect(`/`) // Successful auth
-    }
-  )
-
-  app.get("/logout", (req, res) => {
-    res.clearCookie("rememberme")
-    req.logout()
-    res.redirect("/")
-  })
-
-  app.get("/info", checkAuth, (req, res) => {
-    console.log(req.user)
+  app.get("*", (req, res) => {
     res.sendStatus(200)
   })
+  
+//   app.get("/", (req, res) => {
+//     let pass = { user: req.user || null, dclient: client }
+//     res.render(__dirname + "/views/index.ejs", pass)
+//   })
 
-  function checkAuth(req, res, next) {
-    if (req.user) return next()
-    res.redirect("/login")
-  }
+//   app.get("/register", (request, response) => {
+//     response.redirect("https://discordapp.com/register")
+//   })
+
+//   app.get("/login", (request, response) => {
+//     response.redirect("/auth/discord")
+//   })
+
+//   app.get("/invite", (req, res) => {
+//     res.redirect("https://discord.gg/Hr62m5X")
+//   })
+
+//   app.get("/auth/discord", (request, response) => {
+//     response.redirect(
+//       `https://discordapp.com/oauth2/authorize?response_type=code&redirect_uri=${
+//         config.callback
+//       }&scope=${config.scope.replace(" ", "%20")}&client_id=${
+//         client.user.id
+//       }&prompt=none`
+//     )
+//   })
+
+//   app.get(
+//     "/auth/callback",
+//     passport.authenticate("discord", {
+//       failureRedirect: "/"
+//     }),
+//     (req, res) => {
+//       res.redirect(`/`) // Successful auth
+//     }
+//   )
+
+//   app.get("/logout", (req, res) => {
+//     res.clearCookie("rememberme")
+//     req.logout()
+//     res.redirect("/")
+//   })
+
+//   app.get("/info", checkAuth, (req, res) => {
+//     console.log(req.user)
+//     res.sendStatus(200)
+//   })
+
+//   function checkAuth(req, res, next) {
+//     if (req.user) return next()
+//     res.redirect("/login")
+//   }
   const listener = app.listen(process.env.PORT, function() {
     console.log(
       "The site is online, using port " + listener.address().port
