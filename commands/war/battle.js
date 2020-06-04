@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
   let user2 = re.func.getuser(args.join(" "), message)
   if (!user2) return await m.edit(`Unable to find that user`)
   
-  user2
+  await user2
     .send(
       new re.Discord.MessageEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL())
@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
     )
     .catch(e => {})
   
-  m.edit(
+  await m.edit(
     `${user2}, ${message.member.displayName} has challenged you to a battle! Do you accept?`
   )
   await m.react("678023486618468363")
@@ -36,7 +36,14 @@ module.exports.run = async (client, message, args) => {
   let reaction = reactions.first().emoji
   if (reaction.id != "678023486618468363")
     return await m.edit("Battle declined!")
-  await m.edit("Battle accepted!")
+  await m.edit("Battle accepted! Generating battlefield <a:TCKC_RainbowLoad:688544088072650821>")
+  await re.func.sleep(1500)
+  let bf = new re.Discord.MessageEmbed().setTitle("The Battlefield")
+  let user1hp = re.func.hp(message.guild.id, user1.id)
+  let user2hp = re.func.hp(message.guild.id, user2.id)
+  bf.addField(`${user1.displayName}\s Health`, `${re.func.hp(user1.id, message.guild.id)}\n${re.func.hpemoji(re.func.hp(user1.id, message.guild.id))}`)
+  bf.addField(`${user2.displayName}\s Health`, `${re.func.hp(user2.id, message.guild.id)}\n${re.func.hpemoji(re.func.hp(user2.id, message.guild.id))}`)
+  m.edit(`${user1} ${user2}`, bf)
 }
 
 module.exports.help = {

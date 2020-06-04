@@ -78,6 +78,13 @@ const func = {
     if (item.addhealth > 0) embed.addField("Health Boost", `${item.addhealth}`)
     return embed
   },
+  hp: function(userid, guildid) {
+    let hp = dbs.users.get(guildid + "." + userid + ".hp")
+    if (!hp) {
+      hp = 50
+      dbs.users.set(guildid + "." + userid + ".hp", 50)
+    }
+  },
   getuser: function(input, message) {
     if (!input) return message.member
     let target = message.mentions.members.first()
