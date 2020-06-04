@@ -41,9 +41,11 @@ module.exports.run = async (client, message, args) => {
   let bf = new re.Discord.MessageEmbed().setTitle("The Battlefield")
   let user1hp = re.func.hp(message.guild.id, user1.id)
   let user2hp = re.func.hp(message.guild.id, user2.id)
-  bf.addField(`${user1.displayName}\s Health: `, `${re.func.hp(user1.id, message.guild.id)} ${re.func.hpemoji(re.func.hp(user1.id, message.guild.id))}`)
-  bf.addField(`${user2.displayName}\s Health: `, `${re.func.hp(user2.id, message.guild.id)} ${re.func.hpemoji(re.func.hp(user2.id, message.guild.id))}`)
-  m.edit(`${user1} ${user2}`, bf)
+  bf.setDescription(`${user1}, its your turn! Select an emoji below for your action`)
+  bf.addField(`${user1.displayName}\s Health: `, `${re.func.hp(user1.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user1.id, message.guild.id))}`)
+  bf.addField(`${user2.displayName}\s Health: `, `${re.func.hp(user2.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user2.id, message.guild.id))}`)
+  await m.edit(`${user1} ${user2}`, bf)
+  
 }
 
 module.exports.help = {
