@@ -1,6 +1,6 @@
 const re = require(`../resources.js`).data;
 re.client.on("guildMemberRemove", async member => {
-  if(!member.guild.id === "641036901511594003") return;
+  if(member.guild.id != "641036901511594003") return;
   const channel = re.client.guilds.cache
     .get(re.config.server)
     .channels.cache.get("652530741590097930");
