@@ -84,6 +84,7 @@ const func = {
       hp = 50
       dbs.users.set(guildid + "." + userid + ".hp", 50)
     }
+    return hp
   },
   getuser: function(input, message) {
     if (!input) return message.member
@@ -216,6 +217,8 @@ const func = {
     const empty3 = client.emojis.cache.get("716429939582173274")
     const half3 = client.emojis.cache.get("716429975363780678")
     const full3 = client.emojis.cache.get("716430103068016783")
+    hp = parseInt(hp, 10)
+    if(!hp) return "<:GS_WaitWhat:718219031802281998>"
     let string = `${hp < 10 ? empty1 : full1}${
       hp < 20 ? (hp < 15 ? empty2 : half2) : full2
     }${hp < 30 ? (hp < 25 ? empty2 : half2) : full2}${
