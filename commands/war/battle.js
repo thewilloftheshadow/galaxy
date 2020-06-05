@@ -39,6 +39,7 @@ module.exports.run = async (client, message, args) => {
   await m.delete()
   m = await message.channel.send(`Battle accepted! Generating battlefield <a:TCKC_RainbowLoad:688544088072650821>\n${user1} {user2}`)
   await re.func.sleep(1500)
+  while(!battle.ended){
   let bf = new re.Discord.MessageEmbed().setTitle("The Battlefield")
   let user1hp = re.func.hp(message.guild.id, user1.id)
   let user2hp = re.func.hp(message.guild.id, user2.id)
@@ -46,13 +47,26 @@ module.exports.run = async (client, message, args) => {
   bf.addField(`${user1.displayName}\s Health: `, `${re.func.hp(user1.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user1.id, message.guild.id))}`)
   bf.addField(`${user2.displayName}\s Health: `, `${re.func.hp(user2.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user2.id, message.guild.id))}`)
   await m.edit(`${user1} ${user2}`, bf)
+  await m.react("⚔")
+  await m.react("🩹")
+  await m.react("💨")
+  let reactions2 = await m
+    .awaitReactions(
+      (r, u) =>
+        ["⚔", "🩹","💨"].includes(r.emoji) &&
+        u.id == battle.currentTurn,
+      { time: 120 * 1000, max: 1, errors: ["time"] }
+    )
+    .catch(() => {})
+  await m.reactions.removeAll()
+  }
   
 }
 
 module.exports.help = {
   name: "battle",
   description: "Battle another user",
-  syntax: re.config.prefix + "hp",
+  syntax: re.config.prefix + "battle <user>",
   alias: ["health"],
   module: "war",
   access: {
