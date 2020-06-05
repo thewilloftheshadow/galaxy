@@ -209,16 +209,16 @@ const func = {
     }
   },
   hpemoji: function(hp) {
-    const empty1 = client.emojis.cache.get("716429755569930291")
-    const full1 = client.emojis.cache.get("716429785156550696")
-    const empty2 = client.emojis.cache.get("716429906006900743")
-    const half2 = client.emojis.cache.get("716429869785022536")
-    const full2 = client.emojis.cache.get("716429836918325308")
-    const empty3 = client.emojis.cache.get("716429939582173274")
-    const half3 = client.emojis.cache.get("716429975363780678")
-    const full3 = client.emojis.cache.get("716430103068016783")
+    const empty1 = client.emojis.cache.get("718508401315020810")
+    const full1 = client.emojis.cache.get("718508515475325069")
+    const empty2 = client.emojis.cache.get("718508550405750856")
+    const half2 = client.emojis.cache.get("718508539039055951")
+    const full2 = client.emojis.cache.get("718508527001272332")
+    const empty3 = client.emojis.cache.get("718508628872658957")
+    const half3 = client.emojis.cache.get("718508654667759777")
+    const full3 = client.emojis.cache.get("718508808246263860")
     hp = parseInt(hp, 10)
-    if(!hp) return "<:GS_WaitWhat:718219031802281998>"
+    if(!hp) return "<:GS_WaitWhat:718509174652272663>"
     let string = `${hp < 10 ? empty1 : full1}${
       hp < 20 ? (hp < 15 ? empty2 : half2) : full2
     }${hp < 30 ? (hp < 25 ? empty2 : half2) : full2}${
