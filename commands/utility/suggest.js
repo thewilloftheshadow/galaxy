@@ -7,6 +7,7 @@ module.exports.run = async (client, message, args) => {
     let c = client.channels.cache.get(re.dbs.settings.get(message.guild.id+".channels.suggestions"))
     let ah = await c.fetchWebhooks()
     let h = ah.find(item => item)
+    if(!h) h = await c.createWebhook("Galaxy Suggestions")
     await h.edit({
       name: message.author.username,
       avatar: message.author.avatarURL()
