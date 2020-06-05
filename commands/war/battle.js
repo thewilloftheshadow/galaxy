@@ -39,6 +39,12 @@ module.exports.run = async (client, message, args) => {
   await m.delete()
   m = await message.channel.send(`Battle accepted! Generating battlefield <a:TCKC_RainbowLoad:688544088072650821>\n${user1} {user2}`)
   await re.func.sleep(1500)
+  let battle = {
+    user1: user1,
+    user2: user2,
+    ended: false
+  }
+  await m.delete()
   while(!battle.ended){
   let bf = new re.Discord.MessageEmbed().setTitle("The Battlefield")
   let user1hp = re.func.hp(message.guild.id, user1.id)
@@ -46,7 +52,7 @@ module.exports.run = async (client, message, args) => {
   bf.setDescription(`${user1}, its your turn! Select an emoji below for your action`)
   bf.addField(`${user1.displayName}\s Health: `, `${re.func.hp(user1.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user1.id, message.guild.id))}`)
   bf.addField(`${user2.displayName}\s Health: `, `${re.func.hp(user2.id, message.guild.id)}hp - ${re.func.hpemoji(re.func.hp(user2.id, message.guild.id))}`)
-  await m.edit(`${user1} ${user2}`, bf)
+  m = await message.channel.send(`${user1} ${user2}`, bf)
   await m.react("⚔")
   await m.react("🩹")
   await m.react("💨")
@@ -59,6 +65,7 @@ module.exports.run = async (client, message, args) => {
     )
     .catch(() => {})
   await m.reactions.removeAll()
+  await m.delete()
   }
   
 }
