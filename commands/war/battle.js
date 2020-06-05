@@ -42,7 +42,8 @@ module.exports.run = async (client, message, args) => {
   let battle = {
     user1: user1,
     user2: user2,
-    ended: false
+    ended: false,
+    currentTurn: user1.id
   }
   await m.delete()
   while(!battle.ended){
