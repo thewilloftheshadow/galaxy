@@ -1,4 +1,4 @@
-const config = require(`./config.json`)
+semconst config = require(`./config.json`)
 const Discord = require(`discord.js`)
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "USER"] })
 const logs = new Discord.WebhookClient("716482964602749000", process.env.LOGS)
@@ -53,6 +53,10 @@ const func = {
       .setName(`╔👥║ Members: ${membercount}`)
 
   },
+  botperm: function(userid, message){
+    if(userid instanceof Discord.GuildMember) userid = userid.id
+    if(userid instanceof Discord.User) userid = userid
+    .    if(userid === config.ownerID) ()},
   itemembed: function(itemid, guildid) {
     if (!itemid) throw new Error("Please specify an item ID!")
     const item = dbs.items.get(guildid + "." + itemid)
@@ -330,3 +334,4 @@ exports.data = {
 }
 
 exports.data.list = Object.getOwnPropertyNames(exports.data)
+i
