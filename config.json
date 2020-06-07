@@ -1,7 +1,7 @@
 {
   "prefix" : "%",
   "ownerID" : "439223656200273932",
-  "color": "",
+  "color": "#6F03C7",
   "logs": "716426401493811226",
   "errors": "716494477530759179",
   "debug": true,
@@ -11,7 +11,7 @@
   "blacklist": [],
   "modules": ["bot", "fun", "economy", "dev", "levels"],
   "tckcmodules": ["economymanager", "war", "mod", "staff", "utility", "custom", "factions"],
-  "callbackurl": "",
-  "customdomain": "",
+  "callbackurl": "http://galaxybot.ml/auth/callback",
+  "customdomain": "http://galaxybot.ml",
   "scope": "identify guilds"
 }
