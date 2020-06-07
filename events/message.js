@@ -6,6 +6,8 @@ re.client.on("message", async message => {
   message.prefix = prefix
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase()) && message.guild) return;
   console.log(`${re.moment().format('MMMM Do YYYY, h:mm:ss a')} | ${message.author.tag} - ${message.content}`)
+  message.author.botperms = re.func.botperms(message.author.id, message)
+  message.member.botperms = message.author.botperms
   let args = message.content
       .slice(prefix.length)
       .trim()
