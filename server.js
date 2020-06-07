@@ -117,7 +117,7 @@ client.on("ready", async () => {
       req.next()
     } catch (e) {}
   })
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendStatus(200)
   })
   

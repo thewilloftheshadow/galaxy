@@ -58,9 +58,11 @@ const func = {
     if(userid instanceof Discord.User) userid = userid.id
     let perms = {
       level: 0,
-      modules: []
+      modules: [],
+      eval: false
     }
-    if(userid === config.ownerID) perms.level = 7
+    if(userid === config.ownerID) perms.level = 5
+    if(message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("719334282023272498")) perms.eval = true
     return perms
   },
   itemembed: function(itemid, guildid) {
