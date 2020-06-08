@@ -75,7 +75,7 @@ const func = {
         if(message.member.roles.cache.has(x)) perms.level = 3
       })
       if(message.member.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
-      if(message.member.hasPermission("MANAGE_SERVER") && adminroles.length) perms.level = 3
+      if(message.member.hasPermission("MANAGE_GUILD") && adminroles.length) perms.level = 3
     }
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("717162873406881822")) perms.level = 4
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
