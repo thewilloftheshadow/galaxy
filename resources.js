@@ -61,12 +61,22 @@ const func = {
       modules: [],
       eval: false
     }
-    let staffroles = dbs.settings.get(message.guild.id+".roles.staff")
-    let adminroles = dbs.settings.get(message.guild.id+".roles.staff")
-    let adminroles = dbs.settings.get(message.guild.id+".roles.staff")
-    if(message.member.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
-    if(message.member.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
-    if(message.member.hasPermission("MANAGE_SERVER") && adminroles.length) perms.level = 3
+    if(message.guild){
+      let staffroles = dbs.settings.get(message.guild.id+".roles.staff")
+      let modroles = dbs.settings.get(message.guild.id+".roles.mod")
+      let adminroles = dbs.settings.get(message.guild.id+".roles.admin")
+      staffroles.forEach(x => {
+        if(message.member.roles.cache.has(x)) perms.level = 1
+      })
+      modroles.forEach(x => {
+        if(message.member.roles.cache.has(x)) perms.level = 2
+      })
+      adminroles.forEach(x => {
+        if(message.member.roles.cache.has(x)) perms.level = 3
+      })
+      if(message.member.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
+      if(message.member.hasPermission("MANAGE_SERVER") && adminroles.length) perms.level = 3
+    }
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("717162873406881822")) perms.level = 4
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
     if(userid === config.ownerID) perms.level = 5
