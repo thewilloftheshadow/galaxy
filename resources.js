@@ -300,6 +300,15 @@ const vars = {
   passport: require("passport"),
   fs: require("fs"),
   moment: require("moment"),
+  botperms: {
+    0: "Basic User",
+    1: "Server Staff Member",
+    2: "Server Moderator",
+    3: "Server Administrator",
+    4: "Bot Administrator",
+    5: "Developer",
+    6: "Bot Owner"
+  },
   permlist: {
     "0x00000001": "CREATE_INSTANT_INVITE",
     "0x00000002": "KICK_MEMBERS",
