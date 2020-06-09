@@ -20,7 +20,7 @@ re.client.on("message", async message => {
     let commandfile = re.client.commands.get(command);
     if (!commandfile) return message.react("684556205582057518")
     if (message.author.bot && !commandfile.help.botcmd) return;
-  if(["economy", "economymanage", "war", "factions"].includes(commandfile.help.module) && !message.guild.members.cache.get("292953664492929025")) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (%support) to get started!")
+  if(["economy", "economymanage", "war", "factions"].includes(commandfile.help.module) && !message.guild.members.cache.get("292953664492929025")) return message.channel.send("Sorry! This server isn't setup for economy commands yet. Open a ticket in the Galaxy server (`%support`) to get started!")
     
   if((message.guild.id != re.config.server) && re.config.tckcmodules.includes(commandfile.help.module) && message.author.id != re.config.ownerID) return message.channel.send("Sorry! This command is only for the TCKC server!\nhttps://discord.gg/Upkp7FZ")
     
