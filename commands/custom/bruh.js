@@ -28,10 +28,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "bruh",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Bruh...",
-  syntax: re.config.prefix + "bruh",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["custom-695651396573200394"],
-  module: "custom",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

@@ -29,10 +29,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "ping",
-  description: "Tests the ping of the bot",
-  syntax: re.config.prefix + "ping",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Tests the ping of the bot`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["pong", "test"],
-  module: "bot",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

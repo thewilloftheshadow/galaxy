@@ -4,10 +4,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "invite",
-  description: "Get a link to invite the bot!",
-  syntax: re.config.prefix + "invite",
-  alias: [],
-  module: "bot",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description:`Get a link to invite the bot!`,
+  syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias:[],
+  module:`${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

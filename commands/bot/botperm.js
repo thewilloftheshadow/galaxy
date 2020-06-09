@@ -18,5 +18,5 @@ module.exports.help = {
     syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <user>`,
     alias:[],
     module:`${__dirname.split(`/`).pop()}`,
-    access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
+    access: {level: 0, mm: null}
 }

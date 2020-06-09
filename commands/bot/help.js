@@ -110,5 +110,13 @@ module.exports.help = {
   syntax: re.prefix + "help <command>",
   alias: ["command"],
   module: "bot",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
+  access: {level: 0, mm: null}
 };
+module.exports.help = {
+    name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+    description:`Get help for any command, or list all commands`,
+    syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <command>`,
+    alias:["command"],
+    module:`${__dirname.split(`/`).pop()}`,
+    access: {level: 0, mm: null}
+}

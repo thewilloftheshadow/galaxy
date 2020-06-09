@@ -9,14 +9,15 @@ module.exports.run = async (client, message, args) => {
   .addField("Level 4", "Bot Administrator")
   .addField("Level 5", "Developer")
   .addField("Level 6", "Bot Owner")
+  message.channel.send(embed)
 };
 
-module.exports.help = {
-    name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-    description:`List the perm levels`,
-    syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-    alias:["pll"],
-    module:`${__dirname.split(`/`).pop()}`,
-    access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-}
 
+module.exports.help = {
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `List the perm levels`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: ["pll"],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

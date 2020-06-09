@@ -109,16 +109,10 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: "setup",
-  description: "Setup the bot",
-  syntax: re.config.prefix + "setup",
-  alias: ["wizard"],
-  module: "bot",
-  access: {
-    staff: false,
-    mod: false,
-    ecomanage: false,
-    dev: false,
-    owner: false
-  }
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Setup the bot for your server`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 3, mm: null}
 }

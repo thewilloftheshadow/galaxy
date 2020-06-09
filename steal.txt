@@ -1,8 +1,8 @@
 module.exports.help = {
-    name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-    description:``,
-    syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-    alias:[],
-    module:`${__dirname.split(`/`).pop()}`,
-    access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: ``,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
 }
