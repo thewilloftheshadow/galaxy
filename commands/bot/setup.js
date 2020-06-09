@@ -5,7 +5,8 @@ module.exports.run = async (client, message, args) => {
   let mainmenu = new re.Discord.MessageEmbed()
   .setTitle("Galaxy Settings")
   .setColor(re.config.color)
-  .setDescription("1️⃣ Unbelievaboat\n2️⃣ Role Settings\n3️⃣ Module Manager Settings")
+  .setDescription("1️⃣ Bot Settings\n2️⃣ Unbelievaboat\n3️⃣ Role Settings\n4️⃣ Module Manager Settings")
+  await m.edit(mainmenu)
 }
 
 module.exports.help = {
