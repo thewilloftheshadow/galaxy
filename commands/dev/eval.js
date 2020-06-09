@@ -22,3 +22,11 @@ module.exports.help = {
   module: "dev",
   access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
 };
+module.exports.help = {
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: "Execute some code",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: ["execute"],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

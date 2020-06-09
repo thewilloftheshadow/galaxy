@@ -82,17 +82,12 @@ module.exports.run = async (client, message, args) => {
   re.dbs.items.set(message.guild.id+"."+item.id, item)
 }
 
+
 module.exports.help = {
-  name: "newitem",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Add an item to the shop",
-  syntax: re.config.prefix + "additem",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["createitem"],
-  module: "economymanager",
-  access: {
-    staff: false,
-    mod: false,
-    ecomanage: true,
-    dev: false,
-    owner: false
-  }
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: "economy"}
 }

@@ -8,10 +8,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "whotorob",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Who does the bot think you should rob...",
-  syntax: re.config.prefix + "whotorob",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: [],
-  module: "economy",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

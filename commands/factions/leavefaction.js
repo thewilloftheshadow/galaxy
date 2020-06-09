@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
         return await m.edit("Prompt timed out")
       let reaction = reactions.first().emoji
       await m.reactions.removeAll()
-      if (reaction.id != "678023486618468363") return await m.edit("Ok, I won't add them then")
+      if (reaction.id != "678023486618468363") return await m.edit("Ok, we won't leave that faction then")
   
   let newmem = re.vars.ap(f.members, message.author.id)
   re.dbs.factions.set(message.guild.id+"."+f.id+".members", newmem)
@@ -40,3 +40,11 @@ module.exports.help = {
   module: "factions",
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
+module.exports.help = {
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: ``,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

@@ -43,10 +43,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "faction",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Get information about a faction",
-  syntax: re.config.prefix + "faction <name>",
-  alias: ["factions"],
-  module: "factions",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <name>`,
+  alias: ["sect"],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

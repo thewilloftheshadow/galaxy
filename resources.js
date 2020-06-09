@@ -82,7 +82,7 @@ const func = {
     }
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("717162873406881822")) perms.level = 4
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
-    //if(userid === config.ownerID) perms.level = 6
+    if(userid === config.ownerID) perms.level = 6
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("719334282023272498")) perms.eval = true
     if(permmem.user.bot) perms = {
       level: 0,
@@ -173,6 +173,9 @@ const func = {
       )
     }
     return target
+  },
+  getPrefix: () => {
+    return config.prefix
   },
   paginator: async (author, msg, embeds, pageNow, addReactions = true) => {
     if (embeds.length === 1) return

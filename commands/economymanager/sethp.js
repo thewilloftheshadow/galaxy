@@ -21,3 +21,11 @@ module.exports.help = {
   module: "economymanager",
   access: {staff: false, mod: false, ecomanage: true, dev: false, owner: false}
 };
+module.exports.help = {
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: "Set someone's hp",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <user> <amount>`,
+  alias: ["sethealth"],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: "economy"}
+}

@@ -27,10 +27,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "reload",
-  description: "Reload the specified command",
-  syntax: re.prefix + "reload <command>",
-  alias: ["relink", "relpad"],
-  module: "dev",
-  access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
-};
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Reload the specified command`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <command>`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 5, mm: null}
+}

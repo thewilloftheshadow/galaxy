@@ -40,10 +40,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "adduser",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Add a user to your faction",
-  syntax: re.config.prefix + "adduser <user>",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["addmember"],
-  module: "factions",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}
