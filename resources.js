@@ -92,6 +92,7 @@ const func = {
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
     if(userid === config.ownerID) perms.level = 6
     if(userid === config.ownerID) perms.mm = ["economy", "factions"]
+    if(userid === config.ownerID) perms.eval = true
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("719334282023272498")) perms.eval = true
     if(permmem.user.bot) perms = {
       level: 0,

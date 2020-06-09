@@ -5,8 +5,16 @@ module.exports.run = async (client, message, args) => {
   let mainmenu = new re.Discord.MessageEmbed()
   .setTitle("Galaxy Settings")
   .setColor(re.config.color)
-  .setDescription("1️⃣ Bot Settings\n2️⃣ Unbelievaboat\n3️⃣ Role Settings\n4️⃣ Module Manager Settings")
+  .setDescription("1️⃣ Bot Settings\n2️⃣ Unbelievaboat\n3️⃣ Role Settings\n4️⃣ Module Manager Settings\n❌ Exit Settings")
+  .setFooter("Shut up JC ill make better emojis and stuff later")
   await m.edit(mainmenu)
+  let emojis = ["1️⃣","2️⃣","3️⃣","4️⃣","❌"]
+  await m.react("1️⃣")
+  await m.react("2️⃣")
+  await m.react("3️⃣")
+  await m.react("4️⃣")
+  await m.react("❌")
+  
 }
 
 module.exports.help = {
