@@ -4,6 +4,7 @@ module.exports.run = async (client, message, args) => {
   let command = args[0];
   let commands = [];
   if (!command){
+    return message.channel.send("Seeing help for all commands is currently disabled!")
     let embed = new re.Discord.MessageEmbed()
     .setTitle(`Commands for ${client.user.username}`)
     .setAuthor(message.author.tag, message.author.avatarURL())
@@ -86,15 +87,15 @@ module.exports.run = async (client, message, args) => {
           name:`Syntax:`, 
           value:`\`${props.help.syntax}\``
         },
+        // {
+        //   name:`Module:`, 
+        //   value:`${props.help.module}`
+        // },
         {
-          name:`Module:`, 
-          value:`${props.help.module}`
+          name:`Required ${props.help.access.mm ? "MM Permission" : "Permission Level"}:`, 
+          value:`${props.help.access.mm ? props.help.access.mm : props.help.access.level}`
         }
       ]
-    if (props.help.access.dev) embed.setDescription("This is a dev command!");
-    if (props.help.access.ecomanage) embed.setDescription("This is an economy management command!");
-    if (props.help.access.mod) embed.setDescription("This is a mod-only command!");
-    if (props.help.access.staff) embed.setDescription("This is a staff-only command!");
     if (props.help.alias && props.help.alias.length > 0)
       embed.fields.push({
         name: `Aliases:`,
@@ -104,14 +105,7 @@ module.exports.run = async (client, message, args) => {
   }
 };
 
-module.exports.help = {
-  name: "help",
-  description: "Get help for any command, or list all commands",
-  syntax: re.prefix + "help <command>",
-  alias: ["command"],
-  module: "bot",
-  access: {level: 0, mm: null}
-};
+
 module.exports.help = {
     name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
     description:`Get help for any command, or list all commands`,

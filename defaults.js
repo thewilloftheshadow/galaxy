@@ -10,6 +10,10 @@ let d = {
     "mod": [],
     "admin": []
   },
+  "mm": {
+    "economy": [],
+    "factions": []
+  },
   "channels": {
     "announcements": "",
     "suggestions": ""

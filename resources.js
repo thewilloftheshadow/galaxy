@@ -68,6 +68,8 @@ const func = {
       let staffroles = dbs.settings.get(message.guild.id+".roles.staff")
       let modroles = dbs.settings.get(message.guild.id+".roles.mod")
       let adminroles = dbs.settings.get(message.guild.id+".roles.admin")
+      let mmeconomy = dbs.settings.get(message.guild.id+".mm.economy")
+      let mmfactions = dbs.settings.get(message.guild.id+".mm.factions")
       staffroles.forEach(x => {
         if(permmem.roles.cache.has(x)) perms.level = 1
       })
@@ -76,6 +78,12 @@ const func = {
       })
       adminroles.forEach(x => {
         if(permmem.roles.cache.has(x)) perms.level = 3
+      })
+      mmeconomy.forEach(x => {
+        if(permmem.roles.cache.has(x)) perms.mm.push("economy")
+      })
+      mmfactions.forEach(x => {
+        if(permmem.roles.cache.has(x)) perms.mm.push("factions")
       })
       if(permmem.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
       if(permmem.hasPermission("MANAGE_GUILD") && adminroles.length) perms.level = 3
