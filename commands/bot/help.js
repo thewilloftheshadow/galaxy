@@ -99,7 +99,7 @@ module.exports.run = async (client, message, args) => {
     if (props.help.alias && props.help.alias.length > 0)
       embed.fields.push({
         name: `Aliases:`,
-        value: `\`${re.prefix}${props.help.alias.join("`, `" + re.prefix)}\``
+        value: `\`${re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix}${props.help.alias.join("`, `" + re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix)}\``
 });
     message.channel.send(embed);
   }

@@ -118,7 +118,7 @@ client.on("ready", async () => {
     } catch (e) {}
   })
   app.get("/", (req, res) => {
-    res.sendStatus(200)
+    res.redirect("https://discord.gg/Hr62m5X")
   })
   
 //   app.get("/", (req, res) => {
