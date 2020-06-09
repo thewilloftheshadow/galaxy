@@ -1,4 +1,6 @@
-{
+const re = require(`./resources.js`).data
+
+let d = {
   "prefix": "",
   "unb": {
     "emoji": ""
@@ -14,3 +16,5 @@
   },
   "setup": false
 }
+
+module.exports = d

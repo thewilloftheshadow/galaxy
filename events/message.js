@@ -39,37 +39,38 @@ re.client.on("message", async message => {
   if((message.guild.id != re.config.server) && re.config.tckcmodules.includes(commandfile.help.module) && message.author.id != re.config.ownerID) return message.channel.send("Sorry! This command is only for the TCKC server!\nhttps://discord.gg/Upkp7FZ")
     
     let cmdaccess = commandfile.help.access
-    if(cmdaccess.staff && !message.author.isStaff){
-      message.delete()
-      return message.author.send(
-        "Sorry! This command is for staff only."
-      );
-    }
-    if(cmdaccess.ecomanage && !message.author.isEcoManage){
-      message.delete()
-      return message.author.send(
-        "Sorry! This command is for Economy Managers only."
-      );
-    }
-    if(cmdaccess.mod && !message.author.isMod){
-      message.delete()
-      return message.author.send(
-        "Sorry! This command is for mods only."
-      );
-    }
-    if (cmdaccess.dev && !message.author.isDev){
-      message.delete()
-      if(message.author.id === "631648955104624652") return message.channel.send("Bruh you're freaking banned from using eval cause you nuked a whole freaking server idiot")
-      return message.channel.send(
-        "Sorry! This command is for developers only."
-      );
-    }
-    if (cmdaccess.owner && !message.author.id === re.config.ownerID){
-      message.delete()
-      return message.author.send(
-        "Sorry! This command is for the owner only."
-      );
-    }      
+    
+    // if(cmdaccess.staff && !message.author.isStaff){
+    //   message.delete()
+    //   return message.author.send(
+    //     "Sorry! This command is for staff only."
+    //   );
+    // }
+    // if(cmdaccess.ecomanage && !message.author.isEcoManage){
+    //   message.delete()
+    //   return message.author.send(
+    //     "Sorry! This command is for Economy Managers only."
+    //   );
+    // }
+    // if(cmdaccess.mod && !message.author.isMod){
+    //   message.delete()
+    //   return message.author.send(
+    //     "Sorry! This command is for mods only."
+    //   );
+    // }
+    // if (cmdaccess.dev && !message.author.isDev){
+    //   message.delete()
+    //   if(message.author.id === "631648955104624652") return message.channel.send("Bruh you're freaking banned from using eval cause you nuked a whole freaking server idiot")
+    //   return message.channel.send(
+    //     "Sorry! This command is for developers only."
+    //   );
+    // }
+    // if (cmdaccess.owner && !message.author.id === re.config.ownerID){
+    //   message.delete()
+    //   return message.author.send(
+    //     "Sorry! This command is for the owner only."
+    //   );
+    // }      
     
   try {
     await commandfile.run(re.client, message, args)
