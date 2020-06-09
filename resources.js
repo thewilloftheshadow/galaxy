@@ -59,7 +59,8 @@ const func = {
     let perms = {
       level: 0,
       modules: [],
-      eval: false
+      eval: false,
+      bot: false
     }
     let permmem = message.guild ? message.guild.members.cache.get(userid) : message.client.users.cache.get(userid)
     
@@ -83,6 +84,12 @@ const func = {
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
     //if(userid === config.ownerID) perms.level = 6
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("719334282023272498")) perms.eval = true
+    if(permmem.user.bot) perms = {
+      level: 0,
+      modules: [],
+      eval: false,
+      bot: true
+    }
     return perms
   },
   itemembed: function(itemid, guildid) {
