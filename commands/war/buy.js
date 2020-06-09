@@ -33,10 +33,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "buy",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Purchase an item from the shop",
-  syntax: re.config.prefix + "buy <itemid>",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <itemid>`,
   alias: ["purchase"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

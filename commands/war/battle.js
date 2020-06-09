@@ -72,16 +72,10 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: "battle",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Battle another user",
-  syntax: re.config.prefix + "battle <user>",
-  alias: ["health"],
-  module: "war",
-  access: {
-    staff: false,
-    mod: false,
-    ecomanage: false,
-    dev: false,
-    owner: false
-  }
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <user>`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
 }

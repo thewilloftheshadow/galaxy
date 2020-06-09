@@ -12,11 +12,12 @@ module.exports.run = async (client, message, args) => {
     m.edit(memmsg, new re.Discord.MessageEmbed().setDescription("Found a total of " + members.size + " members with the " + role.name + " role"))
 };
 
+
 module.exports.help = {
-  name: "members",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "List members in a role",
-  syntax: re.config.prefix + "members <role>",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <role>`,
   alias: ["inrole"],
-  module: "staff",
-  access: {staff: true, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 1, mm: null}
+}

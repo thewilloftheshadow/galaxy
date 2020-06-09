@@ -33,18 +33,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "leavefaction",
-  description: "Leave your faction",
-  syntax: re.config.prefix + "leavefaction",
-  alias: ["leavef"],
-  module: "factions",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
-module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-  description: ``,
+  description: "Leave your faction",
   syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-  alias: [],
+  alias: ["leavef", "leavesect"],
   module: `${__dirname.split(`/`).pop()}`,
   access: {level: 0, mm: null}
 }

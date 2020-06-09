@@ -58,7 +58,7 @@ const func = {
     if(userid instanceof Discord.User) userid = userid.id
     let perms = {
       level: 0,
-      modules: [],
+      mm: [],
       eval: false,
       bot: false
     }

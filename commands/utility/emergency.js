@@ -18,11 +18,12 @@ module.exports.run = async (client, message, args) => {
     re.dbs.cd.set(message.guild.id+".emergency", Date.now())
 };
 
+
 module.exports.help = {
-  name: "emergency",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Trigger an emergency alert",
-  syntax: re.config.prefix + "emergency",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: [],
-  module: "utility",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

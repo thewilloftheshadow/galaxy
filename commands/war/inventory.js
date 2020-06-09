@@ -32,10 +32,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "inventory",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "See the items you have in your inventory",
-  syntax: re.config.prefix + "inventory",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["inv"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

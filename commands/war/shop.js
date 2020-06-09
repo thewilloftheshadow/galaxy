@@ -25,10 +25,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "shop",
-  description: "List all items in the shop",
-  syntax: re.config.prefix + "shop",
-  alias: ["warshop"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `List all items in the shop`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

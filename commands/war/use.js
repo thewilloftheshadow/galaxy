@@ -34,11 +34,11 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "use",
-  description: "Use an item from your inventory",
-  syntax: re.config.prefix + "buy <itemid>",
-  alias: ["heal", "equip", "attack"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false},
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Use an item from your inventory`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null},
   nohelp: true
-};
+}

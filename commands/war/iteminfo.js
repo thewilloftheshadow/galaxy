@@ -5,10 +5,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "iteminfo",
-  description: "Get information on an item in the shop",
-  syntax: re.config.prefix + "iteminfo",
-  alias: ["ii"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Get info for an item`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

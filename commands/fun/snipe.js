@@ -13,10 +13,12 @@ module.exports.run = async (client, message, args) => {
   message.channel.send(embed)
 };
 
+
 module.exports.help = {
-  name: "snipe",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Snipe the last deleted message in the channel",
-  syntax: re.prefix + "snipe",
-  module: "fun",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

@@ -37,11 +37,12 @@ module.exports.run = async (client, message, args) => {
   await m.edit(`Done! <@${user.id}> has been removed from your faction!`)
 };
 
+
 module.exports.help = {
-  name: "removeuser",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Remove a user from your faction",
-  syntax: re.config.prefix + "removeuser <user>",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["removemember"],
-  module: "factions",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

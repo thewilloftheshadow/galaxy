@@ -11,11 +11,12 @@ module.exports.run = async (client, message, args) => {
     re.dbs.cd.set("emergency", Date.now())
 };
 
+
 module.exports.help = {
-  name: "endemergency",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "End the emergency lockdown",
-  syntax: re.config.prefix + "endemergency",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: [],
-  module: "mod",
-  access: {staff: false, mod: true, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 2, mm: null}
+}

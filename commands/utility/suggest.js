@@ -26,3 +26,11 @@ module.exports.help = {
   module: "utility",
   access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
 };
+module.exports.help = {
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: "Suggest something for your server",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: ["suggestion"],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

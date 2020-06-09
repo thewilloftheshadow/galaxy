@@ -5,10 +5,10 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "nice",
-  description: "Nice and fun!",
-  syntax: re.config.prefix + "nice",
-  alias: ["epic"],
-  module: "fun",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Nice and fun`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

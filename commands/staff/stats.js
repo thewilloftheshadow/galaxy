@@ -4,11 +4,12 @@ module.exports.run = async (client, message, args) => {
   message.react("✅")
 };
 
+
 module.exports.help = {
-  name: "stats",
-  description: "Says a message as the bot",
-  syntax: re.config.prefix + "stats",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: "Update the stat channels",
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["updatestats"],
-  module: "staff",
-  access: {staff: true, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 1, mm: null}
+}

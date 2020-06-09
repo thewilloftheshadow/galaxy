@@ -9,11 +9,12 @@ module.exports.run = async (client, message, args) => {
   message.channel.send(`You have ${hp} HP\n${hpemoji}`)
 };
 
+
 module.exports.help = {
-  name: "hp",
-  description: "Check your HP",
-  syntax: re.config.prefix + "hp",
-  alias: ["health"],
-  module: "war",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  description: `Check your hp`,
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}

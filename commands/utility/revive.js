@@ -13,11 +13,12 @@ module.exports.run = async (client, message, args) => {
     re.dbs.cd.set(message.guild.id+".revive", Date.now())
 };
 
+
 module.exports.help = {
-  name: "revive",
+  name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Revive a dead chat!",
-  syntax: re.config.prefix + "say <message>",
-  alias: ["mines"],
-  module: "utility",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
+  alias: [],
+  module: `${__dirname.split(`/`).pop()}`,
+  access: {level: 0, mm: null}
+}
