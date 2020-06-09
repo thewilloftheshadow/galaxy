@@ -1,9 +1,10 @@
 const re = require(`./resources.js`).data
+const defunb = re.func.getEmoji("GS_DefaultUnb")
 
 let d = {
   "prefix": "",
   "unb": {
-    "emoji": "<:GS_DefaultUnb:719992863949062184>"
+    "emoji": defunb
   },
   "roles": {
     "staff": [],

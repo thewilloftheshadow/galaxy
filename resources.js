@@ -287,7 +287,7 @@ const func = {
 
     return buf.join("")
   },
-  getEmoji: function(client, name) {
+  getEmoji: function(name) {
     return client.emojis.cache.find(
       emoji => emoji.name.toLowerCase() == name.toLowerCase().replace(/ /g, "_")
     )

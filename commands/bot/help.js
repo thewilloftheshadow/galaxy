@@ -93,7 +93,7 @@ module.exports.run = async (client, message, args) => {
         // },
         {
           name:`Required ${props.help.access.mm ? "MM Permission" : "Permission Level"}:`, 
-          value:`${props.help.access.mm ? props.help.access.mm : props.help.access.level}`
+          value:`${props.help.access.mm ? props.help.access.mm : `${props.help.access.level} - ${re.vars.botperms[props.help.access.level]}`}`
         }
       ]
     if (props.help.alias && props.help.alias.length > 0)
