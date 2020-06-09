@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
   input = input.first().content
   item.name = input
 
-  item.id = item.name.toLowerCase().replace(/ /g, "")
+  item.id = item.name.toLowerCase().replace(/[^a-z0-9\_\-]/g, "")
 
   // m = await message.channel.send("How much should this item cost?")
   await m.edit("How much should this item cost?")
