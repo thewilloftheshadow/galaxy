@@ -3,7 +3,7 @@ const re = require(`./resources.js`).data
 let d = {
   "prefix": "",
   "unb": {
-    "emoji": ""
+    "emoji": "<:GS_DefaultUnb:719992863949062184>"
   },
   "roles": {
     "staff": [],
