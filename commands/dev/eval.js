@@ -14,14 +14,7 @@ module.exports.run = async (client, message, args) => {
     }
 };
 
-module.exports.help = {
-  name: "eval",
-  description: "Execute some code",
-  syntax: re.config.prefix + "eval <code>",
-  alias: ["execute"],
-  module: "dev",
-  access: {staff: false, mod: false, ecomanage: false, dev: true, owner: false}
-};
+
 module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Execute some code",

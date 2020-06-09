@@ -10,8 +10,8 @@
   "modmailcat" : "681685338883620867",
   "developers": ["380455396281810955", "706357388072189983"],
   "blacklist": [],
-  "modules": ["bot", "fun", "economy", "dev", "levels"],
-  "tckcmodules": ["economymanager", "war", "mod", "staff", "utility", "custom", "factions"],
+  "modules": ["bot", "fun", "economy", "dev", "levels", "botadmin", "custom", "economymanage", "factions"],
+  "tckcmodules": ["war", "mod", "staff", "utility", "custom"],
   "callbackurl": "http://galaxybot.ml/auth/callback",
   "customdomain": "http://galaxybot.ml",
   "scope": "identify guilds"

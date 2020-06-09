@@ -174,9 +174,7 @@ const func = {
     }
     return target
   },
-  getPrefix: () => {
-    return config.prefix
-  },
+  getPrefix: config.prefix,
   paginator: async (author, msg, embeds, pageNow, addReactions = true) => {
     if (embeds.length === 1) return
     if (addReactions) {
@@ -355,7 +353,8 @@ const dbs = {
   snipe: new vars.db.table("snipe"),
   items: new vars.db.table("items"),
   settings: new vars.db.table("settings"),
-  authdb: new vars.db.table("authdb")
+  authdb: new vars.db.table("authdb"),
+  temp: new vars.db.table("temp")
 }
 
 dbs.list = Object.getOwnPropertyNames(dbs)

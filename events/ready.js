@@ -6,4 +6,9 @@ re.client.on("ready", () => {
   re.func.stats()
   re.client.user.setActivity(re.client.users.cache.size + ' members in ' + re.client.guilds.cache.size + ' servers use %help.', { type: 'WATCHING' })
   setInterval(re.func.stats, 300000)
+  let rebootchan = re.dbs.temp.get("rebootchan")
+  if(rebootchan){
+    re.client.channels.cache.get(rebootchan).send("Bot has successfully been rebooted!")
+    re.dbs.temp.delete("rebootchan")
+  }
 });
