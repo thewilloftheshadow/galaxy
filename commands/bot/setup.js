@@ -3,6 +3,7 @@ module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:GS_Loading:719993838269104199>")
   await re.func.sleep(1000)
   let set = re.dbs.settings.get(message.guild.id)
+  if(!args[0]){
   let embed = new re.Discord.MessageEmbed().setTitle("Galaxy Settings").setColor(re.config.color)
   .addField("Bot Settings", `Prefix: ${set.prefix || re.config.prefix}`)
   .addField("Unbelievaboat Settings", `Emoji: ${set.unb.emoji || "<:GS_DefaultUnb:719992863949062184>"}`)
@@ -14,6 +15,9 @@ module.exports.run = async (client, message, args) => {
   .addField("Channel Settings", `Galaxy Announcement Channel: ${`<#${set.channels.announcements}>` || "No channel set"}\n` +
            `Suggestion Channel: ${`<#${set.channels.suggestions}>` || "No channel set"}\n`)
   m.edit(" ", embed)
+  } else {
+    
+  }
 }
 
 module.exports.help = {

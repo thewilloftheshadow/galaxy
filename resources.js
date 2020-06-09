@@ -184,7 +184,7 @@ const func = {
     }
     return target
   },
-  getPrefix: config.prefix,
+  getPrefix: "jejprefixjej",
   paginator: async (author, msg, embeds, pageNow, addReactions = true) => {
     if (embeds.length === 1) return
     if (addReactions) {

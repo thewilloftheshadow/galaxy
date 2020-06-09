@@ -85,7 +85,7 @@ module.exports.run = async (client, message, args) => {
         },
         {
           name:`Syntax:`, 
-          value:`\`${props.help.syntax}\``
+          value:`\`${props.help.syntax.replace("jejprefixjej", re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix)}\``
         },
         // {
         //   name:`Module:`, 
