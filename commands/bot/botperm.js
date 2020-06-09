@@ -6,9 +6,9 @@ module.exports.run = async (client, message, args) => {
   // message.channel.send(JSON.stringify(re.func.botperms(user.id, message), null, 4), {"code": "fix"})
   let embed = new re.Discord.MessageEmbed()
       .setTitle(user.user.tag + "'s bot permissions")
-      .addField("Permission Level", `${bp.level} - ${user.user.bot ? "Bot" : re.vars.botperms[bp.level]}`)
-  if(bp.mm && bp.mm.length > 0) embed.addField("Module Permissions", bp.mm.length > 0 ? `\`${bp.mm.join("`, `")}\`` : "None")
-  if(bp.eval) embed.addField("Eval", bp.eval)
+      .setDescription(`Permission Level: ${bp.level} - ${user.user.bot ? "Bot" : re.vars.botperms[bp.level]}`)
+  if(bp.mm && bp.mm.length > 0) embed.description += "\nModule Permissions: " + bp.mm.length > 0 ? `\`${bp.mm.join("`, `")}\`` : "None"
+  if(bp.eval) embed.description += "\nEval: " +  bp.eval
   message.channel.send(embed)
 }
 
