@@ -1,10 +1,10 @@
 const re = require(`../resources.js`).data;
 re.client.on("message", async message => {
-  if(re.config.blacklist.includes(message.author.id)) return await message.react("🙉")
   if(!message.guild) return
   let prefix = re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix
   message.prefix = prefix
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase()) && message.guild) return;
+  if(re.config.blacklist.includes(message.author.id)) return await message.react("🙉")
   console.log(`${re.moment().format('MMMM Do YYYY, h:mm:ss a')} | ${message.author.tag} - ${message.content}`)
   message.author.botperms = re.func.botperms(message.author.id, message)
   message.member.botperms = message.author.botperms
