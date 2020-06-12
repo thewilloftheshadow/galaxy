@@ -17,7 +17,9 @@ let d = {
   },
   "channels": {
     "announcements": "",
-    "suggestions": ""
+    "suggestions": "",
+    "oneword": "",
+    "counting": ""
   },
   "setup": false
 }

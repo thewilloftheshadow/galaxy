@@ -13,7 +13,9 @@ module.exports.run = async (client, message, args) => {
   .addField("Module Manager Settings", `Economy MM: ${set.mm.economy.length > 0 ? `<@&${set.mm.economy.join(">, <@&")}>` : "No roles set"}\n` +
            `Factions MM: ${set.mm.factions.length > 0 ? `<@&${set.mm.factions.join(">, <@&")}>` : "No roles set"}\n`)
   .addField("Channel Settings", `Galaxy Announcement Channel: ${`<#${set.channels.announcements}>` || "No channel set"}\n` +
-           `Suggestion Channel: ${`<#${set.channels.suggestions}>` || "No channel set"}\n`)
+           `Suggestion Channel: ${`<#${set.channels.suggestions}>` || "No channel set"}\n` +
+           `1 Word Story Channel: ${`<#${set.channels.oneword}>` || "No channel set"}\n` +
+           `Counting Channel: ${`<#${set.channels.counting}>` || "No channel set"}\n`)
   m.edit(" ", embed)
   } else {
     
