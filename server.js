@@ -117,9 +117,9 @@ client.on("ready", async () => {
       req.next()
     } catch (e) {}
   })
-  app.get("/", (req, res) => {
-    res.redirect("https://discord.gg/Hr62m5X")
-  })
+  // app.get("/", (req, res) => {
+  //   res.redirect("https://discord.gg/Hr62m5X")
+  // })
   
 //   app.get("/", (req, res) => {
 //     let pass = { user: req.user || null, dclient: client }
