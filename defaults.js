@@ -4,7 +4,7 @@ const defunb = re.func.getEmoji("GS_DefaultUnb")
 let d = {
   "prefix": "",
   "unb": {
-    "emoji": defunb
+    "emoji": `<${defunb.animated? "a" : ""}>`
   },
   "roles": {
     "staff": [],
