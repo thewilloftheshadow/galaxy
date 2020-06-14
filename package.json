@@ -25,7 +25,8 @@
     "passport-discord": "^0.1.4",
     "express-session": "^1.17.1",
     "passport": "^0.4.1",
-    "file-type": "^14.6.0"
+    "file-type": "^14.6.2",
+    "dotenv": "^8.2.0"
   },
   "engines": {
     "node": "12.x"
