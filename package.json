@@ -4,7 +4,9 @@
   "description": "Custom bot for 'The Cool Kids Club' server on Discord",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "discord.js": "^12.2.0",
@@ -26,7 +28,8 @@
     "express-session": "^1.17.1",
     "passport": "^0.4.1",
     "file-type": "^14.6.2",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "snyk": "^1.339.3"
   },
   "engines": {
     "node": "12.x"
@@ -39,5 +42,6 @@
     "node",
     "discord.js",
     "discord"
-  ]
+  ],
+  "snyk": true
 }
