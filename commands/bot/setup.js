@@ -60,7 +60,7 @@ module.exports.run = async (client, message, args) => {
     re.dbs.settings.set(message.guild.id+".mm."+type, roles)
   } else if(args[0] === "channel" || args[0] === "channels") {
     let type = args[1]
-    if(["announcement", "galaxyannouncement", "galaxyannouncement"].includes[type]) type = "announcements"
+    if(["announcement", "galaxyannouncement", "galaxyannouncement"].includes(type)) type = "announcements"
     if(["1word", "one-word"].includes[type]) type = "oneword"
     if(!["announcements", "suggestions", "oneword", "counting"].includes(type)) return await m.edit("That is not a valid channel setting!")
     await m.edit("Please ping the channel you want listed as " + type + " channel")
