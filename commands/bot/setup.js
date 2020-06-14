@@ -17,8 +17,26 @@ module.exports.run = async (client, message, args) => {
            `1 Word Story Channel: ${`<#${set.channels.oneword ? set.channels.oneword : "No channel set"}>`}\n` +
            `Counting Channel: ${`<#${set.channels.counting}>` || "No channel set"}\n`)
   m.edit(" ", embed)
-  } else {
+  } else if(args[0] === "prefix") {
+    re.dbs.settings.set(message.guild.id+".prefix", args.slice(1).join(" "))
+    m.edit(`Success! You have changed this server's prefix to \`${args.slice(1).join(" ")}\``)
+  } else if(args[0] === "emoji") {
+    re.dbs.settings.set(message.guild.id+".unb.emoji", args.slice(1).join(" "))
+    m.edit(`Success! You have changed this currency emoji to ${args.slice(1).join(" ")}`)
+  } else if(args[0] === "role" || args[0] === "roles") {
+    let type = args[1]
+    if(type === "moderator") type = "mod"
+    if(!["staff", "mod", "admin"].includes(type)) return await m.edit("That is not a valid role setting!")
     
+    let input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+    if (!input) return await m.edit("Prompt timed out.")
+    input = input.first().content
   }
 }
 
@@ -26,7 +44,7 @@ module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: `Change or view the Galaxy Settings for your server`,
   syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-  alias: ["settings"],
+  alias: ["settings", "set"],
   module: `${__dirname.split(`/`).pop()}`,
   access: { level: 3, mm: null }
 }
