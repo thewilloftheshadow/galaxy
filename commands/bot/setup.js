@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
       errors: ["time"]
     })
     .catch(() => {})
-    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
+    if (!input || input.first().content.toLowerCase() == "cancel") return await m.edit("Prompt canceled.")
     input = input.first()
     let roles = input.mentions.roles.map(x => x.id)
     input.delete()
@@ -52,7 +52,7 @@ module.exports.run = async (client, message, args) => {
       errors: ["time"]
     })
     .catch(() => {})
-    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
+    if (!input || input.first().content.toLowerCase() == "cancel") return await m.edit("Prompt canceled.")
     input = input.first()
     let roles = input.mentions.roles.map(x => x.id)
     input.delete()
@@ -70,7 +70,7 @@ module.exports.run = async (client, message, args) => {
       errors: ["time"]
     })
     .catch(() => {})
-    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
+    if (!input || input.first().content.toLowerCase() == "cancel") return await m.edit("Prompt canceled.")
     input = input.first()
     let channel = input.mentions.channels.first().id
     input.delete()
