@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
            `Admin Roles: ${set.roles.admin.length > 0 ? `<@&${set.roles.admin.join(">, <@&")}>` : "No roles set"}`)
   .addField("Module Manager Settings", `Economy MM: ${set.mm.economy.length > 0 ? `<@&${set.mm.economy.join(">, <@&")}>` : "No roles set"}\n` +
            `Factions MM: ${set.mm.factions.length > 0 ? `<@&${set.mm.factions.join(">, <@&")}>` : "No roles set"}\n`)
-  .addField("Channel Settings", `Galaxy Announcement Channel: ${set.channels.announcements ? `<#{set.channels.announcements}` : "No channel set"}\n` +
+  .addField("Channel Settings", `Galaxy Announcement Channel: ${set.channels.announcements ? `<#${set.channels.announcements}>` : "No channel set"}\n` +
            `Suggestion Channel: ${set.channels.suggestions ? `<#${set.channels.suggestions}>` : "No channel set"}\n` +
            `1 Word Story Channel: ${`${set.channels.oneword ? `<#${set.channels.oneword}>` : "No channel set"}`}\n` +
            `Counting Channel: ${`${set.channels.counting ? `<#${set.channels.counting}>` : "No channel set"}`}\n`)
@@ -60,6 +60,7 @@ module.exports.run = async (client, message, args) => {
     re.dbs.settings.set(message.guild.id+".mm."+type, roles)
   } else if(args[0] === "channel" || args[0] === "channels") {
     let type = args[1]
+    if(["announcement", "galaxyannouncement", "galaxyannouncement"].includes[type]) type = "announcements"
     if(["1word", "one-word"].includes[type]) type = "oneword"
     if(!["announcements", "suggestions", "oneword", "counting"].includes(type)) return await m.edit("That is not a valid channel setting!")
     await m.edit("Please ping the channel you want listed as " + type + " channel")
@@ -74,7 +75,7 @@ module.exports.run = async (client, message, args) => {
     input = input.first()
     let channel = input.mentions.channels.first().id
     input.delete()
-    m.edit(`Success! You have set the channel for ${type} MM to <#${channel}>`)
+    m.edit(`Success! You have set the channel for ${type} to <#${channel}>`)
     re.dbs.settings.set(message.guild.id+".channels."+type, channel)
   }
 }
