@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
       errors: ["time"]
     })
     .catch(() => {})
-    if (!input) return await m.edit("Prompt timed out.")
+    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
     input = input.first()
     let roles = input.mentions.roles.map(x => x.id)
     input.delete()
@@ -52,12 +52,30 @@ module.exports.run = async (client, message, args) => {
       errors: ["time"]
     })
     .catch(() => {})
-    if (!input) return await m.edit("Prompt timed out.")
+    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
     input = input.first()
     let roles = input.mentions.roles.map(x => x.id)
     input.delete()
     m.edit(`Success! You have set the roles for ${type} MM to ${input.mentions.roles.map(x => `<@&${x.id}>`).join(", ")}`)
     re.dbs.settings.set(message.guild.id+".mm."+type, roles)
+  } else if(args[0] === "channel" || args[0] === "channels") {
+    let type = args[1]
+    if(["1word", "one-word"].includes[type]) type = "oneword"
+    if(!["announcements", "suggestions", "oneword", "counting"].includes(type)) return await m.edit("That is not a valid channel setting!")
+    await m.edit("Please ping the channel you want listed as " + type + " channel")
+    let input = await m.channel
+    .awaitMessages(msg => msg.author.id == message.author.id, {
+      time: 30 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+    if (!input || input.first().content == "cancel") return await m.edit("Prompt timed out.")
+    input = input.first()
+    let channel = input.mentions.channels.first().id
+    input.delete()
+    m.edit(`Success! You have set the channel for ${type} MM to <#${channel}>`)
+    re.dbs.settings.set(message.guild.id+".channels."+type, channel)
   }
 }
 
