@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
     let type = args[1]
     if(type === "moderator") type = "mod"
     if(!["staff", "mod", "admin"].includes(type)) return await m.edit("That is not a valid role setting!")
-    
+    await m.edit("Please ping all the roles you want listed as " + type + " roles")
     let input = await m.channel
     .awaitMessages(msg => msg.author.id == message.author.id, {
       time: 30 * 1000,
@@ -36,7 +36,11 @@ module.exports.run = async (client, message, args) => {
     })
     .catch(() => {})
     if (!input) return await m.edit("Prompt timed out.")
-    input = input.first().content
+    input = input.first()
+    let roles = input.mentions.roles.map(x => x.id)
+    input.delete()
+    m.edit(`Success! You have set the roles for ${type} to ${input.mentions.roles.map(x => `<@&${x.id}>`).join(", ")}`)
+    
   }
 }
 
