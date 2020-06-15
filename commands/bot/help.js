@@ -9,64 +9,7 @@ module.exports.run = async (client, message, args) => {
     .setTitle(`Commands for ${client.user.username}`)
     .setAuthor(message.author.tag, message.author.avatarURL())
     .setColor(re.config.color)
-    let modulecommands = []
-    // client.commands.forEach(command => {
-    //   if(command.help.module === "bot"){
-    //     if(!modulecommands.find(c => c == command.help.name)){
-    //       modulecommands.push(command.help.name)
-    //     }
-    //   }
-    // })
-    // let serverprefix = re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix
-    // embed.addField(`**Bot:**`, `${serverprefix}${modulecommands.join("\n" + serverprefix)}`, true)
-    await re.config.modules.forEach(async module => {
-      let modulecommandarray = []
-      let modulecommands = ""
-      client.commands.forEach(command => {
-        if(command.help.module === module && !command.help.nohelp){
-          if(!modulecommandarray.find(c => c == command.help.name)){
-            modulecommandarray.push(command.help.name)
-            modulecommands += `**${re.config.prefix}${command.help.name}**\n - ${command.help.description}\n`
-          }
-        }
-      })
-      let serverprefix = re.config.prefix
-      if(module == "bot" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "utility && modulecommands.length > 0") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "fun" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "mod" && message.member.roles.cache.get("694962620914204672")  && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "economy" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "war" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "economymanager" && message.member.roles.cache.get("710614561668989018") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "factions" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-    })
     
-    await re.config.tckcmodules.forEach(async module => {
-      let modulecommandarray = []
-      let modulecommands = ""
-      client.commands.forEach(command => {
-        if(command.help.module === module && !command.help.nohelp){
-          if(!modulecommandarray.find(c => c == command.help.name)){
-            modulecommandarray.push(command.help.name)
-            modulecommands += `**${re.config.prefix}${command.help.name}**\n - ${command.help.description}\n`
-          }
-        }
-      })
-      if(message.guild.id != re.config.server) return
-      let serverprefix = re.config.prefix
-      if(module == "bot" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "utility && modulecommands.length > 0") await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "fun" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "mod" && message.member.roles.cache.get("694962620914204672")  && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "economy" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "war" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "economymanager" && message.member.roles.cache.get("710614561668989018") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "factions" && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "staff" && message.member.roles.cache.get("712070389815312385") && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-      if(module == "dev" && message.author.id === re.config.ownerID && modulecommands.length > 0) await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands)
-    })
     
     message.channel.send(embed)
   }
