@@ -9,6 +9,8 @@ module.exports.run = async (client, message, args) => {
       .setDescription(`Permission Level: ${bp.level} - ${user.user.bot ? "Bot" : re.vars.botperms[bp.level]}`)
   if(bp.mm && bp.mm.length > 0) embed.description += `\nModule Permissions: ${bp.mm.length > 0 ? `\`${bp.mm.join("`, `")}\`` : "None"}`
   if(bp.eval) embed.description += `\nEval: ${bp.eval}`
+  let botban = re.dbs.botban.get(user.id)
+  if(botban){embed.description += `Botbanned: ${botban}`}
   message.channel.send(embed)
 }
 
@@ -16,7 +18,7 @@ module.exports.help = {
     name:`${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
     description:`Check botperms`,
     syntax:`${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <user>`,
-    alias:[],
+    alias:["botperms", "usercheck", "uc"],
     module:`${__dirname.split(`/`).pop()}`,
     access: {level: 0, mm: null}
 }

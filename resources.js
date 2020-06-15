@@ -364,6 +364,7 @@ const dbs = {
   items: new vars.db.table("items"),
   settings: new vars.db.table("settings"),
   authdb: new vars.db.table("authdb"),
+  botban: new vars.db.table("botban"),
   temp: new vars.db.table("temp")
 }
 
