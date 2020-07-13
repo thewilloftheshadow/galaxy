@@ -65,11 +65,12 @@ const func = {
     let permmem = message.guild ? message.guild.members.cache.get(userid) : message.client.users.cache.get(userid)
     
     if(message.guild){
-      let staffroles = dbs.settings.get(message.guild.id+".roles.staff")
-      let modroles = dbs.settings.get(message.guild.id+".roles.mod")
-      let adminroles = dbs.settings.get(message.guild.id+".roles.admin")
-      let mmeconomy = dbs.settings.get(message.guild.id+".mm.economy")
-      let mmfactions = dbs.settings.get(message.guild.id+".mm.factions")
+      staffroles = [], modroles= [], adminroles= [], mmeconomy= [], mmfactions = []
+      staffroles = dbs.settings.get(message.guild.id+".roles.staff")
+      modroles = dbs.settings.get(message.guild.id+".roles.mod")
+      adminroles = dbs.settings.get(message.guild.id+".roles.admin")
+      mmeconomy = dbs.settings.get(message.guild.id+".mm.economy")
+      mmfactions = dbs.settings.get(message.guild.id+".mm.factions")
       if(staffroles) staffroles.forEach(x => {
         if(permmem.roles.cache.has(x)) perms.level = 1
       })
@@ -85,8 +86,8 @@ const func = {
       if(mmfactions) mmfactions.forEach(x => {
         if(permmem.roles.cache.has(x)) perms.mm.push("factions")
       })
-      if(permmem.hasPermission("MANAGE_MESSAGES") && modroles.length) perms.level = 2
-      if(permmem.hasPermission("MANAGE_GUILD") && adminroles.length) perms.level = 3
+      if(permmem.hasPermission("MANAGE_MESSAGES") && modroles.length == 0) perms.level = 2
+      if(permmem.hasPermission("MANAGE_GUILD") && adminroles.length == 0) perms.level = 3
     }
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("717162873406881822")) perms.level = 4
     if(message.client.guilds.cache.get(config.support).members.cache.get(userid) && message.client.guilds.cache.get(config.support).members.cache.get(userid).roles.cache.has("716426400738836557")) perms.level = 5
@@ -365,7 +366,8 @@ const dbs = {
   settings: new vars.db.table("settings"),
   authdb: new vars.db.table("authdb"),
   botban: new vars.db.table("botban"),
-  temp: new vars.db.table("temp")
+  temp: new vars.db.table("temp"),
+  games: new vars.db.table("games")
 }
 
 dbs.list = Object.getOwnPropertyNames(dbs)

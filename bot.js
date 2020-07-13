@@ -1,5 +1,5 @@
-const re = require(`./resources.js`).data
 require('dotenv').config()
+const re = require(`./resources.js`).data
 re.client.on('ready', () => console.log('\nStarting bot...'));
 //re.client.on('debug', m => console.debug(m));
 re.client.on('warn', m => console.log(m));

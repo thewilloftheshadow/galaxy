@@ -19,14 +19,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: "suggest",
-  description: "Suggest something for our server",
-  syntax: re.config.prefix + "suggest <suggestion>",
-  alias: ["suggestion"],
-  module: "utility",
-  access: {staff: false, mod: false, ecomanage: false, dev: false, owner: false}
-};
-module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Suggest something for your server",
   syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,

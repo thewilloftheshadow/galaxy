@@ -1,6 +1,6 @@
 const re = require(`../resources.js`).data
 re.client.on("guildCreate", async guild => {
-  const defaults = require("/app/defaults.js");
+  const defaults = require("/home/sd/galaxy/defaults.js");
   re.dbs.settings.set(guild.id, defaults)
   console.log(`New Guild: ${guild.name} (${guild.id})\n - Member Count: ${guild.memberCount}`)
   re.client.emit("botlog", `New Guild: ${guild.name} (${guild.id})\n - Member Count: ${guild.memberCount}`)

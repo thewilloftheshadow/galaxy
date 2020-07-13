@@ -11,21 +11,23 @@ module.exports.run = async (client, message, args) => {
   if(!allf) return await m.edit(`There are no factions in this server!`)
   if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
   
-  let fmem2 = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  //let fmem2 = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
   let fmem = `<@${f.members.join(">\n<@")}>`
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
   .setTitle(f.name)
-  .addField("Channel:", `<#${f.ids.channel}>`, true)
-  .addField("Role:", `<@&${f.ids.role}>`, true)
-  .addField("Leader:", `<@${f.leader}>`, true) // .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
+  if(f.ids){
+    if(f.ids.channel) faction.addField("Channel:", `<#${f.ids.channel}>`, true)
+    if(f.ids.role) faction.addField("Role:", `<@&${f.ids.role}>`, true)
+  }
+  embed.addField("Leader:", `<@${f.leader}>`, true) // .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
   .addField("Members:", fmem)
   .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
   await m.edit("Here is the information for " + f.name + ":", embed)
   
-  let ids = fmem2.map(x => x.user.id)
+  let ids = f.members
   let v = 0;
   ids.forEach(async (id, index) => {
       
@@ -35,7 +37,7 @@ module.exports.run = async (client, message, args) => {
       if(index === ids.length - 1) {
         embed.fields[embed.fields.length - 1] = {
           name:"Faction Value:",
-          value:`<a:TCKC_MoneyBag:710609208286117898> ${v}`
+          value:`${re.dbs.settings.get(message.guild.id+".unb.emoji")} ${v}`
         }
         return m.edit(embed);
       }

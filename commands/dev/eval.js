@@ -1,5 +1,6 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
+  const die = "🔪🔫"
   
     try {
       const code = args.join(" ");

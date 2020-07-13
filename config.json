@@ -4,15 +4,16 @@
   "color": "#6F03C7",
   "logs": "716426401493811226",
   "errors": "716494477530759179",
-  "debug": false,
+  "debug": true,
   "server": "641036901511594003",
   "support": "716426400734642216",
   "modmailcat" : "681685338883620867",
   "developers": ["380455396281810955", "706357388072189983"],
   "blacklist": [],
-  "modules": ["bot", "fun", "economy", "dev", "levels", "botadmin", "custom", "factions"],
-  "tckcmodules": ["war", "mod", "staff", "utility"],
+  "modules": ["bot", "fun", "economy", "dev", "levels", "botadmin", "custom", "factions", "staff", "war", "utility"],
+  "tckcmodules": ["mod"],
   "callbackurl": "http://galaxybot.ml/auth/callback",
   "customdomain": "http://galaxybot.ml",
-  "scope": "identify guilds"
+  "scope": "identify guilds",
+  "unbid": ["292953664492929025", "356950275044671499"]
 }

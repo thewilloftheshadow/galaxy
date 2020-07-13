@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   if(bp.mm && bp.mm.length > 0) embed.description += `\nModule Permissions: ${bp.mm.length > 0 ? `\`${bp.mm.join("`, `")}\`` : "None"}`
   if(bp.eval) embed.description += `\nEval: ${bp.eval}`
   let botban = re.dbs.botban.get(user.id)
-  if(botban){embed.description += `Botbanned: ${botban}`}
+  if(botban){embed.addField(`Botbanned:`,  `Yes. Reason: \`${botban}\``)}
   message.channel.send(embed)
 }
 

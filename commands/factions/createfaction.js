@@ -1,38 +1,50 @@
 const re = require(`../../resources.js`).data
 module.exports.run = async (client, message, args) => {
   let m = await message.channel.send("<a:TCKC_ThonkTriangle:678050031017918475>")
-  if(message.author.id != re.config.unbid){
-    m.edit(`Hey there! Here's how to setup faction system for Unbelievaboat.\n1) Authorize Galaxy to manage your unbelievaboat economy: https://unbelievaboat.com/applications/authorize?app_id=700441228038242304&guild_id=${message.guild.id}` + 
-          `2) Create an item in the shop for purchasing a faction\n3) `)
-  } else {
-    
+  if(re.config.unbid.includes(message.author.id)) return m.edit(`Hey there! Here's how to setup a faction system for Unbelievaboat.\n1) Authorize Galaxy to manage your unbelievaboat economy: <https://unbelievaboat.com/applications/authorize?app_id=700441228038242304&guild_id=${message.guild.id}>\n` + 
+          `2) Create an item in the shop for purchasing a faction\n 3) Set the reply message for the item to this:\n\`\`\`fix\n${message.prefix}createfaction {member.id} {server.id}\`\`\`4) Have users buy that item to get a faction!`)
+  message.delete()  
+  let memid = args[0]
+  let serverid = args[1]
+  let faction = {
+    "name": "",
+    "members": [
+      memid
+    ],
+    "leader": memid,
+    "id": ""
   }
-  return;
-  let allfactionsdb = re.dbs.factions.get(message.guild.id)
-  if(!allfactionsdb){
-    re.dbs.factions.set(message.guild.id, {})
-    allfactionsdb = {}
-  }
-  let allf = Object.getOwnPropertyNames(allfactionsdb)
-  let f = re.dbs.factions.get(message.guild.id+"."+(args.join(" ") || "abcdefghijklmnopqrstuvwxyz"))
-  if(!allf) return await m.edit(`There are no factions in this server!`)
-  if(!f) return await m.edit(`That faction was not found! Here are all the factions in the server:\n**${allf.join("**, **")}**`)
+  m.edit("What do you want to call your new faction?")
+  let input = await m.channel
+    .awaitMessages(msg => msg.author.id == memid, {
+      time: 120 * 1000,
+      max: 1,
+      errors: ["time"]
+    })
+    .catch(() => {})
+  if (!input) return await m.edit("Prompt timed out.")
+  input2 = input.first()
+  input = input.first().content
+  faction.name = input
+  input2.delete()
+
+  faction.id = faction.name.toLowerCase().replace(/[^a-z0-9\_\-]/g, "")
+  re.dbs.factions.set(`${serverid}.${faction.id}`, faction)
+  re.dbs.users.set(`${serverid}.${memid}.faction`, faction.id)
   
-  let fmem2 = message.guild.members.cache.filter(x => x.roles.cache.has(f.ids.role))
+  let f = faction
   let fmem = `<@${f.members.join(">\n<@")}>`
   
   let embed = new re.Discord.MessageEmbed()
   .setColor(0x30D5C8)
   .setTitle(f.name)
-  .addField("Channel:", `<#${f.ids.channel}>`, true)
-  .addField("Role:", `<@&${f.ids.role}>`, true)
-  .addField("Leader:", `<@${f.leader}>`, true) // .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
-  .addField("Members:", fmem)
-  .addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
+  embed.addField("Leader:", `<@${f.leader}>`, true) // .addField("Members:", fmem.map(x => `<@${x.user.id}>`))
+  embed.addField("Members:", fmem)
+  embed.addField("Faction Value:", "<a:TCKC_ThonkTriangle:678050031017918475> Calculating...")
   
-  await m.edit("Here is the information for " + f.name + ":", embed)
+  await m.edit(`Here is the information for ${f.name}:`, embed)
   
-  let ids = fmem2.map(x => x.user.id)
+  let ids = f.members
   let v = 0;
   ids.forEach(async (id, index) => {
       
@@ -42,7 +54,7 @@ module.exports.run = async (client, message, args) => {
       if(index === ids.length - 1) {
         embed.fields[embed.fields.length - 1] = {
           name:"Faction Value:",
-          value:`<a:TCKC_MoneyBag:710609208286117898> ${v}`
+          value:`${re.dbs.settings.get(message.guild.id+".unb.emoji")} ${v}`
         }
         return m.edit(embed);
       }

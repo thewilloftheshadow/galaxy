@@ -23,8 +23,8 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: "Change settings for this guild. Use without arguments to see the settings for this guild",
-  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <setting> <value>\n${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}<setting> push <value>`,
-  alias: ['settings', 'set'],
+  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <setting> <value>\n${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <setting> push <value>`,
+  alias: [],
   module: `${__dirname.split(`/`).pop()}`,
   access: {level: 5, mm: null}
 }

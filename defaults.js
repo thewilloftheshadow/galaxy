@@ -9,17 +9,28 @@ let d = {
   "roles": {
     "staff": [],
     "mod": [],
-    "admin": []
+    "admin": [],
+    "welcome": [],
+    "goodbye": []
   },
   "mm": {
     "economy": [],
-    "factions": []
+    "factions": [],
+    "levels": []
   },
   "channels": {
     "announcements": "",
     "suggestions": "",
     "oneword": "",
-    "counting": ""
+    "counting": "",
+    "welcome": "",
+    "goodbye": "",
+    "advertising": ""
+  },
+  "msg": {
+    "welcome": "",
+    "goodbye": "",
+    "custom": []
   },
   "setup": false
 }

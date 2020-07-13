@@ -1,36 +1,52 @@
-const re = require(`../../resources.js`).data
+const re = require(`../../resources.js`).data;
 module.exports.run = async (client, message, args) => {
   let command = args[0];
   let commandfile = client.commands.get(command);
   if (!commandfile) return message.channel.send("Unable to find that command");
-  let module = commandfile.help.module
-  if(commandfile.help.alias){
-    commandfile.help.alias.forEach(alias => {
+  let module = commandfile.help.module;
+  if (commandfile.help.alias) {
+    commandfile.help.alias.forEach((alias) => {
       client.commands.delete(alias);
     });
   }
   client.commands.delete(command);
-  
-  delete require.cache[require.resolve(`/app/commands/${module}/${commandfile.help.name}.js`)]
+
+  delete require.cache[
+    require.resolve(
+      `/home/sd/galaxy/commands/${module}/${commandfile.help.name}.js`
+    )
+  ];
+
+  console.log(module);
 
   let props = require(`../${module}/${commandfile.help.name}`);
   console.log(`Reload: Command "${command}" loaded`);
   client.commands.set(props.help.name, props);
   if (props.help.alias) {
-    props.help.alias.forEach(alias => {
+    props.help.alias.forEach((alias) => {
       client.commands.set(alias, props);
       console.log(` Alias ${alias} added`);
     });
   }
 
-  message.channel.send("Command `"+command.toLowerCase()+"` successfully reloaded");
+  message.channel.send(
+    "Command `" + command.toLowerCase() + "` successfully reloaded"
+  );
 };
 
 module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   description: `Reload the specified command`,
-  syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()} <command>`,
+  syntax: `${re.func.getPrefix}${__filename
+    .split(`${__dirname}/`)
+    .pop()
+    .split(`.`)
+    .shift()} <command>\n${re.func.getPrefix}${__filename
+    .split(`${__dirname}/`)
+    .pop()
+    .split(`.`)
+    .shift()} <command> --force <module>`,
   alias: [],
   module: `${__dirname.split(`/`).pop()}`,
-  access: {level: 5, mm: null}
-}
+  access: { level: 5, mm: null },
+};

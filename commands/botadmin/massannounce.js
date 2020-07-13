@@ -19,18 +19,18 @@ module.exports.run = async (client, message, args) => {
     await re.func.sleep(1000)
   })
   embed.addField("Don't want these DMs?", `If you don't want to get announcements in your DMs, you can use the command \`%setup channel announcements\` **in your server** to set a channel for this command to be used in.`)
-  dms.forEach(async x => {
-    re.client.users.cache.get(x).send(embed).catch(()=>{})
-    await re.func.sleep(1000)
-  })
+  // dms.forEach(async x => {
+  //   re.client.users.cache.get(x).send(embed).catch(()=>{})
+  //   await re.func.sleep(1000)
+  // })
   m.edit(`Success! Your message was sent to ${channels.length} servers! ${dms.length} servers didn't have channels setup, so the server owner was DMed instead.`)
 };
 
 module.exports.help = {
   name: `${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
-  description: `Reboot the bot`,
+  description: `Send a mass announcement`,
   syntax: `${re.func.getPrefix}${__filename.split(`${__dirname}/`).pop().split(`.`).shift()}`,
   alias: ["globalannounce", "massannouncement"],
   module: `${__dirname.split(`/`).pop()}`,
-  access: {level: 4, mm: null}
+  access: {level: 5, mm: null}
 }

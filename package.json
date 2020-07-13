@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node bot.js",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "discord.js": "^12.2.0",

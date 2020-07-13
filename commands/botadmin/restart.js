@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
   re.dbs.temp.set("rebootchan", message.channel.id)
   message.react("✅")
   client.user.setStatus('offline')
-  cmd.run("refresh")
+  cmd.run("pm2 restart Galaxy")
 };
 
 module.exports.help = {

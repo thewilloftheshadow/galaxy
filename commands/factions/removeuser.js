@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
   let newmem = re.vars.ap(f.members, user.id)
   re.dbs.factions.set(message.guild.id+"."+f.id+".members", newmem)
   re.dbs.users.delete(message.guild.id+"."+user.id+".faction")
-  user.roles.remove(f.ids.role, `Removed from faction by ${message.author.tag}`)
+  if(f.ids && f.ids.role) user.roles.remove(f.ids.role, `Removed from faction by ${message.author.tag}`)
   await m.edit(`Done! <@${user.id}> has been removed from your faction!`)
 };
 

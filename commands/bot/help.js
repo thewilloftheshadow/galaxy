@@ -4,13 +4,29 @@ module.exports.run = async (client, message, args) => {
   let command = args[0];
   let commands = [];
   if (!command){
-    return message.channel.send("Seeing help for all commands is currently disabled!")
     let embed = new re.Discord.MessageEmbed()
     .setTitle(`Commands for ${client.user.username}`)
     .setAuthor(message.author.tag, message.author.avatarURL())
     .setColor(re.config.color)
-    
-    
+    .setFooter("Use the command %help <command> to get more info on a specific command!")
+    let modulecommands = []
+    await re.config.modules.forEach(async module => {
+      let modulecommandarray = []
+      let modulecommands = ""
+      client.commands.forEach(command => {
+        if(command.help.module === module && !command.help.nohelp){
+          if(!modulecommandarray.find(c => c == command.help.name)){
+            modulecommandarray.push(command.help.name)
+            cantuse = false
+            if(message.author.botperms.level < command.help.access.level) cantuse = true
+            if(command.help.access.mm && !message.author.botperms.mm.includes(command.help.access.mm)) cantuse = true
+            modulecommands += `${cantuse ? "~~" : ""}${message.prefix}${command.help.name}${cantuse ? "~~" : ""}\n`
+          }
+        }
+      })
+      await embed.addField(`**${re.func.capitalizeFirstLetter(module)}:**`, modulecommands, true)
+    })
+    embed.addField("Note:", "If a command is crossed out, you do not have access to use it\nUse the command %help <command> to get more info on a specific command!\nAn update to this will be coming soon, fixing some issues with the formatting and generation.")
     message.channel.send(embed)
   }
   else{
@@ -28,7 +44,7 @@ module.exports.run = async (client, message, args) => {
         },
         {
           name:`Syntax:`, 
-          value:`\`${props.help.syntax.replace("jejprefixjej", re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix)}\``
+          value:`\`${props.help.syntax.replace(/jejprefixjej/g, re.dbs.settings.get(message.guild.id+".prefix") || re.config.prefix)}\``
         },
         // {
         //   name:`Module:`, 
