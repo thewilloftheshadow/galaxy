@@ -14,7 +14,7 @@
     "sqlite3": "^4.2.0",
     "quick.db": "^7.1.1",
     "unb-api": "^1.2.0",
-    "discord.js-minesweeper": "^1.0.5",
+    "discord.js-minesweeper": "^1.0.6",
     "node-cmd": "^3.0.0",
     "handybag": "^0.1.2",
     "moment": "^2.27.0",
