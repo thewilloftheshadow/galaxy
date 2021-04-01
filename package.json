@@ -29,7 +29,7 @@
     "passport": "^0.4.1",
     "file-type": "^14.6.2",
     "dotenv": "^8.2.0",
-    "snyk": "^1.347.1"
+    "snyk": "^1.518.0"
   },
   "engines": {
     "node": "12.x"
